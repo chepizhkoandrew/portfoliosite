@@ -8,6 +8,7 @@ import { b2bsaasTakeoffExperience } from '@/data/experiences/b2bsaastakeoff'
 import { erpsystemExperience } from '@/data/experiences/erpsystem'
 import { businessconsultingExperience } from '@/data/experiences/businessconsulting'
 import { useState, useEffect } from 'react'
+import { FiChevronDown } from 'react-icons/fi'
 
 const experiences: { [key: string]: any } = {
   myproduct: myproductExperience,
@@ -26,6 +27,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'My goal is to get 5% of the market until the end of 2026',
     'priroda.tech'
   ])
+  const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     params.then(({ slug }) => setSlug(slug))
@@ -197,16 +199,22 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
           <div>
             <div className="mb-8 pt-8 pb-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px' }}>
-                {displayTexts[0]}
+                {slug === 'myproduct' ? displayTexts[0] : experience.title}
               </h1>
-              <a 
-                href="https://priroda.tech" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-2xl md:text-3xl font-light text-neutral-300 mb-2 hover:text-neutral-100 transition-colors block"
-              >
-                {displayTexts[3]}
-              </a>
+              {slug === 'myproduct' ? (
+                <a 
+                  href="https://priroda.tech" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-2xl md:text-3xl font-light text-neutral-300 mb-2 hover:text-neutral-100 transition-colors block"
+                >
+                  {displayTexts[3]}
+                </a>
+              ) : (
+                <p className="text-2xl md:text-3xl font-light text-neutral-300 mb-2">
+                  {experience.company}
+                </p>
+              )}
               <div className="inline-block px-3 py-1 bg-neutral-900/50 border border-neutral-800/50 rounded-sm mb-6">
                 <span className="text-sm text-neutral-400">{experience.duration}</span>
               </div>
@@ -217,8 +225,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             <div className="my-12">
               <img
-                src="/experienceicons/priroda.png"
-                alt="Priroda Logo"
+                src={`/experienceicons/${experience.slug}.png`}
+                alt={`${experience.title} Logo`}
                 style={{ maxWidth: '60px', height: 'auto', opacity: 0.8 }}
               />
             </div>
@@ -340,6 +348,45 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                   {experience.detailedContent.split('\n\n').map((section: string, idx: number) => {
                     if (section.trim().startsWith('###')) {
                       const heading = section.replace('### ', '').trim()
+                      const isExpanded = expandedProjects.has(`project-${idx}`)
+                      
+                      if (slug === 'freelance') {
+                        return (
+                          <div key={idx}>
+                            <button
+                              onClick={() => {
+                                setExpandedProjects(prev => {
+                                  const next = new Set(prev)
+                                  if (next.has(`project-${idx}`)) {
+                                    next.delete(`project-${idx}`)
+                                  } else {
+                                    next.add(`project-${idx}`)
+                                  }
+                                  return next
+                                })
+                              }}
+                              className="w-full flex items-center justify-between px-6 py-4 border border-neutral-800/50 bg-neutral-900/20 rounded-sm hover:border-neutral-700/50 transition-colors text-left"
+                              style={{ paddingTop: '24px', paddingBottom: '16px' }}
+                            >
+                              <h4 className="text-xl font-light text-neutral-100">
+                                {heading}
+                              </h4>
+                              <FiChevronDown 
+                                size={20} 
+                                className={`flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                              />
+                            </button>
+                            {isExpanded && (
+                              <div className="mt-4 px-6 py-4 border border-neutral-800/30 border-t-0 bg-neutral-900/10 rounded-b-sm">
+                                <p className="text-base leading-relaxed text-neutral-300">
+                                  {section.split('\n').slice(1).join('\n').trim()}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )
+                      }
+                      
                       return (
                         <div key={idx} style={{ paddingTop: '24px', paddingBottom: '16px' }}>
                           <h4 className="text-xl font-light text-neutral-100 mb-3">

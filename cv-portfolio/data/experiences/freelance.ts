@@ -23,22 +23,24 @@ I delivered 5 distinct products across different verticals: sports management, t
 ## Projects Delivered
 
 ### ScrumLaunch: Sports League Management (2 months)
-Built prototype app for organizing and managing sports leagues, including team management, scheduling, and scoring systems. Helped validate the product concept and scope for a larger development team.
-[Visit ScrumLaunch](https://www.scrumlaunch.com/)
+
+Built prototype app for organizing and managing sports leagues, including team management, scheduling, and scoring systems. Helped validate the product concept and scope for a larger development team. [Visit ScrumLaunch](https://www.scrumlaunch.com/)
 
 ### Blackthorn Vision: Tax Advisory CRM (2 months)
-Developed CRM prototype for tax advisory firm with client management, project tracking, and communication tools. Delivered a fully functional prototype that clarified requirements for production build.
-[Visit Blackthorn Vision](https://blackthorn-vision.com/)
+
+Developed CRM prototype for tax advisory firm with client management, project tracking, and communication tools. Delivered a fully functional prototype that clarified requirements for production build. [Visit Blackthorn Vision](https://blackthorn-vision.com/)
 
 ### Tribute Technologies: E-commerce Commissions Module (4 months)
+
 Built a complex commissions management system for a network of funeral homes and partner florists. Handled order fulfillment, multi-party commission calculations, and partner payments. The system needed to provide transparency at the order level so stakeholders could trace commissions back to their source.
 
 ### Casino Metrics Framework (1 month)
+
 Created comprehensive metrics tree with 300+ potential KPIs, narrowed to 72 critical tracking metrics for data-driven operations. Improved data-driven decision making for online casino platform.
 
 ### Kingmaker: Deposit Flow Redesign (1 month)
-Redesigned user deposit experience for casino platforms to improve conversion rates and reduce friction in payment flow. UX improvements led to measurable increases in deposit conversions.
-[Visit Kingmaker](http://kingmaker.com)
+
+Redesigned user deposit experience for casino platforms to improve conversion rates and reduce friction in payment flow. UX improvements led to measurable increases in deposit conversions. [Visit Kingmaker](http://kingmaker.com)
 
 ## Methodology
 
