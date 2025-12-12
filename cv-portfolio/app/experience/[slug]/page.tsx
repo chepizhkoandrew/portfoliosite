@@ -469,7 +469,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 {project.bulletPoints.map((bullet: string, bIdx: number) => (
                                   <div key={bIdx} className="flex gap-3">
                                     <span className="text-cyan-400 font-light text-lg flex-shrink-0">•</span>
-                                    <span className="text-neutral-300 font-light text-sm">
+                                    <span className="text-neutral-300 font-light">
                                       {bullet.split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
                                         if (part.startsWith('**') && part.endsWith('**')) {
                                           return (
