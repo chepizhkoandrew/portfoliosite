@@ -25,6 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Andrii Chepizhko - CV Portfolio',
   description: 'Interactive CV with multiple zoom levels showcasing professional experience and journey',
+  icons: {
+    icon: '/andrii_logo.png',
+  },
 }
 
 export default function RootLayout({
