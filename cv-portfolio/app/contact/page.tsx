@@ -356,6 +356,24 @@ export default function ContactPage() {
               </a>
             </div>
           </div>
+
+          {/* Separator Section with Alternative */}
+          <div className="mt-32 w-full flex flex-col items-center gap-8">
+            <div className="space-y-2 text-neutral-500 text-sm uppercase tracking-widest">
+              <p>contacts</p>
+              <p>contacts</p>
+              <p>contacts</p>
+            </div>
+
+            <p className="text-neutral-400 text-sm">or</p>
+
+            <Link
+              href="/chatbot"
+              className="glow-button w-48 md:w-56 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              Talk to Assistant
+            </Link>
+          </div>
         </div>
       </section>
 
