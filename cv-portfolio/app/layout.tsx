@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter, Poppins, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { NavigationProvider } from './NavigationProvider'
-import { ChatWidgetClient } from './ChatWidgetClient'
 
 const inter = Inter({
   subsets: ['latin'],
