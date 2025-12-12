@@ -46,7 +46,7 @@ export const experiences: Experience[] = [
   {
     id: 'freelance',
     title: 'Freelance Product Builder',
-    company: 'Outsourcing of IT Development',
+    company: 'Outsourcing of IT Development & Product Management',
     startYear: 2024,
     endYear: 2025,
     duration: '2024 - 2025',
@@ -54,11 +54,7 @@ export const experiences: Experience[] = [
     color: '#8b5cf6',
     logo: '/experienceicons/freelance.png',
     description: [
-      'Prototype app for sports league management (ScrumLaunch) ~ 2 months',
-      'Prototype CRM app for tax advisory firm (Blackthorn Vision) ~ 2 months',
-      'E-commerce commissions management module for funeral homes network (Tribute Technologies) ~ 4 months',
-      'Developed comprehensive tree of 300+ online-casino metrics, 72 selected for tracking (NDA) ~ 1 month',
-      'Redesigned deposit-flow experience for casino platforms (kingmaker.com example) ~ 1 month',
+      'Several assignments for different clients across multiple industries',
     ],
     links: [
       { text: 'ScrumLaunch', url: 'https://www.scrumlaunch.com/' },
