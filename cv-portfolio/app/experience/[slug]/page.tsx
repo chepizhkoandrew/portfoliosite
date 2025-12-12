@@ -29,12 +29,20 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   ])
   const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
     title: 'Freelance Product Builder',
-    'project-0': 'ScrumLaunch: Sports League Management',
-    'project-1': 'Blackthorn Vision: Tax Advisory CRM',
-    'project-2': 'Tribute Technologies: E-commerce Commissions Module',
-    'project-3': 'Casino Metrics Framework',
-    'project-4': 'Kingmaker: Deposit Flow Redesign',
+    'project-0': 'Sports League Management',
+    'project-1': 'Tax Advisory CRM',
+    'project-2': 'Commissions Module',
+    'project-3': 'Casino Metrics',
+    'project-4': 'Deposit Flow Redesign',
   })
+
+  const projectPrefixes: { [key: string]: string } = {
+    'project-0': 'ScrumLaunch: ',
+    'project-1': 'Blackthorn Vision: ',
+    'project-2': 'Tribute Technologies: E-commerce ',
+    'project-3': '',
+    'project-4': 'Kingmaker: ',
+  }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
 
   useEffect(() => {
@@ -114,11 +122,11 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
     const originalTexts: { [key: string]: string } = {
       title: 'Freelance Product Builder',
-      'project-0': 'ScrumLaunch: Sports League Management',
-      'project-1': 'Blackthorn Vision: Tax Advisory CRM',
-      'project-2': 'Tribute Technologies: E-commerce Commissions Module',
-      'project-3': 'Casino Metrics Framework',
-      'project-4': 'Kingmaker: Deposit Flow Redesign',
+      'project-0': 'Sports League Management',
+      'project-1': 'Tax Advisory CRM',
+      'project-2': 'Commissions Module',
+      'project-3': 'Casino Metrics',
+      'project-4': 'Deposit Flow Redesign',
     }
 
     const sequence = ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
@@ -273,7 +281,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
           <div>
             <div className="mb-8 pt-8 pb-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px' }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px', minHeight: '120px' }}>
                 {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceDisplayTexts.title : experience.title}
               </h1>
               {slug === 'myproduct' ? (
@@ -362,8 +370,10 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex-1">
-                              <h3 className="text-xl font-light text-neutral-100 mb-2">
-                                {slug === 'freelance' ? freelanceDisplayTexts[`project-${idx}`] : project.name}
+                              <h3 className="text-xl font-light text-neutral-100 mb-2" style={{ minHeight: '56px' }}>
+                                {slug === 'freelance' 
+                                  ? (projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]
+                                  : project.name}
                               </h3>
                               <p className="text-sm text-neutral-400 mb-3">{project.duration}</p>
                             </div>
