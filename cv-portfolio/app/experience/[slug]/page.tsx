@@ -336,13 +336,23 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             {experience.detailedContent && (
               <div className="prose prose-invert max-w-none">
-                <div className="space-y-6 text-neutral-300 font-light leading-relaxed text-justify">
+                <div className="space-y-8 text-neutral-300 font-light leading-relaxed">
                   {experience.detailedContent.split('\n\n').map((section: string, idx: number) => {
+                    if (section.trim().startsWith('###')) {
+                      const heading = section.replace('### ', '').trim()
+                      return (
+                        <div key={idx} style={{ paddingTop: '24px', paddingBottom: '16px' }}>
+                          <h4 className="text-xl font-light text-neutral-100 mb-3">
+                            {heading}
+                          </h4>
+                        </div>
+                      )
+                    }
                     if (section.trim().startsWith('##')) {
                       const heading = section.replace('## ', '').trim()
                       return (
-                        <div key={idx} style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                          <h3 className="text-2xl font-light text-neutral-100 mb-4">
+                        <div key={idx} style={{ paddingTop: '32px', paddingBottom: '20px' }}>
+                          <h3 className="text-3xl font-light text-neutral-100 mb-4">
                             {heading}
                           </h3>
                         </div>
@@ -350,11 +360,11 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                     }
                     if (section.trim().startsWith('-')) {
                       return (
-                        <div key={idx} className="space-y-3" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                        <div key={idx} className="space-y-3" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
                           {section.split('\n').filter((line: string) => line.trim()).map((line: string, lineIdx: number) => (
                             <div key={lineIdx} className="flex gap-3">
-                              <span className="text-neutral-400 flex-shrink-0">○</span>
-                              <p className="text-base leading-relaxed">
+                              <span className="text-neutral-400 flex-shrink-0 text-lg">○</span>
+                              <p className="text-base leading-relaxed text-neutral-300">
                                 {line.replace('- ', '')}
                               </p>
                             </div>
@@ -363,7 +373,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                       )
                     }
                     return (
-                      <p key={idx} className="text-base leading-relaxed" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                      <p key={idx} className="text-base leading-relaxed text-neutral-300" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
                         {(() => {
                           let processedSection = section
                           const glitchPhrases = [
