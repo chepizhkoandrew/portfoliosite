@@ -51,10 +51,10 @@ export default function ChatbotPage() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [conversationId, setConversationId] = useState('');
-  const [displayTitle, setDisplayTitle] = useState('Talk to assistant');
+  const [displayTitle, setDisplayTitle] = useState("Chat with Andrii's assistant");
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<string>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const titleText = 'Talk to assistant';
+  const titleText = "Chat with Andrii's assistant";
 
   useEffect(() => {
     if (!conversationId) {
@@ -199,7 +199,7 @@ export default function ChatbotPage() {
       </Link>
 
       <div className="flex-1 w-full flex flex-col items-center justify-start" style={{ padding: '100px 20px' }}>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-neutral-100 text-center" style={{ letterSpacing: '0.08em', paddingTop: '60px', paddingBottom: '60px' }}>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-neutral-100 text-center" style={{ letterSpacing: '0.08em', paddingTop: '60px', paddingBottom: '60px' }}>
           {displayTitle}
         </h1>
 
