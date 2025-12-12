@@ -40,10 +40,10 @@ interface Message {
 }
 
 const suggestedQuestions = [
-  'Seems like last time he was employed two years ago. Why so? What\'s his problem?',
   'Why would I hire him?',
+  'How exactly can he help with my product?',
+  'Seems like last time he was employed two years ago. Why so? What\'s his problem?',
   'This all looks expensive. What\'s his rate?',
-  'Is he a real person or is it just a bot account?',
 ];
 
 export default function ChatbotPage() {
