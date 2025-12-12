@@ -464,19 +464,13 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 </div>
                               </div>
                             )}
-                            {project.details && (
-                              <div className="text-neutral-300 font-light mb-4 prose prose-invert max-w-none" style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                {project.details.split('\n\n').map((paragraph: string, pIdx: number) => {
-                                  if (paragraph.startsWith('###')) {
-                                    return (
-                                      <h3 key={pIdx} className="text-lg font-light text-neutral-100 mb-3 mt-0">
-                                        {paragraph.replace('###', '').trim()}
-                                      </h3>
-                                    )
-                                  }
-                                  return (
-                                    <p key={pIdx} className="mb-3">
-                                      {paragraph.split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
+                            {project.bulletPoints && project.id === 'casino-metrics' && (
+                              <div className="space-y-3 mb-4">
+                                {project.bulletPoints.map((bullet: string, bIdx: number) => (
+                                  <div key={bIdx} className="flex gap-3">
+                                    <span className="text-cyan-400 font-light text-lg flex-shrink-0">•</span>
+                                    <span className="text-neutral-300 font-light text-sm">
+                                      {bullet.split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
                                         if (part.startsWith('**') && part.endsWith('**')) {
                                           return (
                                             <strong key={partIdx} className="font-medium">
@@ -486,10 +480,13 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                         }
                                         return <span key={partIdx}>{part}</span>
                                       })}
-                                    </p>
-                                  )
-                                })}
+                                    </span>
+                                  </div>
+                                ))}
                               </div>
+                            )}
+                            {project.details && (
+                              <p className="text-neutral-300 font-light mb-4">{project.details}</p>
                             )}
                           </div>
                         )}
