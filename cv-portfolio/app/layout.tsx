@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: 'Andrii Chepizhko - CV Portfolio',
   description: 'Interactive CV with multiple zoom levels showcasing professional experience and journey',
   icons: {
-    icon: '/andrii_logo.png',
+    icon: 'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765542415/andrii_portfolio_logo_amlc74.png',
   },
 }
 
