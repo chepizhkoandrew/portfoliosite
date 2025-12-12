@@ -437,16 +437,6 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             {project.details && (
                               <p className="text-neutral-300 font-light mb-4">{project.details}</p>
                             )}
-                            {project.url && (
-                              <a 
-                                href={project.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light"
-                              >
-                                Visit Project →
-                              </a>
-                            )}
                           </div>
                         )}
                       </div>
