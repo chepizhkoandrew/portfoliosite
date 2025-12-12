@@ -277,14 +277,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
             )}
 
             {experience.projects && slug === 'freelance' && (
-              <div className="my-16">
+              <div style={{ paddingTop: '32px', paddingBottom: '20px' }}>
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects Delivered</h2>
-                <div className="space-y-4">
+                <div style={{ paddingTop: '24px' }}>
                   {experience.projects.map((project: any, idx: number) => {
                     const isExpanded = expandedProjects.has(`project-${idx}`)
                     return (
-                      <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden">
-                        <div className="p-6">
+                      <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
+                        <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex-1">
                               <h3 className="text-xl font-light text-neutral-100 mb-2">{project.name}</h3>
@@ -292,10 +292,10 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             </div>
                           </div>
                           
-                          <p className="text-neutral-300 font-light mb-4 leading-relaxed">{project.overview}</p>
+                          <p className="text-neutral-300 font-light leading-relaxed" style={{ marginBottom: '16px' }}>{project.overview}</p>
                           
                           {project.tags && project.tags.length > 0 && (
-                            <div className="mb-4 flex flex-wrap gap-2">
+                            <div style={{ marginBottom: '16px' }} className="flex flex-wrap gap-2">
                               {project.tags.map((tag: string, tagIdx: number) => (
                                 <span
                                   key={tagIdx}
@@ -320,13 +320,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                               })
                             }}
                             className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light flex items-center gap-2"
+                            style={{ marginTop: '12px' }}
                           >
                             {isExpanded ? '▼' : '▶'} More Info
                           </button>
                         </div>
                         
                         {isExpanded && (
-                          <div className="border-t border-neutral-800/50 px-6 py-4 bg-neutral-900/10">
+                          <div className="border-t border-neutral-800/50 bg-neutral-900/10" style={{ padding: '24px 24px' }}>
                             {project.details && (
                               <p className="text-neutral-300 font-light mb-4">{project.details}</p>
                             )}
