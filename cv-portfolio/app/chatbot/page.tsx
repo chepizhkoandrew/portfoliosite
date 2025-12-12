@@ -55,6 +55,7 @@ export default function ChatbotPage() {
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<string>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const titleText = "Chat with Andrii's assistant";
+  const lastMessageCountRef = useRef(0);
 
   useEffect(() => {
     if (!conversationId) {
@@ -63,7 +64,12 @@ export default function ChatbotPage() {
   }, [conversationId]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length > lastMessageCountRef.current && messages[messages.length - 1]?.role === 'assistant') {
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    lastMessageCountRef.current = messages.length;
   }, [messages]);
 
   useEffect(() => {
