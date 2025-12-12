@@ -565,7 +565,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 </div>
                               </div>
                             )}
-                            {project.bulletPoints && project.id === 'casino-metrics' && (
+                            {project.bulletPoints && (
                               <div className="space-y-3 mb-4">
                                 {project.bulletPoints.map((bullet: string, bIdx: number) => (
                                   <div key={bIdx} className="flex gap-3">

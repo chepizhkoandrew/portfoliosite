@@ -30,6 +30,11 @@ export const freelanceExperience = {
       url: 'https://blackthorn-vision.com/',
       videoUrl: 'https://res.cloudinary.com/dzhwsjuxy/video/upload/v1765553209/tax_advisory_prototype_uf0bcd.mp4',
       tags: ['CRM', 'Tax Advisory', 'Client Management', 'Prototype', 'React', 'Database Design'],
+      bulletPoints: [
+        'Delivered a rapid discovery and prototyping phase for a tax advisory firm that initially had no clear requirements or validated use case. Conducted customer interviews to define core workflows and clarify the operational model.',
+        'Built a fully functional no-code prototype in one week using Airtable and Softr, including real data structures, authentication, and role-specific interfaces for Tax Advisors and their clients.',
+        'The prototype enabled the client to run early user testing, validate the concept, and align on the product scope. Based on this outcome, the outsourcing company secured a full-scale development engagement, with the prototype providing ~80% of the core logic for the production solution.'
+      ],
       details: '',
     },
     {
