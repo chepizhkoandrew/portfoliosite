@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { profile } from '@/data/content'
+import { MobileMenu } from './MobileMenu'
 
 interface TypingBioProps {
   showAnimations?: boolean
@@ -457,6 +458,7 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
 
   return (
     <div className="min-h-screen text-neutral-100 flex flex-col relative">
+      <MobileMenu />
       <style>{`
         div.min-h-screen {
           background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -608,10 +610,10 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
             About me
           </Link>
           <Link
-            href="/contact"
+            href="/chatbot"
             className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
           >
-            Get in Touch
+            Talk to Assistant
           </Link>
         </div>
       </section>
