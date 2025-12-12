@@ -27,6 +27,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'My goal is to get 5% of the market until the end of 2026',
     'priroda.tech'
   ])
+  const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
+    title: 'Freelance Product Builder',
+    'project-0': 'ScrumLaunch: Sports League Management',
+    'project-1': 'Blackthorn Vision: Tax Advisory CRM',
+    'project-2': 'Tribute Technologies: E-commerce Commissions Module',
+    'project-3': 'Casino Metrics Framework',
+    'project-4': 'Kingmaker: Deposit Flow Redesign',
+  })
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
 
   useEffect(() => {
@@ -87,6 +95,73 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               newTexts[elementIndex] = originalText
               return newTexts
             })
+            clearInterval(interval)
+            currentIndex = (currentIndex + 1) % sequence.length
+            scheduleGlitch()
+          }
+          phase++
+        }, 50)
+      }, delay)
+
+      return () => clearTimeout(timeout)
+    }
+
+    scheduleGlitch()
+  }, [slug])
+
+  useEffect(() => {
+    if (slug !== 'freelance') return
+
+    const originalTexts: { [key: string]: string } = {
+      title: 'Freelance Product Builder',
+      'project-0': 'ScrumLaunch: Sports League Management',
+      'project-1': 'Blackthorn Vision: Tax Advisory CRM',
+      'project-2': 'Tribute Technologies: E-commerce Commissions Module',
+      'project-3': 'Casino Metrics Framework',
+      'project-4': 'Kingmaker: Deposit Flow Redesign',
+    }
+
+    const sequence = ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
+    let currentIndex = 0
+    let initialDelay = true
+
+    const scheduleGlitch = () => {
+      const delay = initialDelay ? 5000 : Math.random() * 2000 + 4000
+      initialDelay = false
+
+      const timeout = setTimeout(() => {
+        const elementKey = sequence[currentIndex]
+        const originalText = originalTexts[elementKey]
+        let phase = 0
+
+        const interval = setInterval(() => {
+          if (phase < 10) {
+            setFreelanceDisplayTexts(prev => ({
+              ...prev,
+              [elementKey]: originalText
+                .split('')
+                .map(() => Math.random() > 0.5 ? '1' : '0')
+                .join('')
+            }))
+          } else if (phase < 20) {
+            const progress = (phase - 10) / 10
+            setFreelanceDisplayTexts(prev => ({
+              ...prev,
+              [elementKey]: originalText
+                .split('')
+                .map((char, idx) => {
+                  if (idx / originalText.length < progress) {
+                    return char
+                  }
+                  return Math.random() > 0.5 ? '1' : '0'
+                })
+                .join('')
+            }))
+          } else {
+            setFreelanceDisplayTexts(prev => ({
+              ...prev,
+              [elementKey]: originalText
+            }))
             clearInterval(interval)
             currentIndex = (currentIndex + 1) % sequence.length
             scheduleGlitch()
@@ -199,7 +274,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
           <div>
             <div className="mb-8 pt-8 pb-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px' }}>
-                {slug === 'myproduct' ? displayTexts[0] : experience.title}
+                {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceDisplayTexts.title : experience.title}
               </h1>
               {slug === 'myproduct' ? (
                 <a 
@@ -287,7 +362,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex-1">
-                              <h3 className="text-xl font-light text-neutral-100 mb-2">{project.name}</h3>
+                              <h3 className="text-xl font-light text-neutral-100 mb-2">
+                                {slug === 'freelance' ? freelanceDisplayTexts[`project-${idx}`] : project.name}
+                              </h3>
                               <p className="text-sm text-neutral-400 mb-3">{project.duration}</p>
                             </div>
                           </div>
