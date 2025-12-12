@@ -11,7 +11,54 @@ export const freelanceExperience = {
 
   description: [],
   achievements: [],
-  projects: [],
+  
+  projects: [
+    {
+      id: 'scrumlaunch',
+      name: 'ScrumLaunch: Sports League Management',
+      duration: '2 months',
+      overview: 'Built prototype app for organizing and managing sports leagues, including team management, scheduling, and scoring systems. Helped validate the product concept and scope for a larger development team.',
+      url: 'https://www.scrumlaunch.com/',
+      tags: ['Sports Management', 'Scheduling', 'Team Management', 'Prototype', 'React', 'MVP Validation'],
+      details: '',
+    },
+    {
+      id: 'blackthorn',
+      name: 'Blackthorn Vision: Tax Advisory CRM',
+      duration: '2 months',
+      overview: 'Developed CRM prototype for tax advisory firm with client management, project tracking, and communication tools. Delivered a fully functional prototype that clarified requirements for production build.',
+      url: 'https://blackthorn-vision.com/',
+      tags: ['CRM', 'Tax Advisory', 'Client Management', 'Prototype', 'React', 'Database Design'],
+      details: '',
+    },
+    {
+      id: 'tribute',
+      name: 'Tribute Technologies: E-commerce Commissions Module',
+      duration: '4 months',
+      overview: 'Built a complex commissions management system for a network of funeral homes and partner florists. Handled order fulfillment, multi-party commission calculations, and partner payments. The system needed to provide transparency at the order level so stakeholders could trace commissions back to their source.',
+      url: '',
+      tags: ['E-commerce', 'Commission Calculations', 'Multi-party Payments', 'Transparency', 'Complex Logic', 'Full Stack'],
+      details: '',
+    },
+    {
+      id: 'casino-metrics',
+      name: 'Casino Metrics Framework',
+      duration: '1 month',
+      overview: 'Created comprehensive metrics tree with 300+ potential KPIs, narrowed to 72 critical tracking metrics for data-driven operations. Improved data-driven decision making for online casino platform.',
+      url: '',
+      tags: ['Analytics', 'KPIs', 'Metrics', 'Data Analysis', 'Decision Making', 'Dashboard Design'],
+      details: '',
+    },
+    {
+      id: 'kingmaker',
+      name: 'Kingmaker: Deposit Flow Redesign',
+      duration: '1 month',
+      overview: 'Redesigned user deposit experience for casino platforms to improve conversion rates and reduce friction in payment flow. UX improvements led to measurable increases in deposit conversions.',
+      url: 'http://kingmaker.com',
+      tags: ['UX Design', 'Payment Flow', 'Conversion Optimization', 'Deposit Experience', 'Casino', 'UI/UX'],
+      details: '',
+    },
+  ],
 
   detailedContent: `
 ## Overview

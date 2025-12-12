@@ -276,7 +276,80 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               </>
             )}
 
-            {experience.projects && (
+            {experience.projects && slug === 'freelance' && (
+              <div className="my-16">
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects Delivered</h2>
+                <div className="space-y-4">
+                  {experience.projects.map((project: any, idx: number) => {
+                    const isExpanded = expandedProjects.has(`project-${idx}`)
+                    return (
+                      <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden">
+                        <div className="p-6">
+                          <div className="flex justify-between items-start gap-4 mb-3">
+                            <div className="flex-1">
+                              <h3 className="text-xl font-light text-neutral-100 mb-2">{project.name}</h3>
+                              <p className="text-sm text-neutral-400 mb-3">{project.duration}</p>
+                            </div>
+                          </div>
+                          
+                          <p className="text-neutral-300 font-light mb-4 leading-relaxed">{project.overview}</p>
+                          
+                          {project.tags && project.tags.length > 0 && (
+                            <div className="mb-4 flex flex-wrap gap-2">
+                              {project.tags.map((tag: string, tagIdx: number) => (
+                                <span
+                                  key={tagIdx}
+                                  className="inline-block px-3 py-1 bg-neutral-800/50 border border-neutral-700/50 rounded-full text-xs font-light text-neutral-300"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          
+                          <button
+                            onClick={() => {
+                              setExpandedProjects(prev => {
+                                const next = new Set(prev)
+                                if (next.has(`project-${idx}`)) {
+                                  next.delete(`project-${idx}`)
+                                } else {
+                                  next.add(`project-${idx}`)
+                                }
+                                return next
+                              })
+                            }}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light flex items-center gap-2"
+                          >
+                            {isExpanded ? '▼' : '▶'} More Info
+                          </button>
+                        </div>
+                        
+                        {isExpanded && (
+                          <div className="border-t border-neutral-800/50 px-6 py-4 bg-neutral-900/10">
+                            {project.details && (
+                              <p className="text-neutral-300 font-light mb-4">{project.details}</p>
+                            )}
+                            {project.url && (
+                              <a 
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light"
+                              >
+                                Visit Project →
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {experience.projects && slug !== 'freelance' && (
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects</h2>
                 <div className="space-y-6">
@@ -342,7 +415,60 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            {experience.detailedContent && (
+            {experience.detailedContent && slug === 'freelance' && (
+              <div className="prose prose-invert max-w-none mb-12">
+                <div className="space-y-8 text-neutral-300 font-light leading-relaxed">
+                  {experience.detailedContent.split('\n\n').map((section: string, idx: number) => {
+                    if (section.trim().startsWith('## Overview')) {
+                      const content = section.replace('## Overview', '').trim()
+                      return (
+                        <div key={idx} style={{ paddingTop: '32px', paddingBottom: '20px' }}>
+                          <h3 className="text-3xl font-light text-neutral-100 mb-4">Overview</h3>
+                          <p className="text-base leading-relaxed text-neutral-300 mb-4">{content.split('\n')[0]}</p>
+                        </div>
+                      )
+                    }
+                    if (section.trim().startsWith('## Methodology')) {
+                      return (
+                        <div key={idx} style={{ paddingTop: '32px', paddingBottom: '20px' }}>
+                          <h3 className="text-3xl font-light text-neutral-100 mb-4">Methodology</h3>
+                          <div className="space-y-3">
+                            {section.split('\n').filter((line: string) => line.trim().startsWith('-')).map((line: string, lineIdx: number) => (
+                              <div key={lineIdx} className="flex gap-3">
+                                <span className="text-neutral-400 flex-shrink-0 text-lg">○</span>
+                                <p className="text-base leading-relaxed text-neutral-300">
+                                  {line.replace('- ', '')}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    }
+                    if (section.trim().startsWith('## Key Learnings')) {
+                      return (
+                        <div key={idx} style={{ paddingTop: '32px', paddingBottom: '20px' }}>
+                          <h3 className="text-3xl font-light text-neutral-100 mb-4">Key Learnings</h3>
+                          <div className="space-y-3">
+                            {section.split('\n').filter((line: string) => line.trim().startsWith('-')).map((line: string, lineIdx: number) => (
+                              <div key={lineIdx} className="flex gap-3">
+                                <span className="text-neutral-400 flex-shrink-0 text-lg">○</span>
+                                <p className="text-base leading-relaxed text-neutral-300">
+                                  {line.replace('- ', '')}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    }
+                    return null
+                  })}
+                </div>
+              </div>
+            )}
+
+            {experience.detailedContent && slug !== 'freelance' && (
               <div className="prose prose-invert max-w-none">
                 <div className="space-y-8 text-neutral-300 font-light leading-relaxed">
                   {experience.detailedContent.split('\n\n').map((section: string, idx: number) => {
