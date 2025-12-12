@@ -225,7 +225,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             <div className="my-12">
               <img
-                src={`/experienceicons/${experience.slug}.png`}
+                src={`/experienceicons/${slug === 'myproduct' ? 'priroda' : experience.slug}.png`}
                 alt={`${experience.title} Logo`}
                 style={{ maxWidth: '60px', height: 'auto', opacity: 0.8 }}
               />
