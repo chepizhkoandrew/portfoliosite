@@ -30,7 +30,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
     title: 'Freelance Product Builder',
     'title-part': 'Product Builder',
-    'project-0': 'Sports League Management',
+    'project-0': 'Sports League Management App',
     'project-1': 'Tax Advisory CRM',
     'project-2': 'Commissions Module',
     'project-3': 'Casino Metrics',
@@ -124,7 +124,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     const originalTexts: { [key: string]: string } = {
       title: 'Freelance Product Builder',
       'title-part': 'Product Builder',
-      'project-0': 'Sports League Management',
+      'project-0': 'Sports League Management App',
       'project-1': 'Tax Advisory CRM',
       'project-2': 'Commissions Module',
       'project-3': 'Casino Metrics',
@@ -338,7 +338,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            {!experience.detailedContent && (
+            {!experience.detailedContent && slug !== 'freelance' && (
               <>
                 <div className="my-16">
                   <h2 className="text-2xl font-light text-neutral-200 mb-6">Overview</h2>
