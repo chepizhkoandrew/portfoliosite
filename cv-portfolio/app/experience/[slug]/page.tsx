@@ -129,7 +129,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
       'project-4': 'Deposit Flow Redesign',
     }
 
-    const sequence = ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const sequence = isMobile ? ['project-0', 'project-1', 'project-2', 'project-3', 'project-4'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
     let currentIndex = 0
     let initialDelay = true
 
