@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className="bg-neutral-950 text-slate-100 font-inter min-h-screen">
         <NavigationProvider>
           {children}
-          <ChatWidgetClient />
+          {/* <ChatWidgetClient /> */}
         </NavigationProvider>
       </body>
     </html>
