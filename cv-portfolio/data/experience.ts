@@ -49,12 +49,12 @@ export const experiences: Experience[] = [
     company: 'Outsourcing of IT Development & Product Management',
     startYear: 2024,
     endYear: 2025,
-    duration: '2024 - 2025',
+    duration: '2024 - 2025 (1 year)',
     type: 'freelance',
     color: '#8b5cf6',
     logo: '/experienceicons/freelance.png',
     description: [
-      'Several assignments for different clients across multiple industries',
+      'Several assignments for different clients',
     ],
     links: [
       { text: 'ScrumLaunch', url: 'https://www.scrumlaunch.com/' },
