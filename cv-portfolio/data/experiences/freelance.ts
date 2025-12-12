@@ -66,6 +66,19 @@ export const freelanceExperience = {
       ],
     },
     {
+      id: 'madrid-ai',
+      name: 'Generative AI: Character-Consistent Content Pipeline',
+      duration: '1 week',
+      overview: 'Built an experimental content-creation pipeline using ComfyUI and cloud-hosted LoRA training. Trained a custom model on 150 photos to generate a consistent digital character ("madridthedog") for use in social media imagery and creative scenarios.',
+      url: '',
+      tags: ['AI/ML', 'LoRA Training', 'ComfyUI', 'Replicate', 'HuggingFace', 'Image Generation', 'Character Consistency', 'Model Deployment', 'Content Pipelines', 'No-Code/Low-Code'],
+      images: [
+        'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765557078/madrid_the_model_jetrra.jpg',
+        'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765557078/madrid_the_model_jetrra.jpg'
+      ],
+      details: '### Generative AI Content Creation Pipeline (Experimental Project)\n\nAn experimental project exploring early-generation AI tooling for automated content production. The goal was to evaluate the feasibility of building a consistent, end-to-end visual-content workflow using open-source and cloud-hosted models.\n\n#### 1. Image-Generation Pipelines (ComfyUI + Local Models)\n\nTested several ComfyUI pipelines for:\n- Local execution of open-source image-generation models\n- Image transformation workflows\n- Multi-step sequences for style transfer, prompt-based variation, and controlled outputs\n\nThe focus was on understanding model behaviour, resource constraints, and achievable quality on consumer hardware.\n\n#### 2. Character-Consistency Model Training (Replicate)\n\nUsed Replicate — a paid cloud service for training and hosting ML models — to train a lightweight LoRA model capable of producing **consistent character imagery** of a specific dog ("madridthedog").\n\nThe workflow included:\n- Preparing ~150 curated training photos\n- Training a LoRA adapter for the FLUX-dev model\n- Validating whether the model could preserve identity features across different poses, scenes, and compositions\n\nThe result was a fully reusable character-consistency model that could be embedded into any prompt and reliably reproduce the same character in diverse scenarios.\n\n#### 3. Practical Application\n\nThe trained model was used to generate:\n- Social-media imagery\n- Creative scenes and stylised compositions\n- Character-based content without requiring manual reference images\n\nThe experiment demonstrated the effectiveness of custom LoRA training over general-purpose chat-based generators, particularly in situations where **identity consistency** is required.\n\n---\n\n### Summary\n\nThis project validated that:\n- Open-source tools like ComfyUI can support modular, controllable visual pipelines.\n- Cloud platforms like Replicate enable fast LoRA training without local GPU resources.\n- Character-consistent generation is achievable with minimal data and short training time.\n\nThe resulting model remains part of the ongoing personal content-creation workflow.',
+    },
+    {
       id: 'kingmaker',
       name: 'Kingmaker: Deposit Flow Redesign',
       duration: '1 month',

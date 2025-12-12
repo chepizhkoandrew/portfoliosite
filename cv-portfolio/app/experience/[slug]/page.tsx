@@ -34,7 +34,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-1': 'Tax Advisory CRM',
     'project-2': 'Commissions Module',
     'project-3': 'Casino Metrics',
-    'project-4': 'Deposit Flow Redesign',
+    'project-4': 'Character-Consistent Content Pipeline',
+    'project-5': 'Deposit Flow Redesign',
   })
 
   const projectPrefixes: { [key: string]: string } = {
@@ -42,7 +43,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-1': 'Blackthorn Vision: ',
     'project-2': 'Tribute Technologies: E-commerce ',
     'project-3': '',
-    'project-4': 'Kingmaker: ',
+    'project-4': '',
+    'project-5': 'Kingmaker: ',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
@@ -155,11 +157,12 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
       'project-1': 'Tax Advisory CRM',
       'project-2': 'Commissions Module',
       'project-3': 'Casino Metrics',
-      'project-4': 'Deposit Flow Redesign',
+      'project-4': 'Character-Consistent Content Pipeline',
+      'project-5': 'Deposit Flow Redesign',
     }
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    const sequence = isMobile ? ['title-part', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
+    const sequence = isMobile ? ['title-part', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5']
     let currentIndex = 0
     let initialDelay = true
 
@@ -461,7 +464,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 </video>
                               </div>
                             )}
-                            {project.images && project.id === 'casino-metrics' && (
+                            {project.images && (
                               <div style={{ marginBottom: '24px' }}>
                                 <div 
                                   style={{ position: 'relative', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}
@@ -587,7 +590,63 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                               </div>
                             )}
                             {project.details && (
-                              <p className="text-neutral-300 font-light mb-4">{project.details}</p>
+                              <div className="text-neutral-300 font-light mb-4 prose prose-invert max-w-none" style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                                {project.details.split('\n').map((line: string, lineIdx: number) => {
+                                  if (line.startsWith('###')) {
+                                    return (
+                                      <h3 key={lineIdx} className="text-lg font-light text-neutral-100 mb-3 mt-4">
+                                        {line.replace(/^###\s*/, '').trim()}
+                                      </h3>
+                                    )
+                                  }
+                                  if (line.startsWith('####')) {
+                                    return (
+                                      <h4 key={lineIdx} className="text-base font-light text-neutral-200 mb-2 mt-3">
+                                        {line.replace(/^####\s*/, '').trim()}
+                                      </h4>
+                                    )
+                                  }
+                                  if (line.trim() === '---') {
+                                    return <div key={lineIdx} style={{ height: '1px', backgroundColor: '#404040', margin: '16px 0' }} />
+                                  }
+                                  if (line.trim().startsWith('-')) {
+                                    return (
+                                      <div key={lineIdx} className="flex gap-3 mb-2 ml-4">
+                                        <span className="text-cyan-400 flex-shrink-0">•</span>
+                                        <span>
+                                          {line.replace(/^-\s*/, '').split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
+                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                              return (
+                                                <strong key={partIdx} className="font-medium">
+                                                  {part.slice(2, -2)}
+                                                </strong>
+                                              )
+                                            }
+                                            return <span key={partIdx}>{part}</span>
+                                          })}
+                                        </span>
+                                      </div>
+                                    )
+                                  }
+                                  if (line.trim() === '') {
+                                    return <div key={lineIdx} style={{ height: '8px' }} />
+                                  }
+                                  return (
+                                    <p key={lineIdx} className="mb-2">
+                                      {line.split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
+                                        if (part.startsWith('**') && part.endsWith('**')) {
+                                          return (
+                                            <strong key={partIdx} className="font-medium">
+                                              {part.slice(2, -2)}
+                                            </strong>
+                                          )
+                                        }
+                                        return <span key={partIdx}>{part}</span>
+                                      })}
+                                    </p>
+                                  )
+                                })}
+                              </div>
                             )}
                           </div>
                         )}
