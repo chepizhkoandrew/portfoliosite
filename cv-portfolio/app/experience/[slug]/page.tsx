@@ -30,33 +30,34 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
     title: 'Freelance Product Builder',
     'title-part': 'Product Builder',
-    'project-0': 'Sports League Management App',
-    'project-1': 'Tax Advisory CRM',
-    'project-2': 'Commissions Module',
-    'project-3': 'Casino Metrics',
-    'project-4': 'Character-Consistent Content Pipeline',
-    'project-5': 'Deposit Flow Redesign',
+    'project-0': 'Tax Advisory CRM',
+    'project-1': 'Sports League Management App',
+    'project-2': 'Casino Metrics',
+    'project-3': 'Deposit Flow Redesign',
+    'project-4': 'Commissions Module',
+    'project-5': 'Character-Consistent Content Pipeline',
   })
 
   const projectPrefixes: { [key: string]: string } = {
-    'project-0': 'ScrumLaunch: ',
-    'project-1': 'Blackthorn Vision: ',
-    'project-2': 'Tribute Technologies: E-commerce ',
-    'project-3': '',
-    'project-4': '',
-    'project-5': 'Kingmaker: ',
+    'project-0': 'Blackthorn Vision: ',
+    'project-1': 'ScrumLaunch: ',
+    'project-2': '',
+    'project-3': 'Kingmaker: ',
+    'project-4': 'Tribute Technologies: E-commerce ',
+    'project-5': '',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
   const [touchStart, setTouchStart] = useState<{ [key: string]: number }>({})
+  const [zoomedImage, setZoomedImage] = useState<{ projectIdx: number; imageIdx: number } | null>(null)
 
   const handleTouchStart = (projectId: string, e: React.TouchEvent) => {
-    setTouchStart(prev => ({ ...prev, [projectId]: e.touches[0].clientX }))
+    setTouchStart(prev => ({ ...prev, [`project-${projectId}`]: e.touches[0].clientX }))
   }
 
   const handleTouchEnd = (projectId: string, totalImages: number, e: React.TouchEvent) => {
     const touchEnd = e.changedTouches[0].clientX
-    const touchStartX = touchStart[projectId] || 0
+    const touchStartX = touchStart[`project-${projectId}`] || 0
     const diff = touchStartX - touchEnd
 
     if (Math.abs(diff) > 50) {
@@ -78,6 +79,32 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   useEffect(() => {
     params.then(({ slug }) => setSlug(slug))
   }, [params])
+
+  useEffect(() => {
+    const handleKeyboard = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setZoomedImage(null)
+      }
+      if (zoomedImage !== null && experience.projects) {
+        if (e.key === 'ArrowLeft') {
+          const project = experience.projects[zoomedImage.projectIdx]
+          if (project.images && project.images.length > 1) {
+            const newIndex = (zoomedImage.imageIdx - 1 + project.images.length) % project.images.length
+            setZoomedImage({ ...zoomedImage, imageIdx: newIndex })
+          }
+        }
+        if (e.key === 'ArrowRight') {
+          const project = experience.projects[zoomedImage.projectIdx]
+          if (project.images && project.images.length > 1) {
+            const newIndex = (zoomedImage.imageIdx + 1) % project.images.length
+            setZoomedImage({ ...zoomedImage, imageIdx: newIndex })
+          }
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyboard)
+    return () => window.removeEventListener('keydown', handleKeyboard)
+  }, [zoomedImage, slug])
 
   useEffect(() => {
     if (slug !== 'myproduct') return
@@ -153,12 +180,12 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     const originalTexts: { [key: string]: string } = {
       title: 'Freelance Product Builder',
       'title-part': 'Product Builder',
-      'project-0': 'Sports League Management App',
-      'project-1': 'Tax Advisory CRM',
-      'project-2': 'Commissions Module',
-      'project-3': 'Casino Metrics',
-      'project-4': 'Character-Consistent Content Pipeline',
-      'project-5': 'Deposit Flow Redesign',
+      'project-0': 'Tax Advisory CRM',
+      'project-1': 'Sports League Management App',
+      'project-2': 'Casino Metrics',
+      'project-3': 'Deposit Flow Redesign',
+      'project-4': 'Commissions Module',
+      'project-5': 'Character-Consistent Content Pipeline',
     }
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
@@ -468,8 +495,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                               <div style={{ marginBottom: '24px' }}>
                                 <div 
                                   style={{ position: 'relative', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}
-                                  onTouchStart={(e) => handleTouchStart(`${idx}`, e)}
-                                  onTouchEnd={(e) => handleTouchEnd(`${idx}`, project.images.length, e)}
+                                  onTouchStart={(e) => handleTouchStart(`project-${idx}`, e)}
+                                  onTouchEnd={(e) => handleTouchEnd(`project-${idx}`, project.images.length, e)}
                                 >
                                   <button
                                     onClick={() => {
@@ -509,7 +536,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                     <img 
                                       src={project.images[carouselIndices[`project-${idx}`] || 0]} 
                                       alt={`Casino Metrics ${(carouselIndices[`project-${idx}`] || 0) + 1}`}
-                                      style={{ width: '100%', borderRadius: '4px', display: 'block', cursor: 'grab' }}
+                                      style={{ width: '100%', borderRadius: '4px', display: 'block', cursor: 'pointer' }}
+                                      onClick={() => setZoomedImage({ projectIdx: idx, imageIdx: carouselIndices[`project-${idx}`] || 0 })}
                                     />
                                   </div>
 
@@ -907,6 +935,123 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
           </div>
         </div>
       </section>
+
+      {zoomedImage !== null && experience.projects && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px',
+            cursor: 'pointer'
+          }}
+          onClick={() => setZoomedImage(null)}
+        >
+          <div 
+            style={{
+              position: 'relative',
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={experience.projects[zoomedImage.projectIdx].images[zoomedImage.imageIdx]} 
+              alt="Zoomed view"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '85vh',
+                borderRadius: '8px',
+                objectFit: 'contain'
+              }}
+            />
+            
+            <div style={{ marginTop: '20px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+              {experience.projects[zoomedImage.projectIdx].images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      const project = experience.projects[zoomedImage.projectIdx]
+                      const newIndex = (zoomedImage.imageIdx - 1 + project.images.length) % project.images.length
+                      setZoomedImage({ ...zoomedImage, imageIdx: newIndex })
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                      border: '1px solid rgba(6, 182, 212, 0.3)',
+                      borderRadius: '4px',
+                      color: '#06b6d4',
+                      cursor: 'pointer',
+                      padding: '8px',
+                      transition: 'all 0.3s',
+                      width: '40px',
+                      height: '40px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                    }}
+                    aria-label="Previous image"
+                  >
+                    <FiChevronLeft size={20} />
+                  </button>
+
+                  <span style={{ color: '#06b6d4', fontSize: '14px', minWidth: '60px', textAlign: 'center' }}>
+                    {zoomedImage.imageIdx + 1} / {experience.projects[zoomedImage.projectIdx].images.length}
+                  </span>
+
+                  <button
+                    onClick={() => {
+                      const project = experience.projects[zoomedImage.projectIdx]
+                      const newIndex = (zoomedImage.imageIdx + 1) % project.images.length
+                      setZoomedImage({ ...zoomedImage, imageIdx: newIndex })
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                      border: '1px solid rgba(6, 182, 212, 0.3)',
+                      borderRadius: '4px',
+                      color: '#06b6d4',
+                      cursor: 'pointer',
+                      padding: '8px',
+                      transition: 'all 0.3s',
+                      width: '40px',
+                      height: '40px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                    }}
+                    aria-label="Next image"
+                  >
+                    <FiChevronRight size={20} />
+                  </button>
+                </>
+              )}
+            </div>
+
+
+          </div>
+        </div>
+      )}
     </div>
   )
 }
