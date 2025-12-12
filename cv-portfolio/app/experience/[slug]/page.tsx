@@ -45,6 +45,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-4': 'Kingmaker: ',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
+  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
 
   useEffect(() => {
     params.then(({ slug }) => setSlug(slug))
@@ -434,8 +435,61 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 </video>
                               </div>
                             )}
+                            {project.images && project.id === 'casino-metrics' && (
+                              <div style={{ marginBottom: '24px' }}>
+                                <div style={{ position: 'relative', marginBottom: '16px' }}>
+                                  <img 
+                                    src={project.images[carouselIndices[`project-${idx}`] || 0]} 
+                                    alt={`Casino Metrics ${(carouselIndices[`project-${idx}`] || 0) + 1}`}
+                                    style={{ width: '100%', borderRadius: '4px', display: 'block' }}
+                                  />
+                                  <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '12px' }}>
+                                    {project.images.map((_: string, imgIdx: number) => (
+                                      <button
+                                        key={imgIdx}
+                                        onClick={() => setCarouselIndices(prev => ({ ...prev, [`project-${idx}`]: imgIdx }))}
+                                        style={{
+                                          width: '8px',
+                                          height: '8px',
+                                          borderRadius: '50%',
+                                          backgroundColor: (carouselIndices[`project-${idx}`] || 0) === imgIdx ? '#06b6d4' : '#404040',
+                                          border: 'none',
+                                          cursor: 'pointer',
+                                          transition: 'background-color 0.3s'
+                                        }}
+                                        aria-label={`Go to image ${imgIdx + 1}`}
+                                      />
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                             {project.details && (
-                              <p className="text-neutral-300 font-light mb-4">{project.details}</p>
+                              <div className="text-neutral-300 font-light mb-4 prose prose-invert max-w-none" style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                                {project.details.split('\n\n').map((paragraph: string, pIdx: number) => {
+                                  if (paragraph.startsWith('###')) {
+                                    return (
+                                      <h3 key={pIdx} className="text-lg font-light text-neutral-100 mb-3 mt-0">
+                                        {paragraph.replace('###', '').trim()}
+                                      </h3>
+                                    )
+                                  }
+                                  return (
+                                    <p key={pIdx} className="mb-3">
+                                      {paragraph.split(/(\*\*.*?\*\*)/g).map((part: string, partIdx: number) => {
+                                        if (part.startsWith('**') && part.endsWith('**')) {
+                                          return (
+                                            <strong key={partIdx} className="font-medium">
+                                              {part.slice(2, -2)}
+                                            </strong>
+                                          )
+                                        }
+                                        return <span key={partIdx}>{part}</span>
+                                      })}
+                                    </p>
+                                  )
+                                })}
+                              </div>
                             )}
                           </div>
                         )}

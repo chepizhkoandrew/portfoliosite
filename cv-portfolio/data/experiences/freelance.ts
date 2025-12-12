@@ -48,7 +48,12 @@ export const freelanceExperience = {
       overview: 'Created comprehensive metrics tree with 300+ potential KPIs, narrowed to 72 critical tracking metrics for data-driven operations. Improved data-driven decision making for online casino platform.',
       url: '',
       tags: ['Analytics', 'KPIs', 'Metrics', 'Data Analysis', 'Decision Making', 'Dashboard Design'],
-      details: '',
+      details: '### Online-Casino Metrics Framework (Consulting Project)\n\nCompleted a full overhaul of the client\'s product-analytics system. The work included auditing existing KPIs, Google Analytics event structures, and the underlying data-lake model used to track player behaviour and financial flows.\n\nConducted market and competitor benchmarking using public reports and best practices from gaming, e-commerce, and mobile-app industries.\n\nCreated a unified target framework of ~300 metrics with clear formulas, definitions, and hierarchical grouping. Facilitated a selection workshop that resulted in a final set of **72 key indicators** for ongoing tracking.\n\nDelivered documentation and guidance for product, analytics, and engineering teams to integrate the new metrics into dashboards, reporting, and data-model updates.',
+      images: [
+        'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765553418/casinmetrics3_poky5b.jpg',
+        'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765553418/casinometrics2_hnofva.jpg',
+        'https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765553418/casinmetrics3_poky5b.jpg'
+      ],
     },
     {
       id: 'kingmaker',
