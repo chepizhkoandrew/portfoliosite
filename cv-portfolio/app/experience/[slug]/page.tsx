@@ -281,7 +281,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
           <div>
             <div className="mb-8 pt-8 pb-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 overflow-hidden" style={{ paddingTop: '150px', height: '140px', lineHeight: '1.2' }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px', minHeight: '200px', maxHeight: '200px', overflow: 'hidden' }}>
                 {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceDisplayTexts.title : experience.title}
               </h1>
               {slug === 'myproduct' ? (
