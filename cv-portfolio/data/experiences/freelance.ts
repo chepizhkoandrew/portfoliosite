@@ -28,6 +28,7 @@ export const freelanceExperience = {
       duration: '2 months',
       overview: 'Developed CRM prototype for tax advisory firm with client management, project tracking, and communication tools. Delivered a fully functional prototype that clarified requirements for production build.',
       url: 'https://blackthorn-vision.com/',
+      videoUrl: 'https://res.cloudinary.com/dzhwsjuxy/video/upload/v1765553209/tax_advisory_prototype_uf0bcd.mp4',
       tags: ['CRM', 'Tax Advisory', 'Client Management', 'Prototype', 'React', 'Database Design'],
       details: '',
     },

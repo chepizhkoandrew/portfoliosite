@@ -423,6 +423,17 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                         
                         {isExpanded && (
                           <div className="border-t border-neutral-800/50 bg-neutral-900/10" style={{ padding: '24px 24px' }}>
+                            {project.videoUrl && (
+                              <div style={{ marginBottom: '24px' }}>
+                                <video 
+                                  controls 
+                                  style={{ width: '100%', borderRadius: '4px', backgroundColor: '#000' }}
+                                >
+                                  <source src={project.videoUrl} type="video/mp4" />
+                                  Your browser does not support the video tag.
+                                </video>
+                              </div>
+                            )}
                             {project.details && (
                               <p className="text-neutral-300 font-light mb-4">{project.details}</p>
                             )}
