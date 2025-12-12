@@ -359,11 +359,7 @@ export default function ContactPage() {
 
           {/* Separator Section with Alternative */}
           <div className="mt-32 w-full flex flex-col items-center gap-8">
-            <div className="space-y-2 text-neutral-500 text-sm uppercase tracking-widest">
-              <p>contacts</p>
-              <p>contacts</p>
-              <p>contacts</p>
-            </div>
+            <div className="h-16" />
 
             <p className="text-neutral-400 text-sm">or</p>
 
