@@ -29,6 +29,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   ])
   const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
     title: 'Freelance Product Builder',
+    'title-part': 'Product Builder',
     'project-0': 'Sports League Management',
     'project-1': 'Tax Advisory CRM',
     'project-2': 'Commissions Module',
@@ -122,6 +123,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
     const originalTexts: { [key: string]: string } = {
       title: 'Freelance Product Builder',
+      'title-part': 'Product Builder',
       'project-0': 'Sports League Management',
       'project-1': 'Tax Advisory CRM',
       'project-2': 'Commissions Module',
@@ -130,7 +132,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     }
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    const sequence = isMobile ? ['project-0', 'project-1', 'project-2', 'project-3', 'project-4'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
+    const sequence = isMobile ? ['title-part', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4']
     let currentIndex = 0
     let initialDelay = true
 
@@ -282,8 +284,13 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
           <div>
             <div className="mb-8 pt-8 pb-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100" style={{ paddingTop: '150px', minHeight: '160px' }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 hidden md:block" style={{ paddingTop: '150px', minHeight: '160px' }}>
                 {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceDisplayTexts.title : experience.title}
+              </h1>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 md:hidden" style={{ paddingTop: '150px' }}>
+                Freelance
+                <br />
+                {slug === 'freelance' ? freelanceDisplayTexts['title-part'] : ''}
               </h1>
               {slug === 'myproduct' ? (
                 <a 
