@@ -8,7 +8,7 @@ import { b2bsaasTakeoffExperience } from '@/data/experiences/b2bsaastakeoff'
 import { erpsystemExperience } from '@/data/experiences/erpsystem'
 import { businessconsultingExperience } from '@/data/experiences/businessconsulting'
 import { useState, useEffect } from 'react'
-import { FiChevronDown } from 'react-icons/fi'
+import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 const experiences: { [key: string]: any } = {
   myproduct: myproductExperience,
@@ -46,6 +46,32 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
+  const [touchStart, setTouchStart] = useState<{ [key: string]: number }>({})
+
+  const handleTouchStart = (projectId: string, e: React.TouchEvent) => {
+    setTouchStart(prev => ({ ...prev, [projectId]: e.touches[0].clientX }))
+  }
+
+  const handleTouchEnd = (projectId: string, totalImages: number, e: React.TouchEvent) => {
+    const touchEnd = e.changedTouches[0].clientX
+    const touchStartX = touchStart[projectId] || 0
+    const diff = touchStartX - touchEnd
+
+    if (Math.abs(diff) > 50) {
+      const currentIndex = carouselIndices[`project-${projectId}`] || 0
+      if (diff > 0) {
+        setCarouselIndices(prev => ({
+          ...prev,
+          [`project-${projectId}`]: (currentIndex + 1) % totalImages
+        }))
+      } else {
+        setCarouselIndices(prev => ({
+          ...prev,
+          [`project-${projectId}`]: (currentIndex - 1 + totalImages) % totalImages
+        }))
+      }
+    }
+  }
 
   useEffect(() => {
     params.then(({ slug }) => setSlug(slug))
@@ -437,30 +463,105 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             )}
                             {project.images && project.id === 'casino-metrics' && (
                               <div style={{ marginBottom: '24px' }}>
-                                <div style={{ position: 'relative', marginBottom: '16px' }}>
-                                  <img 
-                                    src={project.images[carouselIndices[`project-${idx}`] || 0]} 
-                                    alt={`Casino Metrics ${(carouselIndices[`project-${idx}`] || 0) + 1}`}
-                                    style={{ width: '100%', borderRadius: '4px', display: 'block' }}
-                                  />
-                                  <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '12px' }}>
-                                    {project.images.map((_: string, imgIdx: number) => (
-                                      <button
-                                        key={imgIdx}
-                                        onClick={() => setCarouselIndices(prev => ({ ...prev, [`project-${idx}`]: imgIdx }))}
-                                        style={{
-                                          width: '8px',
-                                          height: '8px',
-                                          borderRadius: '50%',
-                                          backgroundColor: (carouselIndices[`project-${idx}`] || 0) === imgIdx ? '#06b6d4' : '#404040',
-                                          border: 'none',
-                                          cursor: 'pointer',
-                                          transition: 'background-color 0.3s'
-                                        }}
-                                        aria-label={`Go to image ${imgIdx + 1}`}
-                                      />
-                                    ))}
+                                <div 
+                                  style={{ position: 'relative', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}
+                                  onTouchStart={(e) => handleTouchStart(`${idx}`, e)}
+                                  onTouchEnd={(e) => handleTouchEnd(`${idx}`, project.images.length, e)}
+                                >
+                                  <button
+                                    onClick={() => {
+                                      const currentIndex = carouselIndices[`project-${idx}`] || 0
+                                      setCarouselIndices(prev => ({
+                                        ...prev,
+                                        [`project-${idx}`]: (currentIndex - 1 + project.images.length) % project.images.length
+                                      }))
+                                    }}
+                                    style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                                      border: '1px solid rgba(6, 182, 212, 0.3)',
+                                      borderRadius: '4px',
+                                      color: '#06b6d4',
+                                      cursor: 'pointer',
+                                      padding: '8px',
+                                      transition: 'all 0.3s',
+                                      flexShrink: 0,
+                                      width: '40px',
+                                      height: '40px'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                                    }}
+                                    aria-label="Previous image"
+                                  >
+                                    <FiChevronLeft size={20} />
+                                  </button>
+
+                                  <div style={{ flex: 1 }}>
+                                    <img 
+                                      src={project.images[carouselIndices[`project-${idx}`] || 0]} 
+                                      alt={`Casino Metrics ${(carouselIndices[`project-${idx}`] || 0) + 1}`}
+                                      style={{ width: '100%', borderRadius: '4px', display: 'block', cursor: 'grab' }}
+                                    />
                                   </div>
+
+                                  <button
+                                    onClick={() => {
+                                      const currentIndex = carouselIndices[`project-${idx}`] || 0
+                                      setCarouselIndices(prev => ({
+                                        ...prev,
+                                        [`project-${idx}`]: (currentIndex + 1) % project.images.length
+                                      }))
+                                    }}
+                                    style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                                      border: '1px solid rgba(6, 182, 212, 0.3)',
+                                      borderRadius: '4px',
+                                      color: '#06b6d4',
+                                      cursor: 'pointer',
+                                      padding: '8px',
+                                      transition: 'all 0.3s',
+                                      flexShrink: 0,
+                                      width: '40px',
+                                      height: '40px'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                                    }}
+                                    aria-label="Next image"
+                                  >
+                                    <FiChevronRight size={20} />
+                                  </button>
+                                </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '12px' }}>
+                                  {project.images.map((_: string, imgIdx: number) => (
+                                    <button
+                                      key={imgIdx}
+                                      onClick={() => setCarouselIndices(prev => ({ ...prev, [`project-${idx}`]: imgIdx }))}
+                                      style={{
+                                        width: '8px',
+                                        height: '8px',
+                                        borderRadius: '50%',
+                                        backgroundColor: (carouselIndices[`project-${idx}`] || 0) === imgIdx ? '#06b6d4' : '#404040',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        transition: 'background-color 0.3s'
+                                      }}
+                                      aria-label={`Go to image ${imgIdx + 1}`}
+                                    />
+                                  ))}
                                 </div>
                               </div>
                             )}
