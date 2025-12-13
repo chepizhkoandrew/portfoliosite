@@ -47,6 +47,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'rollout-time': 'Rollout time reduced from weeks to days',
   })
 
+  const [freelanceWordGlitch, setFreelanceWordGlitch] = useState<string>('Freelance')
+
   const projectPrefixes: { [key: string]: string } = {
     'project-0': 'Blackthorn Vision: ',
     'project-1': 'ScrumLaunch: ',
@@ -190,8 +192,6 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     if (slug !== 'freelance') return
 
     const originalTexts: { [key: string]: string } = {
-      title: 'Freelance Product Builder',
-      'title-part': 'Product Builder',
       'project-0': 'Tax Advisory CRM',
       'project-1': 'Sports League Management App',
       'project-2': 'Casino Metrics',
@@ -200,8 +200,8 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
       'project-5': 'Character-Consistent Content Pipeline',
     }
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    const sequence = isMobile ? ['title-part', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5'] : ['title', 'project-0', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5']
+    const freelanceWord = 'Freelance'
+    let glitchingWord = true
     let currentIndex = 0
     let initialDelay = true
 
@@ -210,30 +210,50 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
       initialDelay = false
 
       const timeout = setTimeout(() => {
-        const elementKey = sequence[currentIndex]
-        const originalText = originalTexts[elementKey]
         let phase = 0
 
         const interval = setInterval(() => {
-          if (phase < 10) {
-            setFreelanceDisplayTexts(prev => ({
-              ...prev,
-              [elementKey]: glitchText(originalText)
-            }))
-          } else if (phase < 20) {
-            const progress = (phase - 10) / 10
-            setFreelanceDisplayTexts(prev => ({
-              ...prev,
-              [elementKey]: partialGlitchText(originalText, 1 - progress)
-            }))
+          if (glitchingWord) {
+            if (phase < 10) {
+              setFreelanceWordGlitch(glitchText(freelanceWord))
+            } else if (phase < 20) {
+              const progress = (phase - 10) / 10
+              setFreelanceWordGlitch(partialGlitchText(freelanceWord, 1 - progress))
+            } else {
+              setFreelanceWordGlitch(freelanceWord)
+              clearInterval(interval)
+              glitchingWord = false
+              currentIndex = 0
+              scheduleGlitch()
+            }
           } else {
-            setFreelanceDisplayTexts(prev => ({
-              ...prev,
-              [elementKey]: originalText
-            }))
-            clearInterval(interval)
-            currentIndex = (currentIndex + 1) % sequence.length
-            scheduleGlitch()
+            const sequence = Object.keys(originalTexts)
+            const elementKey = sequence[currentIndex]
+            const originalText = originalTexts[elementKey]
+
+            if (phase < 10) {
+              setFreelanceDisplayTexts(prev => ({
+                ...prev,
+                [elementKey]: glitchText(originalText)
+              }))
+            } else if (phase < 20) {
+              const progress = (phase - 10) / 10
+              setFreelanceDisplayTexts(prev => ({
+                ...prev,
+                [elementKey]: partialGlitchText(originalText, 1 - progress)
+              }))
+            } else {
+              setFreelanceDisplayTexts(prev => ({
+                ...prev,
+                [elementKey]: originalText
+              }))
+              clearInterval(interval)
+              currentIndex = (currentIndex + 1) % sequence.length
+              if (currentIndex === 0) {
+                glitchingWord = true
+              }
+              scheduleGlitch()
+            }
           }
           phase++
         }, 50)
@@ -396,10 +416,10 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
           <div>
             <div className="mb-8 pt-8 pb-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 hidden md:block" style={{ paddingTop: '150px', minHeight: '160px' }}>
-                {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceDisplayTexts.title : experience.title}
+                {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceWordGlitch + ' Product Builder' : experience.title}
               </h1>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 md:hidden" style={{ paddingTop: '150px' }}>
-                Freelance
+                {slug === 'freelance' ? freelanceWordGlitch : 'Freelance'}
                 <br />
                 {slug === 'freelance' ? freelanceDisplayTexts['title-part'] : ''}
               </h1>
@@ -489,7 +509,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex-1">
-                              <h3 className="text-xl font-light text-neutral-100 mb-2" style={{ minHeight: '56px' }}>
+                              <h3 className={`text-xl font-light text-neutral-100 mb-2 ${slug === 'freelance' ? 'hover-laser' : ''}`} style={{ minHeight: '56px' }}>
                                 {slug === 'freelance' 
                                   ? (projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]
                                   : project.name}
