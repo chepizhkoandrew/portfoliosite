@@ -86,9 +86,9 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    id: 'pm',
+    id: 'roboticspm',
     title: 'Product Manager',
-    company: 'Takeoff Technologies (US and UAE)',
+    company: 'Takeoff Technologies (US)',
     startYear: 2019,
     endYear: 2023,
     duration: '2019 - 2023 (3 years)',

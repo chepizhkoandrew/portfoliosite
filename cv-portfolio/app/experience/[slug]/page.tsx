@@ -7,6 +7,8 @@ import { b2cboostExperience } from '@/data/experiences/b2cboosta'
 import { b2bsaasTakeoffExperience } from '@/data/experiences/b2bsaastakeoff'
 import { erpsystemExperience } from '@/data/experiences/erpsystem'
 import { businessconsultingExperience } from '@/data/experiences/businessconsulting'
+import { roboticspmExperience } from '@/data/experiences/roboticspm'
+import { glitchText, partialGlitchText, rangeGlitchText } from '@/lib/glitchEffect'
 import { useState, useEffect } from 'react'
 import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
@@ -17,6 +19,7 @@ const experiences: { [key: string]: any } = {
   b2bsaastakeoff: b2bsaasTakeoffExperience,
   erpsystem: erpsystemExperience,
   businessconsulting: businessconsultingExperience,
+  roboticspm: roboticspmExperience,
 }
 
 export default function ExperiencePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -36,6 +39,12 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-3': 'Deposit Flow Redesign',
     'project-4': 'Commissions Module',
     'project-5': 'Character-Consistent Content Pipeline',
+  })
+
+  const [roboticspmGlitchTexts, setRoboticspmGlitchTexts] = useState<{ [key: string]: string }>({
+    'micro-fulfillment-centers': 'micro-fulfillment centers',
+    'onboarding-retailers': 'onboarding of new grocery retailers.',
+    'rollout-time': 'Rollout time reduced from weeks to days',
   })
 
   const projectPrefixes: { [key: string]: string } = {
@@ -138,20 +147,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               if (isElement2) {
                 const glitchStart = originalText.indexOf('5% of the market')
                 const glitchEnd = glitchStart + '5% of the market'.length
-                newTexts[elementIndex] = originalText
-                  .split('')
-                  .map((char, idx) => {
-                    if (idx >= glitchStart && idx < glitchEnd) {
-                      return Math.random() > 0.5 ? '1' : '0'
-                    }
-                    return char
-                  })
-                  .join('')
+                newTexts[elementIndex] = rangeGlitchText(originalText, glitchStart, glitchEnd, 1)
               } else {
-                newTexts[elementIndex] = originalText
-                  .split('')
-                  .map(() => Math.random() > 0.5 ? '1' : '0')
-                  .join('')
+                newTexts[elementIndex] = glitchText(originalText)
               }
               return newTexts
             })
@@ -162,30 +160,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               if (isElement2) {
                 const glitchStart = originalText.indexOf('5% of the market')
                 const glitchEnd = glitchStart + '5% of the market'.length
-                const glitchLength = glitchEnd - glitchStart
-                newTexts[elementIndex] = originalText
-                  .split('')
-                  .map((char, idx) => {
-                    if (idx >= glitchStart && idx < glitchEnd) {
-                      const charProgress = (idx - glitchStart) / glitchLength
-                      if (charProgress < progress) {
-                        return char
-                      }
-                      return Math.random() > 0.5 ? '1' : '0'
-                    }
-                    return char
-                  })
-                  .join('')
+                newTexts[elementIndex] = rangeGlitchText(originalText, glitchStart, glitchEnd, 1 - progress)
               } else {
-                newTexts[elementIndex] = originalText
-                  .split('')
-                  .map((char, idx) => {
-                    if (idx / originalText.length < progress) {
-                      return char
-                    }
-                    return Math.random() > 0.5 ? '1' : '0'
-                  })
-                  .join('')
+                newTexts[elementIndex] = partialGlitchText(originalText, 1 - progress)
               }
               return newTexts
             })
@@ -241,27 +218,69 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
           if (phase < 10) {
             setFreelanceDisplayTexts(prev => ({
               ...prev,
-              [elementKey]: originalText
-                .split('')
-                .map(() => Math.random() > 0.5 ? '1' : '0')
-                .join('')
+              [elementKey]: glitchText(originalText)
             }))
           } else if (phase < 20) {
             const progress = (phase - 10) / 10
             setFreelanceDisplayTexts(prev => ({
               ...prev,
-              [elementKey]: originalText
-                .split('')
-                .map((char, idx) => {
-                  if (idx / originalText.length < progress) {
-                    return char
-                  }
-                  return Math.random() > 0.5 ? '1' : '0'
-                })
-                .join('')
+              [elementKey]: partialGlitchText(originalText, 1 - progress)
             }))
           } else {
             setFreelanceDisplayTexts(prev => ({
+              ...prev,
+              [elementKey]: originalText
+            }))
+            clearInterval(interval)
+            currentIndex = (currentIndex + 1) % sequence.length
+            scheduleGlitch()
+          }
+          phase++
+        }, 50)
+      }, delay)
+
+      return () => clearTimeout(timeout)
+    }
+
+    scheduleGlitch()
+  }, [slug])
+
+  useEffect(() => {
+    if (slug !== 'roboticspm') return
+
+    const originalTexts: { [key: string]: string } = {
+      'micro-fulfillment-centers': 'micro-fulfillment centers',
+      'onboarding-retailers': 'onboarding of new grocery retailers.',
+      'rollout-time': 'Rollout time reduced from weeks to days',
+    }
+
+    const sequence = Object.keys(originalTexts)
+    let currentIndex = 0
+    let initialDelay = true
+
+    const scheduleGlitch = () => {
+      const delay = initialDelay ? 5000 : Math.random() * 2000 + 4000
+      initialDelay = false
+
+      const timeout = setTimeout(() => {
+        const elementKey = sequence[currentIndex]
+        const originalText = originalTexts[elementKey]
+        let phase = 0
+
+        const interval = setInterval(() => {
+          if (phase < 10) {
+            setRoboticspmGlitchTexts(prev => ({
+              ...prev,
+              [elementKey]: glitchText(originalText)
+            }))
+          } else if (phase < 20) {
+            const progress = (phase - 10) / 10
+            setRoboticspmGlitchTexts(prev => ({
+              ...prev,
+              [elementKey]: partialGlitchText(originalText, 1 - progress)
+            }))
+          } else {
+            setRoboticspmGlitchTexts(prev => ({
               ...prev,
               [elementKey]: originalText
             }))
@@ -408,13 +427,13 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             <div className="my-12">
               <img
-                src={`/experienceicons/${slug === 'myproduct' ? 'priroda' : experience.slug}.png`}
+                src={experience.logo || `/experienceicons/${slug === 'myproduct' ? 'priroda' : experience.slug}.png`}
                 alt={`${experience.title} Logo`}
                 style={{ maxWidth: '60px', height: 'auto', opacity: 0.8 }}
               />
             </div>
 
-            {experience.videoDemo && (
+            {experience.videoDemo && slug !== 'roboticspm' && (
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Project Demo</h2>
                 <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
@@ -843,7 +862,12 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               <div className="prose prose-invert max-w-none">
                 <div className="space-y-8 text-neutral-300 font-light leading-relaxed">
                   {experience.detailedContent.split('\n\n').map((section: string, idx: number) => {
-                    if (section.trim().startsWith('###')) {
+                    const isProductOverview = section.trim().startsWith('## Product Overview')
+                    
+                    return (
+                      <div key={idx}>
+                        {(() => {
+                          if (section.trim().startsWith('###')) {
                       const heading = section.replace('### ', '').trim()
                       const isExpanded = expandedProjects.has(`project-${idx}`)
                       
@@ -917,7 +941,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                       )
                     }
                     return (
-                      <p key={idx} className="text-base leading-relaxed text-neutral-300" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+                      <p className="text-base leading-relaxed text-neutral-300" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
                         {(() => {
                           let processedSection = section
                           const glitchPhrases = [
@@ -947,16 +971,62 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                 result = part.replace(phrase.original, displayTexts[phrase.index])
                               }
                             }
+                            
+                            if (slug === 'roboticspm') {
+                              const roboticspmPhrases = [
+                                { original: 'micro-fulfillment centers', key: 'micro-fulfillment-centers' },
+                                { original: 'onboarding of new grocery retailers.', key: 'onboarding-retailers' },
+                                { original: 'Rollout time reduced from weeks to days', key: 'rollout-time' }
+                              ]
+                              for (const phrase of roboticspmPhrases) {
+                                if (result.includes(phrase.original)) {
+                                  result = result.replace(phrase.original, roboticspmGlitchTexts[phrase.key])
+                                }
+                              }
+                            }
+                            
                             return result
                           })
                         })()}
                       </p>
+                    )
+                        })()}
+                        {isProductOverview && slug === 'roboticspm' && experience.videoDemo && (
+                          <div style={{ marginTop: '32px', marginBottom: '32px' }}>
+                            <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                              <iframe
+                                src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}`}
+                                title={experience.videoDemo.title}
+                                className="w-full h-full"
+                                frameBorder="0"
+                                allowFullScreen
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
               </div>
             )}
           </div>
+
+            {experience.skills && (
+              <div className="my-16 pt-8 pb-8">
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">Tools and Skills</h2>
+                <div className="flex flex-wrap gap-3">
+                  {experience.skills.map((skill: string, idx: number) => (
+                    <span
+                      key={idx}
+                      className="inline-block px-4 py-2 bg-neutral-800/50 border border-neutral-700/50 rounded-full text-sm font-light text-neutral-300 hover:border-neutral-600/50 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
           <div className="mt-24 flex justify-center">
             <Link 

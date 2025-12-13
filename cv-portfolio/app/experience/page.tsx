@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { experiences } from '@/data/experience'
 import { profile } from '@/data/content'
+import { glitchText, partialGlitchText } from '@/lib/glitchEffect'
 
 import { useState, useEffect } from 'react'
 
@@ -17,23 +18,10 @@ export default function ExperiencePage() {
       
       const interval = setInterval(() => {
         if (phase < 10) {
-          setDisplayTitle(originalText
-            .split('')
-            .map(() => {
-              return Math.random() > 0.5 ? '1' : '0'
-            })
-            .join(''))
+          setDisplayTitle(glitchText(originalText))
         } else if (phase < 20) {
           const progress = (phase - 10) / 10
-          setDisplayTitle(originalText
-            .split('')
-            .map((char, index) => {
-              if (index / originalText.length < progress) {
-                return char
-              }
-              return Math.random() > 0.5 ? '1' : '0'
-            })
-            .join(''))
+          setDisplayTitle(partialGlitchText(originalText, 1 - progress))
         } else {
           setDisplayTitle(originalText)
           clearInterval(interval)
