@@ -940,7 +940,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                       const heading = section.replace('## ', '').trim()
                       return (
                         <div key={idx} style={{ paddingTop: '32px', paddingBottom: '20px' }}>
-                          <h3 className="text-3xl font-light text-neutral-100 mb-4">
+                          <h3 className="text-3xl font-light text-neutral-100 mb-4 hover-laser">
                             {heading}
                           </h3>
                         </div>
