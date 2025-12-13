@@ -8,11 +8,11 @@ import { useState, useEffect } from 'react'
 
 export default function ExperiencePage() {
   const [matrixActive, setMatrixActive] = useState(false)
-  const [displayTitle, setDisplayTitle] = useState('Assignments and projects')
+  const [displayTitle, setDisplayTitle] = useState('Career path')
 
   useEffect(() => {
     const glitchTimer = setTimeout(() => {
-      const originalText = 'Assignments and projects'
+      const originalText = 'Career path'
       let phase = 0
       
       const interval = setInterval(() => {

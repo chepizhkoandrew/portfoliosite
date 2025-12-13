@@ -130,28 +130,63 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
         let phase = 0
 
         const interval = setInterval(() => {
+          const isElement2 = elementIndex === 2
+          
           if (phase < 10) {
             setDisplayTexts(prev => {
               const newTexts = [...prev]
-              newTexts[elementIndex] = originalText
-                .split('')
-                .map(() => Math.random() > 0.5 ? '1' : '0')
-                .join('')
+              if (isElement2) {
+                const glitchStart = originalText.indexOf('5% of the market')
+                const glitchEnd = glitchStart + '5% of the market'.length
+                newTexts[elementIndex] = originalText
+                  .split('')
+                  .map((char, idx) => {
+                    if (idx >= glitchStart && idx < glitchEnd) {
+                      return Math.random() > 0.5 ? '1' : '0'
+                    }
+                    return char
+                  })
+                  .join('')
+              } else {
+                newTexts[elementIndex] = originalText
+                  .split('')
+                  .map(() => Math.random() > 0.5 ? '1' : '0')
+                  .join('')
+              }
               return newTexts
             })
           } else if (phase < 20) {
             const progress = (phase - 10) / 10
             setDisplayTexts(prev => {
               const newTexts = [...prev]
-              newTexts[elementIndex] = originalText
-                .split('')
-                .map((char, idx) => {
-                  if (idx / originalText.length < progress) {
+              if (isElement2) {
+                const glitchStart = originalText.indexOf('5% of the market')
+                const glitchEnd = glitchStart + '5% of the market'.length
+                const glitchLength = glitchEnd - glitchStart
+                newTexts[elementIndex] = originalText
+                  .split('')
+                  .map((char, idx) => {
+                    if (idx >= glitchStart && idx < glitchEnd) {
+                      const charProgress = (idx - glitchStart) / glitchLength
+                      if (charProgress < progress) {
+                        return char
+                      }
+                      return Math.random() > 0.5 ? '1' : '0'
+                    }
                     return char
-                  }
-                  return Math.random() > 0.5 ? '1' : '0'
-                })
-                .join('')
+                  })
+                  .join('')
+              } else {
+                newTexts[elementIndex] = originalText
+                  .split('')
+                  .map((char, idx) => {
+                    if (idx / originalText.length < progress) {
+                      return char
+                    }
+                    return Math.random() > 0.5 ? '1' : '0'
+                  })
+                  .join('')
+              }
               return newTexts
             })
           } else {
