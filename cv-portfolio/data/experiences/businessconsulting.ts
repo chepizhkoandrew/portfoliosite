@@ -19,14 +19,12 @@ export const businessconsultingExperience = {
   detailedContent: `
 ## Areas of Expertise
 
-- **Operational models transformation**, including:
-  - IT systems design
-  - Process optimization
-  - KPI system development
-  - Building operational excellence dashboards
-  - Implementing budget control procedures
+- **IT systems design**
+- **Process optimization and change management**
+- **KPI system development**
+- **Building business intelligence dashboards**
+- **Implementing budget control procedures**
 - **Organization of project management offices**
-- **Implementation of investment management processes**
 
 ## Industries
 
@@ -39,7 +37,7 @@ export const businessconsultingExperience = {
   projects: [
     {
       id: 'mining-investments',
-      name: 'Capital Investments & Project Management - Ukrainian Mining Complex',
+      name: 'Capital Investments & Project Management - Ukrainian Mining Complex (Ferrexpo)',
       overview: 'Transformation of the capital investments management and project management processes for a large Ukrainian mining complex. The goals were to improve budgeting and resource planning procedures and align the investment management system with supply chain and procurement processes. Delivered full set of process maps with job descriptions, prototypes of budget sheets, and functional requirements for automation.',
       tags: ['Process Mapping', 'Budget Modeling', 'Investment Management', 'Systems Design'],
     },
@@ -63,13 +61,13 @@ export const businessconsultingExperience = {
     },
     {
       id: 'fleet-management',
-      name: 'Cost Reduction - Real Estate & Car Fleet Management',
+      name: 'Cost Reduction - Real Estate & Car Fleet Management (Prominvestbank Ukraine)',
       overview: 'Analysed the bank\'s car fleet and building usage. Based on observations, proposed improvements for the asset and facilities management structure, including business cases and implementation roadmap. Responsible for the fleet management workstream.',
       tags: ['Cost Reduction', 'Asset Management', 'Facilities Management', 'Analytics'],
     },
     {
       id: 'food-factory',
-      name: 'Business Process Identification & ERP System Selection - Food Factory',
+      name: 'Business Process Identification & ERP System Selection - Food Factory (Dnipropetrovsk, Ukraine)',
       overview: 'Visualized all supply chain and production processes in flowcharts and developed functional requirements for each stage and user interface elements. Enabled informed ERP system selection and implementation planning.',
       tags: ['Process Visualization', 'ERP Selection', 'Requirements Engineering', 'System Design'],
     },

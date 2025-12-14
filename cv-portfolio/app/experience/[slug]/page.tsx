@@ -1148,7 +1148,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             {experience.projects && slug === 'consultant' && (
               <div style={{ paddingTop: '32px', paddingBottom: '20px' }}>
-                <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects Delivered</h2>
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">Examples of projects delivered</h2>
                 <div style={{ paddingTop: '24px' }}>
                   {experience.projects.map((project: any, idx: number) => (
                     <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
