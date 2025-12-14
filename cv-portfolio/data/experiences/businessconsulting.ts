@@ -34,32 +34,52 @@ export const businessconsultingExperience = {
 - Government sector
 - Agro
 - Retail
-
-## Projects Delivered
-
-**Transformation of the capital investments management and project management processes for a large Ukrainian mining complex.**
-The goals were to improve budgeting and resource planning procedures and align the investment management system with supply chain and procurement processes. Responsibilities included process mapping and budget template modelling. Delivered: full set of process maps with job descriptions, prototypes of budget sheets, and functional requirements for automation.
-
-**Agrarian farm process mapping and transformation.**
-The project was funded by the International Finance Corporation, with the goal of creating standard operating models for three Ukrainian farms of different scale, to be shared as best practices for the sector. Served as PM for one of the participating farms, managing project execution and delivery of models to IFC.
-
-**Cost reduction project for real estate and car fleet management.**
-The team analysed the bank's car fleet and building usage. Based on these observations, several improvements were proposed for the asset and facilities management structure, including business cases and an implementation roadmap. Responsible for the fleet management workstream.
-
-**Business process identification, visualization, system requirements development, and ERP system selection for a food factory.**
-The team visualized all supply chain and production processes in flowcharts and developed functional requirements for each stage and user interface elements.
-
-**Support for system selection procedures for the Ministry of Finance of Ukraine.**
-The project was funded by the World Bank, aiming to automate budgetary and treasury processes for the State Budget and local budgets. The team developed the full set of RFP documents, functional and technical requirements, process descriptions, and demonstration scenarios for several core components of the budget system. Responsible for treasury module design.
-
-**Risk management function redesign according to Basel II requirements for a large Kazakhstan bank.**
-The team worked closely with bank staff, providing project management and expertise for redesigning risk management components and processes. Responsibilities included development of credit risk processes and tools, profitability management processes, and alignment of budgeting and control functions.
-
-**Process optimization for Risk, Finance, and Operations functions at a large Kazakhstan bank.**
-The bank's management wanted to assess readiness for growth. The team analysed all processes within the major functions, proposed a target organizational structure, identified growth risks, and recommended improvements for process automation. Responsible for the methodology of modelling and calculations, and analysis of the Operations stream.
-
-*And many more…*
   `,
+
+  projects: [
+    {
+      id: 'mining-investments',
+      name: 'Capital Investments & Project Management - Ukrainian Mining Complex',
+      overview: 'Transformation of the capital investments management and project management processes for a large Ukrainian mining complex. The goals were to improve budgeting and resource planning procedures and align the investment management system with supply chain and procurement processes. Delivered full set of process maps with job descriptions, prototypes of budget sheets, and functional requirements for automation.',
+      tags: ['Process Mapping', 'Budget Modeling', 'Investment Management', 'Systems Design'],
+    },
+    {
+      id: 'agrarian-farms',
+      name: 'Agrarian Farm Process Mapping & Transformation (IFC)',
+      overview: 'Project funded by the International Finance Corporation with the goal of creating standard operating models for three Ukrainian farms of different scale, to be shared as best practices for the sector. Served as PM for one of the participating farms, managing project execution and delivery of models to IFC.',
+      tags: ['Agro', 'Process Optimization', 'Project Management', 'Best Practices'],
+    },
+    {
+      id: 'fleet-management',
+      name: 'Cost Reduction - Real Estate & Car Fleet Management',
+      overview: 'Analysed the bank\'s car fleet and building usage. Based on observations, proposed improvements for the asset and facilities management structure, including business cases and implementation roadmap. Responsible for the fleet management workstream.',
+      tags: ['Cost Reduction', 'Asset Management', 'Facilities Management', 'Analytics'],
+    },
+    {
+      id: 'food-factory',
+      name: 'Business Process Identification & ERP System Selection - Food Factory',
+      overview: 'Visualized all supply chain and production processes in flowcharts and developed functional requirements for each stage and user interface elements. Enabled informed ERP system selection and implementation planning.',
+      tags: ['Process Visualization', 'ERP Selection', 'Requirements Engineering', 'System Design'],
+    },
+    {
+      id: 'finance-ministry',
+      name: 'System Selection & Treasury Process Design - Ministry of Finance Ukraine (World Bank)',
+      overview: 'Project funded by the World Bank aiming to automate budgetary and treasury processes for the State Budget and local budgets. Developed full set of RFP documents, functional and technical requirements, process descriptions, and demonstration scenarios for core budget system components. Responsible for treasury module design.',
+      tags: ['Government', 'Treasury Systems', 'Requirements Documentation', 'RFP Development'],
+    },
+    {
+      id: 'risk-management',
+      name: 'Risk Management Redesign - Kazakhstan Bank (Basel II)',
+      overview: 'Risk management function redesign according to Basel II requirements for a large Kazakhstan bank. Worked closely with bank staff providing project management and expertise for redesigning risk management components and processes. Responsibilities included development of credit risk processes and tools, profitability management processes, and alignment of budgeting and control functions.',
+      tags: ['Risk Management', 'Banking', 'Basel II Compliance', 'Process Design'],
+    },
+    {
+      id: 'growth-optimization',
+      name: 'Process Optimization - Risk, Finance & Operations - Kazakhstan Bank',
+      overview: 'The bank\'s management wanted to assess readiness for growth. Analysed all processes within major functions, proposed target organizational structure, identified growth risks, and recommended improvements for process automation. Responsible for methodology of modelling and calculations, and analysis of the Operations stream.',
+      tags: ['Process Optimization', 'Analytics', 'Organizational Design', 'Growth Strategy'],
+    },
+  ],
 
   companyUrl: 'https://www.ey.com/en_ua/consulting',
 

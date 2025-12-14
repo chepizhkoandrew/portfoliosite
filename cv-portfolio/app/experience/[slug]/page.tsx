@@ -1146,6 +1146,42 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
             )}
           </div>
 
+            {experience.projects && slug === 'consultant' && (
+              <div style={{ paddingTop: '32px', paddingBottom: '20px' }}>
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects Delivered</h2>
+                <div style={{ paddingTop: '24px' }}>
+                  {experience.projects.map((project: any, idx: number) => (
+                    <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
+                      <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+                        <div className="flex justify-between items-start gap-4 mb-3">
+                          <div className="flex-1">
+                            <h3 className="text-xl font-light text-neutral-100 mb-2 hover-laser" style={{ minHeight: '56px' }}>
+                              {project.name}
+                            </h3>
+                          </div>
+                        </div>
+                        
+                        <p className="text-neutral-300 font-light leading-relaxed" style={{ marginBottom: '16px' }}>{project.overview}</p>
+                        
+                        {project.tags && project.tags.length > 0 && (
+                          <div style={{ marginBottom: '16px' }} className="flex flex-wrap gap-2">
+                            {project.tags.map((tag: string, tagIdx: number) => (
+                              <span
+                                key={tagIdx}
+                                className="inline-block px-3 py-1 bg-neutral-800/50 border border-neutral-700/50 rounded-full text-xs font-light text-neutral-300"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {experience.skills && (
               <div className="my-16 pt-8 pb-8">
                 <h3 className="text-3xl font-light text-neutral-100 mb-4 hover-laser">Tools and Skills</h3>
