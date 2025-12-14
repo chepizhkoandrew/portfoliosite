@@ -455,19 +455,18 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               />
             </div>
 
-            {experience.videoDemo && slug !== 'roboticspm' && (
+            {experience.videoDemo && slug !== 'roboticspm' && slug !== 'lead_ba' && (
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Project Demo</h2>
                 <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
                   <iframe
-                    src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}`}
+                    src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}${experience.videoDemo.startTime ? `?start=${experience.videoDemo.startTime}` : ''}`}
                     title={experience.videoDemo.title}
                     className="w-full h-full"
                     frameBorder="0"
                     allowFullScreen
                   />
                 </div>
-                <p className="text-neutral-400 font-light mt-4">{experience.videoDemo.description}</p>
               </div>
             )}
 
