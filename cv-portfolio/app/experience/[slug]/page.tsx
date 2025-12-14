@@ -1017,7 +1017,20 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                           <div style={{ marginTop: '32px', marginBottom: '32px' }}>
                             <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
                               <iframe
-                                src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}`}
+                                src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}${experience.videoDemo.startTime ? `?start=${experience.videoDemo.startTime}` : ''}`}
+                                title={experience.videoDemo.title}
+                                className="w-full h-full"
+                                frameBorder="0"
+                                allowFullScreen
+                              />
+                            </div>
+                          </div>
+                        )}
+                        {isProductOverview && slug === 'lead_ba' && experience.videoDemo && (
+                          <div style={{ marginTop: '32px', marginBottom: '32px' }}>
+                            <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                              <iframe
+                                src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}${experience.videoDemo.startTime ? `?start=${experience.videoDemo.startTime}` : ''}`}
                                 title={experience.videoDemo.title}
                                 className="w-full h-full"
                                 frameBorder="0"

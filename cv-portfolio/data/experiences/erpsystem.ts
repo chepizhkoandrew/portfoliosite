@@ -26,7 +26,7 @@ export const erpsystemExperience = {
   videoDemo: {
     title: 'Kernel Project Overview',
     youtubeId: 'dzAuINeog4w',
-    description: 'Understanding the agricultural technology project (starts at 3:45)',
+    startTime: 225,
   },
 
   companyUrl: 'https://eleks.com/',
