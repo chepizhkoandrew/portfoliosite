@@ -8,6 +8,7 @@ import { b2bsaasTakeoffExperience } from '@/data/experiences/b2bsaastakeoff'
 import { erpsystemExperience } from '@/data/experiences/erpsystem'
 import { businessconsultingExperience } from '@/data/experiences/businessconsulting'
 import { roboticspmExperience } from '@/data/experiences/roboticspm'
+import { leadPoExperience } from '@/data/experiences/lead_po'
 import { glitchText, partialGlitchText, rangeGlitchText } from '@/lib/glitchEffect'
 import { useState, useEffect } from 'react'
 import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
@@ -20,6 +21,7 @@ const experiences: { [key: string]: any } = {
   erpsystem: erpsystemExperience,
   businessconsulting: businessconsultingExperience,
   roboticspm: roboticspmExperience,
+  lead_po: leadPoExperience,
 }
 
 export default function ExperiencePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -44,7 +46,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   const [roboticspmGlitchTexts, setRoboticspmGlitchTexts] = useState<{ [key: string]: string }>({
     'micro-fulfillment-centers': 'micro-fulfillment centers',
     'onboarding-retailers': 'onboarding of new grocery retailers.',
-    'rollout-time': 'Rollout time reduced from weeks to days',
+    'rollout-time': 'New product rollout time reduced from weeks to days',
   })
 
   const [freelanceWordGlitch, setFreelanceWordGlitch] = useState<string>('Freelance')
@@ -271,7 +273,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     const originalTexts: { [key: string]: string } = {
       'micro-fulfillment-centers': 'micro-fulfillment centers',
       'onboarding-retailers': 'onboarding of new grocery retailers.',
-      'rollout-time': 'Rollout time reduced from weeks to days',
+      'rollout-time': 'New product rollout time reduced from weeks to days',
     }
 
     const sequence = Object.keys(originalTexts)
@@ -996,7 +998,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                               const roboticspmPhrases = [
                                 { original: 'micro-fulfillment centers', key: 'micro-fulfillment-centers' },
                                 { original: 'onboarding of new grocery retailers.', key: 'onboarding-retailers' },
-                                { original: 'Rollout time reduced from weeks to days', key: 'rollout-time' }
+                                { original: 'New product rollout time reduced from weeks to days', key: 'rollout-time' }
                               ]
                               for (const phrase of roboticspmPhrases) {
                                 if (result.includes(phrase.original)) {
@@ -1024,6 +1026,106 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             </div>
                           </div>
                         )}
+                        {isProductOverview && slug === 'lead_po' && experience.carouselImages && (
+                          <div style={{ marginTop: '32px', marginBottom: '32px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                              <button
+                                onClick={() => {
+                                  const currentIndex = carouselIndices['lead_po-carousel'] || 0
+                                  setCarouselIndices(prev => ({
+                                    ...prev,
+                                    'lead_po-carousel': (currentIndex - 1 + experience.carouselImages.length) % experience.carouselImages.length
+                                  }))
+                                }}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                                  border: '1px solid rgba(6, 182, 212, 0.3)',
+                                  borderRadius: '4px',
+                                  color: '#06b6d4',
+                                  cursor: 'pointer',
+                                  padding: '8px',
+                                  transition: 'all 0.3s',
+                                  flexShrink: 0,
+                                  width: '40px',
+                                  height: '40px'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                                }}
+                                aria-label="Previous image"
+                              >
+                                <FiChevronLeft size={20} />
+                              </button>
+
+                              <div style={{ flex: 1 }}>
+                                <img
+                                  src={experience.carouselImages[carouselIndices['lead_po-carousel'] || 0]}
+                                  alt={`Boosta ${(carouselIndices['lead_po-carousel'] || 0) + 1}`}
+                                  style={{ width: '100%', borderRadius: '4px', display: 'block' }}
+                                />
+                              </div>
+
+                              <button
+                                onClick={() => {
+                                  const currentIndex = carouselIndices['lead_po-carousel'] || 0
+                                  setCarouselIndices(prev => ({
+                                    ...prev,
+                                    'lead_po-carousel': (currentIndex + 1) % experience.carouselImages.length
+                                  }))
+                                }}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                                  border: '1px solid rgba(6, 182, 212, 0.3)',
+                                  borderRadius: '4px',
+                                  color: '#06b6d4',
+                                  cursor: 'pointer',
+                                  padding: '8px',
+                                  transition: 'all 0.3s',
+                                  flexShrink: 0,
+                                  width: '40px',
+                                  height: '40px'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.3)'
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.2)'
+                                }}
+                                aria-label="Next image"
+                              >
+                                <FiChevronRight size={20} />
+                              </button>
+                            </div>
+
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '12px' }}>
+                              {experience.carouselImages.map((_: string, imgIdx: number) => (
+                                <button
+                                  key={imgIdx}
+                                  onClick={() => setCarouselIndices(prev => ({ ...prev, 'lead_po-carousel': imgIdx }))}
+                                  style={{
+                                    width: '8px',
+                                    height: '8px',
+                                    borderRadius: '50%',
+                                    backgroundColor: (carouselIndices['lead_po-carousel'] || 0) === imgIdx ? '#06b6d4' : '#404040',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'background-color 0.3s'
+                                  }}
+                                  aria-label={`Go to image ${imgIdx + 1}`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )
                   })}
@@ -1034,7 +1136,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
 
             {experience.skills && (
               <div className="my-16 pt-8 pb-8">
-                <h2 className="text-2xl font-light text-neutral-200 mb-6">Tools and Skills</h2>
+                <h3 className="text-3xl font-light text-neutral-100 mb-4 hover-laser">Tools and Skills</h3>
                 <div className="flex flex-wrap gap-3">
                   {experience.skills.map((skill: string, idx: number) => (
                     <span

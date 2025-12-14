@@ -66,7 +66,7 @@ export const experiences: Experience[] = [
   {
     id: 'lead_po',
     title: 'Lead Product Owner',
-    company: 'Boosta (papersowl.com, edubirdie.com, mysupergeek.com)',
+    company: 'Boosta - EdTech (online tutoring platform)',
     startYear: 2023,
     endYear: 2024,
     duration: '2023 - 2024 (1 year)',
@@ -74,7 +74,7 @@ export const experiences: Experience[] = [
     color: '#f59e0b',
     logo: '/experienceicons/boosta.png',
     description: [
-      'Reduced release time and clarified task prioritization for ~50 person dev team',
+      'Reduced cycle time (4 months→6 weeks) of new products and major features release',
       'Organized 3 scrum teams, cleared and reprioritized backlogs',
       'Re-launched SDLC flow for 3x faster development and release of new product sites',
     ],

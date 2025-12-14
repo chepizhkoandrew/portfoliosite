@@ -52,7 +52,7 @@ The goal was to reduce both the time and the cost of integration, and to minimiz
 
 ## Key Results
 
-- Rollout time reduced from weeks to days. Around 500 product settings were reorganized and centralized in one structured place. Customer-facing teams gained the ability to configure operational flows independently, without developer involvement.
+- New product rollout time reduced from weeks to days. Around 500 product settings were reorganized and centralized in one structured place. Customer-facing teams gained the ability to configure operational flows independently, without developer involvement.
 
 - Simplified and more secure login process. Retailer staff were able to access the system using their existing company login methods (SSO). User access was automatically granted and revoked, reducing manual work and improving security.
 
