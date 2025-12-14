@@ -50,6 +50,18 @@ export const businessconsultingExperience = {
       tags: ['Agro', 'Process Optimization', 'Project Management', 'Best Practices'],
     },
     {
+      id: 'risk-management',
+      name: 'Risk Management Redesign - VTB Bank (Kazakhstan, Basel II)',
+      overview: 'Risk management function redesign according to Basel II requirements for VTB Bank. Worked closely with bank staff providing project management and expertise for redesigning risk management components and processes. Responsibilities included development of credit risk processes and tools, profitability management processes, and alignment of budgeting and control functions.',
+      tags: ['Risk Management', 'Banking', 'Basel II Compliance', 'Process Design'],
+    },
+    {
+      id: 'growth-optimization',
+      name: 'Process Optimization - Risk, Finance & Operations - VTB Bank (Kazakhstan)',
+      overview: 'The bank\'s management wanted to assess readiness for growth. Analysed all processes within major functions, proposed target organizational structure, identified growth risks, and recommended improvements for process automation. Responsible for methodology of modelling and calculations, and analysis of the Operations stream.',
+      tags: ['Process Optimization', 'Analytics', 'Organizational Design', 'Growth Strategy'],
+    },
+    {
       id: 'fleet-management',
       name: 'Cost Reduction - Real Estate & Car Fleet Management',
       overview: 'Analysed the bank\'s car fleet and building usage. Based on observations, proposed improvements for the asset and facilities management structure, including business cases and implementation roadmap. Responsible for the fleet management workstream.',
@@ -66,18 +78,6 @@ export const businessconsultingExperience = {
       name: 'System Selection & Treasury Process Design - Ministry of Finance Ukraine (World Bank)',
       overview: 'Project funded by the World Bank aiming to automate budgetary and treasury processes for the State Budget and local budgets. Developed full set of RFP documents, functional and technical requirements, process descriptions, and demonstration scenarios for core budget system components. Responsible for treasury module design.',
       tags: ['Government', 'Treasury Systems', 'Requirements Documentation', 'RFP Development'],
-    },
-    {
-      id: 'risk-management',
-      name: 'Risk Management Redesign - Kazakhstan Bank (Basel II)',
-      overview: 'Risk management function redesign according to Basel II requirements for a large Kazakhstan bank. Worked closely with bank staff providing project management and expertise for redesigning risk management components and processes. Responsibilities included development of credit risk processes and tools, profitability management processes, and alignment of budgeting and control functions.',
-      tags: ['Risk Management', 'Banking', 'Basel II Compliance', 'Process Design'],
-    },
-    {
-      id: 'growth-optimization',
-      name: 'Process Optimization - Risk, Finance & Operations - Kazakhstan Bank',
-      overview: 'The bank\'s management wanted to assess readiness for growth. Analysed all processes within major functions, proposed target organizational structure, identified growth risks, and recommended improvements for process automation. Responsible for methodology of modelling and calculations, and analysis of the Operations stream.',
-      tags: ['Process Optimization', 'Analytics', 'Organizational Design', 'Growth Strategy'],
     },
   ],
 
