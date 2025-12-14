@@ -19,12 +19,12 @@ export const businessconsultingExperience = {
   detailedContent: `
 ## Areas of Expertise
 
-- **IT systems design**
-- **Process optimization and change management**
-- **KPI system development**
-- **Building business intelligence dashboards**
-- **Implementing budget control procedures**
-- **Organization of project management offices**
+- IT systems design
+- Process optimization and change management
+- KPI system development
+- Building business intelligence dashboards
+- Implementing budget control procedures
+- Organization of project management offices
 
 ## Industries
 
