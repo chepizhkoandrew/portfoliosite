@@ -1,13 +1,14 @@
 export const businessconsultingExperience = {
-  id: 'businessconsulting',
-  slug: 'businessconsulting',
+  id: 'consultant',
+  slug: 'consultant',
   title: 'Operational Business Consultant',
   company: 'EY - Business Consulting',
   startYear: 2011,
   endYear: 2016,
   duration: '2011 - 2016',
   color: '#6366f1',
-  overview: 'Delivered 13 operational consulting engagements for corporate clients across Ukraine and Kazakhstan',
+  logo: '/experienceicons/ey.png',
+  overview: '13 different projects across Ukraine and Kazakhstan',
 
   description: [
     '13 different projects across Ukraine and Kazakhstan',
@@ -15,86 +16,62 @@ export const businessconsultingExperience = {
     'Helped top-management reduce operational costs, frame processes, and plan IT automations',
   ],
 
-  achievements: [
-    'Completed 13 distinct consulting engagements successfully',
-    'Worked with C-level executives at major corporations',
-    'Delivered significant cost reduction and efficiency improvements',
-    'Identified and implemented IT automation opportunities',
-    'Built frameworks for operational process improvement',
-  ],
+  detailedContent: `
+## Areas of Expertise
+
+- **Operational models transformation**, including:
+  - IT systems design
+  - Process optimization
+  - KPI system development
+  - Building operational excellence dashboards
+  - Implementing budget control procedures
+- **Organization of project management offices**
+- **Implementation of investment management processes**
+
+## Industries
+
+- Corporate banking
+- Government sector
+- Agro
+- Retail
+
+## Projects Delivered
+
+**Transformation of the capital investments management and project management processes for a large Ukrainian mining complex.**
+The goals were to improve budgeting and resource planning procedures and align the investment management system with supply chain and procurement processes. Responsibilities included process mapping and budget template modelling. Delivered: full set of process maps with job descriptions, prototypes of budget sheets, and functional requirements for automation.
+
+**Agrarian farm process mapping and transformation.**
+The project was funded by the International Finance Corporation, with the goal of creating standard operating models for three Ukrainian farms of different scale, to be shared as best practices for the sector. Served as PM for one of the participating farms, managing project execution and delivery of models to IFC.
+
+**Cost reduction project for real estate and car fleet management.**
+The team analysed the bank's car fleet and building usage. Based on these observations, several improvements were proposed for the asset and facilities management structure, including business cases and an implementation roadmap. Responsible for the fleet management workstream.
+
+**Business process identification, visualization, system requirements development, and ERP system selection for a food factory.**
+The team visualized all supply chain and production processes in flowcharts and developed functional requirements for each stage and user interface elements.
+
+**Support for system selection procedures for the Ministry of Finance of Ukraine.**
+The project was funded by the World Bank, aiming to automate budgetary and treasury processes for the State Budget and local budgets. The team developed the full set of RFP documents, functional and technical requirements, process descriptions, and demonstration scenarios for several core components of the budget system. Responsible for treasury module design.
+
+**Risk management function redesign according to Basel II requirements for a large Kazakhstan bank.**
+The team worked closely with bank staff, providing project management and expertise for redesigning risk management components and processes. Responsibilities included development of credit risk processes and tools, profitability management processes, and alignment of budgeting and control functions.
+
+**Process optimization for Risk, Finance, and Operations functions at a large Kazakhstan bank.**
+The bank's management wanted to assess readiness for growth. The team analysed all processes within the major functions, proposed a target organizational structure, identified growth risks, and recommended improvements for process automation. Responsible for the methodology of modelling and calculations, and analysis of the Operations stream.
+
+*And many more…*
+  `,
 
   companyUrl: 'https://www.ey.com/en_ua/consulting',
 
-  projectTypes: [
-    {
-      sector: 'Banking & Financial Services',
-      description: 'Process optimization and digital transformation for financial institutions',
-    },
-    {
-      sector: 'Government & Public Sector',
-      description: 'Administrative efficiency and regulatory compliance improvements',
-    },
-    {
-      sector: 'Manufacturing & Industrial',
-      description: 'Operational cost reduction and supply chain optimization',
-    },
+  skills: [
+    'Automation',
+    'Systems Design',
+    'Digital Transformation',
+    'Analytics',
+    'ERP Systems',
+    'System Integration',
+    'BPMN Modelling',
+    'KPI Frameworks',
+    'Data Workflows',
   ],
-
-  detailedContent: `
-## Career Foundation
-My consulting experience at EY (2011-2016) was the foundation of my career, spanning 13 distinct engagements across different sectors and geographies.
-
-## Engagement Scope
-**13 diverse projects** across Ukraine and Kazakhstan with:
-- Major banks and financial institutions
-- Government agencies and public sector organizations
-- Large manufacturing and industrial companies
-- Enterprise-scale organizations with complex operations
-
-## Typical Engagement Approach
-1. **Current State Analysis** - Map existing processes and pain points
-2. **Best Practices Research** - Identify industry benchmarks and solutions
-3. **Gap Analysis** - Identify improvement opportunities
-4. **Solution Design** - Create improvement blueprints
-5. **Implementation Planning** - Develop roadmaps for execution
-6. **Change Management** - Support organizational adoption
-
-## Key Focus Areas
-- Operational cost reduction and efficiency improvements
-- Process optimization and standardization
-- Organizational restructuring and design
-- IT automation identification and planning
-- Supply chain and logistics improvements
-- Change management and implementation
-
-## Client Impact Examples
-- **Banking clients**: Streamlined operations, reduced costs by 15-25%
-- **Government agencies**: Improved administrative efficiency and compliance
-- **Manufacturing**: Optimized production processes and supply chains
-
-## Skills Developed
-- Executive-level communication and presentation
-- Complex problem solving in unfamiliar domains
-- Change management and organizational dynamics
-- Process design and operational excellence
-- Project management across multiple stakeholders
-- Financial analysis and ROI calculation
-- Industry benchmarking and best practices research
-
-## Transition to Product
-This consulting foundation proved invaluable for my transition to product management and product building:
-- Deep understanding of how enterprises operate
-- Ability to translate business needs into technical solutions
-- Experience managing complex stakeholder landscapes
-- Process thinking and operational excellence mindset
-- Strategic perspective and business acumen
-
-## Professional Development
-Working at EY provided:
-- Exposure to world-class consulting methodology
-- Training in business analysis and strategic thinking
-- Development of professional communication skills
-- Networking with top-tier corporate leaders
-- Foundation for technical and product expertise
-  `,
 }
