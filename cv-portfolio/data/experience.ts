@@ -122,7 +122,7 @@ export const experiences: Experience[] = [
     color: '#ec4899',
     logo: '/experienceicons/eleks.png',
     description: [
-      'Managed 50+ IT engineers for agricultural planning system',
+      'Managed the scope and overall logic of the ERP system for 50,000 field operations',
       'Coordinated system for 7,500 fields and 12,000 machine fleet',
       'Responsible for scope, logic, and client expectations',
     ],

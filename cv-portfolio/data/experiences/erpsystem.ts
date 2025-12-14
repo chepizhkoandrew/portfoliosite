@@ -1,6 +1,6 @@
 export const erpsystemExperience = {
-  id: 'erpsystem',
-  slug: 'erpsystem',
+  id: 'lead_ba',
+  slug: 'lead_ba',
   title: 'Lead Business Analyst',
   company: 'Eleks LLC (Kernel - Ukrainian Agricultural Company)',
   startYear: 2017,
@@ -10,7 +10,7 @@ export const erpsystemExperience = {
   overview: 'Led business analysis for major agricultural planning ERP system managing 7,500+ fields and 12,000+ vehicles',
 
   description: [
-    'Managed 50+ IT engineers for agricultural planning system',
+    'Managed the scope and overall logic of the ERP system for 50,000 field operations',
     'Coordinated system for 7,500 fields and 12,000 machine fleet',
     'Responsible for scope, logic, and client expectations',
   ],
@@ -32,49 +32,27 @@ export const erpsystemExperience = {
   companyUrl: 'https://eleks.com/',
 
   detailedContent: `
-## Project Overview
-Kernel is one of Ukraine's largest agricultural technology companies, operating a comprehensive platform for farm management. The ERP system manages operations across thousands of fields and an extensive vehicle fleet.
+## Product Overview
 
-## Scale & Complexity
-- **7,500+ fields** managed across multiple farms
-- **12,000+ vehicles** in fleet (tractors, harvesters, transport)
-- **50+ engineers** across multiple teams
-- **Complex domain** spanning agronomy, logistics, equipment management
+It was the development of a comprehensive ERP solution for one of the largest Ukrainian agricultural companies — Kernel.
 
-## Role & Responsibilities
-As Lead Business Analyst, I:
-- Gathered and analyzed requirements from agricultural domain experts
-- Coordinated between business stakeholders and engineering teams
-- Managed product scope and specifications
-- Maintained alignment between customer needs and technical implementation
-- Managed stakeholder expectations and complex negotiations
+The client requested a custom system for managing their crop fields and machinery operations. The system connected all agricultural activities into one ecosystem where planning, resources, and field execution work together. It determines what to grow on each field based on soil, weather, and rotation rules, and calculates how much seed, fertilizer, chemicals, and machinery time the farm will need for the season. It then builds a clear schedule of fieldwork and helps workers follow it through mobile apps.
 
-## Key Challenges
-- Deep domain expertise needed (agricultural operations, equipment, logistics)
-- Complex regulatory environment
-- Large-scale system integration
-- Managing expectations across diverse stakeholder groups
-- Coordinating 50+ engineers across multiple teams
+**Scale:**
+- **> 6,000 crop fields**
+- **> 12,000 heavy machinery items**
+- **> 50,000 field operations to be planned annually**, each costing from $100 to $10,000
 
-## Solution Approach
-1. **Domain Learning** - Immersed in agricultural operations and processes
-2. **Stakeholder Mapping** - Identified and engaged key stakeholders
-3. **Requirements Engineering** - Documented complex business logic and workflows
-4. **Scope Management** - Balanced feature requests with technical constraints
-5. **Team Coordination** - Facilitated communication between business and engineering
+The client needed automated risk planning and the ability to replan and adjust technical workflows if conditions changed — such as crop disease, price fluctuations, or deviations from equipment usage plans. The platform monitors fields, crops, and machinery in real time, detects risks early, and integrates with external tools and company systems.
 
-## Key Outcomes
-- Successfully delivered comprehensive agricultural ERP system
-- Managed scope effectively across large, complex project
-- Maintained alignment between ambitious business vision and technical reality
-- Built strong relationships with technical teams and business stakeholders
+## Objective
 
-## Learning & Growth
-- Large-scale system architecture and complexity management
-- Deep domain expertise in specialized industries
-- Managing expectations and scope in enterprise projects
-- Leading without direct authority across large technical teams
-- Complex business logic and process modeling
-- Negotiation and stakeholder management at scale
+My main goal was to design the logic of the solution, data model, algorithms of operations planning. I had 4 scrum teams with 1 BA inside each team and had to coordinate business analysis stream, as well as be a single point of contact with the client stakeholders.
+
+## What Was Done
+
+The system was delivered to the client, with dozens of UATs, training, and re-works completed.
+
+The client not only rolled out the system for its own operations, but established a white label solution for similar big agricultural corporations in Australia.
   `,
 }

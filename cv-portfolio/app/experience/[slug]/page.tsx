@@ -18,7 +18,7 @@ const experiences: { [key: string]: any } = {
   freelance: freelanceExperience,
   b2cboosta: b2cboostExperience,
   b2bsaastakeoff: b2bsaasTakeoffExperience,
-  erpsystem: erpsystemExperience,
+  lead_ba: erpsystemExperience,
   businessconsulting: businessconsultingExperience,
   roboticspm: roboticspmExperience,
   lead_po: leadPoExperience,
