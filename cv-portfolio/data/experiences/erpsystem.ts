@@ -55,4 +55,20 @@ The system was delivered to the client, with dozens of UATs, training, and re-wo
 
 The client not only rolled out the system for its own operations, but established a white label solution for similar big agricultural corporations in Australia.
   `,
+
+  skills: [
+    'Business Analysis',
+    'Requirements Engineering',
+    'ERP Systems',
+    'Data Modeling',
+    'Domain Expertise',
+    'Agriculture Technology',
+    'Stakeholder Management',
+    'Team Leadership',
+    'Scope Management',
+    'System Design',
+    'Process Optimization',
+    'Risk Management',
+    'Project Coordination',
+  ],
 }
