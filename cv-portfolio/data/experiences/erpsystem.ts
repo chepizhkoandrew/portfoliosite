@@ -8,7 +8,7 @@ export const erpsystemExperience = {
   duration: '2017 - 2019',
   color: '#ec4899',
   logo: '/experienceicons/eleks.png',
-  overview: 'Led business analysis for major agricultural planning ERP system managing 7,500+ fields and 12,000+ vehicles',
+  overview: 'Led business analysis for agricultural planning ERP system (7,500+ crop fields, 12,000+ vehicles, 50k field operations)',
 
   description: [
     'Managed the scope and overall logic of the ERP system for 50,000 field operations',
