@@ -7,6 +7,7 @@ export const erpsystemExperience = {
   endYear: 2019,
   duration: '2017 - 2019',
   color: '#ec4899',
+  logo: '/experienceicons/eleks.png',
   overview: 'Led business analysis for major agricultural planning ERP system managing 7,500+ fields and 12,000+ vehicles',
 
   description: [

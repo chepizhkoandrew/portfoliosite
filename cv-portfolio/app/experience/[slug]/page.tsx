@@ -421,7 +421,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                 {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceWordGlitch + ' Product Builder' : experience.title}
               </h1>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4 hover-laser text-neutral-100 md:hidden" style={{ paddingTop: '150px' }}>
-                {slug === 'freelance' ? freelanceWordGlitch : 'Freelance'}
+                {slug === 'myproduct' ? displayTexts[0] : slug === 'freelance' ? freelanceWordGlitch : experience.title}
                 <br />
                 {slug === 'freelance' ? freelanceDisplayTexts['title-part'] : ''}
               </h1>
