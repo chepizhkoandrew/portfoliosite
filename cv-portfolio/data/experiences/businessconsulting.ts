@@ -8,7 +8,7 @@ export const businessconsultingExperience = {
   duration: '2011 - 2016',
   color: '#6366f1',
   logo: '/experienceicons/ey.png',
-  overview: '13 different projects across Ukraine and Kazakhstan',
+  overview: 'Different consulting projects across Ukraine and Kazakhstan',
 
   description: [
     '13 different projects across Ukraine and Kazakhstan',

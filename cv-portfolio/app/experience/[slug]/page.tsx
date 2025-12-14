@@ -760,7 +760,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            {experience.projects && slug !== 'freelance' && (
+            {experience.projects && slug !== 'freelance' && slug !== 'consultant' && (
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects</h2>
                 <div className="space-y-6">
