@@ -146,7 +146,7 @@ export const experiences: Experience[] = [
     color: '#6366f1',
     logo: '/experienceicons/ey.png',
     description: [
-      '13 different projects across Ukraine and Kazakhstan',
+      'Different projects across Ukraine and Kazakhstan',
       'Operational consultancy for major corporate clients: banks, government institutions, factories',
       'Helped top-management reduce operational costs, frame processes, and plan IT automations',
     ],
