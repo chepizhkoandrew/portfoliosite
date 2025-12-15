@@ -7,8 +7,9 @@ import { glitchText, partialGlitchText } from '@/lib/glitchEffect'
 import PMActivityCard from '@/components/PMActivityCard'
 import PMActivityModal from '@/components/PMActivityModal'
 import { pmActivities, PMActivity } from '@/data/pmActivities'
+import { MobileMenu } from '@/components/MobileMenu'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export default function ExperiencePage() {
   const [matrixActive, setMatrixActive] = useState(false)
@@ -17,71 +18,52 @@ export default function ExperiencePage() {
   const [descriptionGlitch, setDescriptionGlitch] = useState('product management')
   const [hireGlitch, setHireGlitch] = useState("You don't need to choose")
 
-  useEffect(() => {
-    const glitchTimer = setTimeout(() => {
-      const originalText = 'Career path'
-      let phase = 0
-      
-      const interval = setInterval(() => {
-        if (phase < 10) {
-          setDisplayTitle(glitchText(originalText))
-        } else if (phase < 20) {
-          const progress = (phase - 10) / 10
-          setDisplayTitle(partialGlitchText(originalText, 1 - progress))
-        } else {
-          setDisplayTitle(originalText)
-          clearInterval(interval)
-        }
-        phase++
-      }, 50)
-    }, 2000)
-
-    return () => clearTimeout(glitchTimer)
+  const playGlitchAnimation = useCallback((text: string, setter: (text: string) => void) => {
+    let phase = 0
+    
+    const interval = setInterval(() => {
+      if (phase < 10) {
+        setter(glitchText(text))
+      } else if (phase < 20) {
+        const progress = (phase - 10) / 10
+        setter(partialGlitchText(text, 1 - progress))
+      } else {
+        setter(text)
+        clearInterval(interval)
+      }
+      phase++
+    }, 50)
+    
+    return interval
   }, [])
 
   useEffect(() => {
-    const descriptionGlitchTimer = setTimeout(() => {
-      const originalText = 'product management'
-      let phase = 0
+    const timeoutIds: NodeJS.Timeout[] = []
+    const intervalIds: NodeJS.Timeout[] = []
+
+    const startGlitchCycle = (delay: number, text: string, setter: (text: string) => void) => {
+      const timeout = setTimeout(() => {
+        const interval = playGlitchAnimation(text, setter)
+        intervalIds.push(interval as unknown as NodeJS.Timeout)
+        
+        const recurringInterval = setInterval(() => {
+          playGlitchAnimation(text, setter)
+        }, 6000)
+        intervalIds.push(recurringInterval as unknown as NodeJS.Timeout)
+      }, delay)
       
-      const interval = setInterval(() => {
-        if (phase < 10) {
-          setDescriptionGlitch(glitchText(originalText))
-        } else if (phase < 20) {
-          const progress = (phase - 10) / 10
-          setDescriptionGlitch(partialGlitchText(originalText, 1 - progress))
-        } else {
-          setDescriptionGlitch(originalText)
-          clearInterval(interval)
-        }
-        phase++
-      }, 50)
-    }, 2500)
+      timeoutIds.push(timeout)
+    }
 
-    return () => clearTimeout(descriptionGlitchTimer)
-  }, [])
+    startGlitchCycle(2000, 'Career path', setDisplayTitle)
+    startGlitchCycle(2500, 'product management', setDescriptionGlitch)
+    startGlitchCycle(3000, "You don't need to choose", setHireGlitch)
 
-  useEffect(() => {
-    const hireGlitchTimer = setTimeout(() => {
-      const originalText = "You don't need to choose"
-      let phase = 0
-      
-      const interval = setInterval(() => {
-        if (phase < 10) {
-          setHireGlitch(glitchText(originalText))
-        } else if (phase < 20) {
-          const progress = (phase - 10) / 10
-          setHireGlitch(partialGlitchText(originalText, 1 - progress))
-        } else {
-          setHireGlitch(originalText)
-          clearInterval(interval)
-        }
-        phase++
-      }, 50)
-    }, 3000)
-
-    return () => clearTimeout(hireGlitchTimer)
-  }, [])
+    return () => {
+      timeoutIds.forEach(id => clearTimeout(id))
+      intervalIds.forEach(id => clearInterval(id))
+    }
+  }, [playGlitchAnimation])
 
   useEffect(() => {
     const matrixTimer = setTimeout(() => {
@@ -316,6 +298,8 @@ export default function ExperiencePage() {
         }
       `}</style>
 
+      <MobileMenu />
+
       {/* Experience Section */}
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
@@ -390,6 +374,23 @@ export default function ExperiencePage() {
               }}
             />
           </div>
+
+          <div style={{ height: '1px' }} />
+
+          <div className="flex gap-4 md:gap-8 justify-center" style={{ marginTop: '3rem' }}>
+            <Link
+              href="/chatbot"
+              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              Talk to Assistant
+            </Link>
+            <Link
+              href="/contact"
+              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              Get in Touch
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -439,10 +440,10 @@ export default function ExperiencePage() {
       )}
 
       {/* Footer */}
-      <footer className="relative border-t border-neutral-800/50 py-8 px-3 md:px-6 lg:px-12" style={{ zIndex: 10 }}>
+      <footer className="relative border-t border-neutral-800/50 py-8 px-3 md:px-6 lg:px-12 flex items-center justify-center" style={{ zIndex: 10 }}>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/20 to-transparent" />
         
-        <div className="max-w-6xl mx-auto text-center space-y-6">
+        <div className="max-w-6xl w-full mx-auto text-center space-y-6">
           <p className="text-neutral-500 font-light text-sm">
             © 2025 {profile.name}. All rights reserved.
           </p>
