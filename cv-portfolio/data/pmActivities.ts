@@ -3,7 +3,6 @@ export interface PMActivity {
   title: string
   description: string[]
   proficiency: number
-  color: string
 }
 
 export const pmActivities: PMActivity[] = [
@@ -19,7 +18,6 @@ export const pmActivities: PMActivity[] = [
       'Analyse product positioning and messaging patterns across the market to identify gaps and opportunities',
     ],
     proficiency: 95,
-    color: '#06b6d4',
   },
   {
     id: 'customer-development',
@@ -33,7 +31,6 @@ export const pmActivities: PMActivity[] = [
       'Review patterns across different user profiles to isolate the most valuable problems to solve',
     ],
     proficiency: 92,
-    color: '#f59e0b',
   },
   {
     id: 'product-scoping',
@@ -47,7 +44,6 @@ export const pmActivities: PMActivity[] = [
       'Consolidate scope into a clear, bounded product definition that avoids unnecessary expansion',
     ],
     proficiency: 94,
-    color: '#ec4899',
   },
   {
     id: 'business-case',
@@ -61,7 +57,6 @@ export const pmActivities: PMActivity[] = [
       'Adjust the business case once new information appears during discovery or early delivery',
     ],
     proficiency: 88,
-    color: '#10b981',
   },
   {
     id: 'roadmapping',
@@ -75,7 +70,6 @@ export const pmActivities: PMActivity[] = [
       'Prevent overload by managing capacity and avoiding parallel work that creates unnecessary friction',
     ],
     proficiency: 96,
-    color: '#8b5cf6',
   },
   {
     id: 'requirements-design',
@@ -89,7 +83,6 @@ export const pmActivities: PMActivity[] = [
       'Document critical decisions so the team has a stable reference for future development',
     ],
     proficiency: 93,
-    color: '#06b6d4',
   },
   {
     id: 'go-to-market',
@@ -105,7 +98,6 @@ export const pmActivities: PMActivity[] = [
       'Monitor live usage, errors, drop-off points, and first-ticket patterns to adjust onboarding, explanations, pricing, or functionality during the first days and weeks',
     ],
     proficiency: 91,
-    color: '#f59e0b',
   },
   {
     id: 'testing-validation',
@@ -119,7 +111,6 @@ export const pmActivities: PMActivity[] = [
       'Conduct post-release interviews with selected users to verify satisfaction and remaining pain points',
     ],
     proficiency: 89,
-    color: '#ec4899',
   },
   {
     id: 'scaling-optimization',
@@ -134,6 +125,5 @@ export const pmActivities: PMActivity[] = [
       'Review scaling patterns periodically to detect bottlenecks before they impact customers',
     ],
     proficiency: 87,
-    color: '#10b981',
   },
 ]

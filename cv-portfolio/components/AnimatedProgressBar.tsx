@@ -4,11 +4,15 @@ import { useEffect, useRef, useState } from 'react'
 
 interface AnimatedProgressBarProps {
   value: number
-  color: string
+  color?: string
   label?: string
 }
 
-export default function AnimatedProgressBar({ value, color, label }: AnimatedProgressBarProps) {
+export default function AnimatedProgressBar({
+  value,
+  color = '#fbbf24',
+  label,
+}: AnimatedProgressBarProps) {
   const [displayValue, setDisplayValue] = useState(0)
   const barRef = useRef<HTMLDivElement>(null)
 

@@ -1,11 +1,13 @@
 'use client'
 
 import PMActivityCard from '@/components/PMActivityCard'
-import { pmActivities } from '@/data/pmActivities'
+import PMActivityModal from '@/components/PMActivityModal'
+import { pmActivities, PMActivity } from '@/data/pmActivities'
 import { useState, useEffect } from 'react'
 
 export default function ProductDashboard() {
   const [mounted, setMounted] = useState(false)
+  const [selectedActivity, setSelectedActivity] = useState<PMActivity | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -15,7 +17,7 @@ export default function ProductDashboard() {
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
       {/* Navigation Back */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-neutral-950/80 backdrop-blur-sm border-b border-neutral-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="px-4 sm:px-6 lg:px-8 py-4">
           <a href="/" className="text-neutral-400 hover:text-neutral-200 text-sm font-light transition-colors">
             ← Back to Portfolio
           </a>
@@ -23,48 +25,85 @@ export default function ProductDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-light text-neutral-100 mb-3">Product Dashboard</h1>
-            <p className="text-neutral-400 font-light text-lg">
-              Core activities and responsibilities in product management
-            </p>
-          </div>
+      <div className="pt-20 pb-16" style={{ paddingLeft: 'calc(1rem + 10px)', paddingRight: 'calc(1rem + 10px)' }}>
+        <style>{`
+          @media (min-width: 640px) {
+            .dashboard-main {
+              padding-left: calc(1.5rem + 10px);
+              padding-right: calc(1.5rem + 10px);
+            }
+          }
+          @media (min-width: 1024px) {
+            .dashboard-main {
+              padding-left: calc(2rem + 10px);
+              padding-right: calc(2rem + 10px);
+            }
+          }
+        `}</style>
+        <div className="dashboard-main">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="mb-12 text-center">
+              <h1 className="text-4xl sm:text-5xl font-light text-neutral-100 mb-3">Product Dashboard</h1>
+              <p className="text-neutral-400 font-light text-lg">
+                Core activities and responsibilities in product management
+              </p>
+            </div>
 
-          {/* Activities Grid */}
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500 ${
-              mounted ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            {pmActivities.map((activity, idx) => (
-              <div
-                key={activity.id}
-                className="animate-in fade-in slide-in-from-bottom"
-                style={{
-                  animationDelay: `${idx * 50}ms`,
-                }}
-              >
-                <PMActivityCard
-                  title={activity.title}
-                  description={activity.description}
-                  proficiency={activity.proficiency}
-                  color={activity.color}
-                />
+            {/* Activities Grid - Centered */}
+            <div
+              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500 ${
+                mounted ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {pmActivities.map((activity, idx) => (
+                <div
+                  key={activity.id}
+                  className="animate-in fade-in slide-in-from-bottom"
+                  style={{
+                    animationDelay: `${idx * 50}ms`,
+                  }}
+                >
+                  <PMActivityCard
+                    title={activity.title}
+                    proficiency={activity.proficiency}
+                    onClick={() => setSelectedActivity(activity)}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Proficiency Legend */}
+            <div className="mt-16 pt-8 border-t border-neutral-800/50 text-center">
+              <div className="inline-block">
+                <p className="text-neutral-400 font-light text-sm mb-3">Proficiency Level</p>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-8 h-2 rounded-full border border-neutral-700/30"
+                      style={{
+                        backgroundColor: '#fbbf24',
+                        boxShadow: '0 0 8px #fbbf24, inset 0 0 8px #fbbf2440',
+                      }}
+                    />
+                    <span className="text-xs text-neutral-500 font-light">Proficiency Meter</span>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-
-          {/* Footer Info */}
-          <div className="mt-16 pt-8 border-t border-neutral-800/50">
-            <p className="text-neutral-400 font-light text-sm text-center">
-              Each card represents a core area of product management practice. Expand to see detailed activities.
-            </p>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedActivity && (
+        <PMActivityModal
+          title={selectedActivity.title}
+          description={selectedActivity.description}
+          proficiency={selectedActivity.proficiency}
+          onClose={() => setSelectedActivity(null)}
+        />
+      )}
 
       <style>{`
         @keyframes slide-in-from-bottom {
