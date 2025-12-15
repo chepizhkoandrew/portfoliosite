@@ -6,15 +6,18 @@ interface AnimatedProgressBarProps {
   value: number
   color?: string
   label?: string
+  delay?: number
 }
 
 export default function AnimatedProgressBar({
   value,
   color = '#fbbf24',
   label,
+  delay = 0,
 }: AnimatedProgressBarProps) {
   const [displayValue, setDisplayValue] = useState(0)
   const barRef = useRef<HTMLDivElement>(null)
+  const animationDuration = 0.5 + Math.random() * 0.6
 
   useEffect(() => {
     let animationFrameId: number
@@ -33,13 +36,13 @@ export default function AnimatedProgressBar({
 
     const timeoutId = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animate)
-    }, 100)
+    }, delay * 1000)
 
     return () => {
       clearTimeout(timeoutId)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [value])
+  }, [value, delay])
 
   return (
     <div className="w-full">
@@ -49,11 +52,13 @@ export default function AnimatedProgressBar({
         ref={barRef}
       >
         <div
-          className="absolute top-0 left-0 h-full transition-all duration-300 rounded-full"
+          className="absolute top-0 left-0 h-full rounded-full animate-progress-load"
           style={{
             width: `${displayValue}%`,
             backgroundColor: color,
             boxShadow: `0 0 8px ${color}, inset 0 0 8px ${color}40`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${animationDuration}s`,
           }}
         />
 
@@ -72,6 +77,23 @@ export default function AnimatedProgressBar({
         @keyframes scan {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(300%); }
+        }
+        
+        @keyframes progress-load {
+          0% {
+            width: 0;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+        
+        .animate-progress-load {
+          animation: progress-load ease-out forwards;
         }
       `}</style>
     </div>

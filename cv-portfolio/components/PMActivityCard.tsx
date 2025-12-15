@@ -21,14 +21,14 @@ export default function PMActivityCard({
       onClick={onClick}
     >
       {/* Card Header */}
-      <div className="mb-4">
+      <div className="mb-6">
         <h3 className="text-lg sm:text-xl font-light text-neutral-100 hover-laser transition-colors">
           {title}
         </h3>
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-3">
+      <div>
         <div className="text-xs text-neutral-400 mb-2 font-light">Proficiency</div>
         <div
           className="relative w-full h-1.5 bg-neutral-800/50 rounded-full overflow-hidden border border-neutral-700/30"
@@ -37,19 +37,16 @@ export default function PMActivityCard({
           }}
         >
           <div
-            className="absolute top-0 left-0 h-full transition-all duration-300 rounded-full"
+            className="absolute top-0 left-0 h-full rounded-full animate-progress-load"
             style={{
               width: `${proficiency}%`,
               backgroundColor: '#fbbf24',
               boxShadow: '0 0 8px #fbbf24, inset 0 0 8px #fbbf2440',
+              animationDelay: `${Math.random() * 0.8}s`,
+              animationDuration: `${0.5 + Math.random() * 0.6}s`,
             }}
           />
         </div>
-      </div>
-
-      {/* Click Hint */}
-      <div className="text-xs text-neutral-500 font-light group-hover:text-neutral-400 transition-colors">
-        Click to expand
       </div>
 
       <style>{`
@@ -73,6 +70,23 @@ export default function PMActivityCard({
         }
         .hover-laser:hover::after {
           width: 100%;
+        }
+        
+        @keyframes progress-load {
+          0% {
+            width: 0;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+        
+        .animate-progress-load {
+          animation: progress-load ease-out forwards;
         }
       `}</style>
     </div>

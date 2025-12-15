@@ -73,7 +73,12 @@ export default function PMActivityModal({
           <div className="space-y-6" style={{ padding: '1.5rem 1rem' }}>
             {/* Progress Bar */}
             <div>
-              <AnimatedProgressBar value={proficiency} color="#fbbf24" label="Proficiency Level" />
+              <AnimatedProgressBar
+                value={proficiency}
+                color="#fbbf24"
+                label="Proficiency Level"
+                delay={Math.random() * 0.8}
+              />
             </div>
 
             {/* Activities */}
