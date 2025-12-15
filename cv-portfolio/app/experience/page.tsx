@@ -89,7 +89,7 @@ const devActivities: DevActivity[] = [
 
 export default function ExperiencePage() {
   const [matrixActive, setMatrixActive] = useState(false)
-  const [displayTitle, setDisplayTitle] = useState('Career path')
+  const [pathGlitch, setPathGlitch] = useState('path')
   const [selectedActivity, setSelectedActivity] = useState<PMActivity | null>(null)
   const [descriptionGlitch, setDescriptionGlitch] = useState('product management')
   const [hireGlitch, setHireGlitch] = useState("You don't need to choose")
@@ -133,7 +133,7 @@ export default function ExperiencePage() {
       timeoutIds.push(timeout)
     }
 
-    startGlitchCycle(2000, 'Career path', setDisplayTitle)
+    startGlitchCycle(2000, 'path', setPathGlitch)
     startGlitchCycle(2500, 'product management', setDescriptionGlitch)
     startGlitchCycle(3000, "You don't need to choose", setHireGlitch)
     startGlitchCycle(3500, 'Two', setShouldWordGlitch)
@@ -394,7 +394,7 @@ export default function ExperiencePage() {
               width: '80%'
             }}
           >
-            {displayTitle}
+            Career <span style={{ color: '#fbbf24' }}>{pathGlitch}</span>
           </h1>
         </div>
       </section>
