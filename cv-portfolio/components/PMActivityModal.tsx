@@ -167,7 +167,7 @@ export default function PMActivityModal({
                   opacity: 0.7,
                 }}
               >
-                Activities
+                Andrii can:
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {description.map((item, idx) => (
