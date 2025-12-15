@@ -149,7 +149,7 @@ export default function ExperiencePage() {
   useEffect(() => {
     const matrixTimer = setTimeout(() => {
       setMatrixActive(true)
-    }, 2000)
+    }, 500)
 
     return () => clearTimeout(matrixTimer)
   }, [])
