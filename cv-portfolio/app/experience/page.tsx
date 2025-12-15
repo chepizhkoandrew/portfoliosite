@@ -361,6 +361,31 @@ export default function ExperiencePage() {
         </div>
       </section>
 
+      {/* Why Hire Andrii Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
+        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
+          <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
+            Why should you hire Andrii?
+          </h2>
+          <p className="text-neutral-400 font-light text-lg text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem' }}>
+            You don't need to choose between soft / business / technical / communication skills. He has gone his way from a slide-maker to a product builder. He has strong business sense and can execute the work hands-on.
+          </p>
+          
+          <div className="flex justify-center" style={{ marginTop: '3rem' }}>
+            <img 
+              src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765786566/3_pills_tm35ex.png"
+              alt="Skills pills"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                maxHeight: '500px',
+                objectFit: 'contain'
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Activities and Skills Section */}
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
