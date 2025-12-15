@@ -2,11 +2,9 @@
 
 interface GlitchTextProps {
   text: string
-  className?: string
-  style?: React.CSSProperties
 }
 
-export default function GlitchText({ text, className = '', style = {} }: GlitchTextProps) {
+export default function GlitchText({ text }: GlitchTextProps) {
   return (
     <>
       {text.split('').map((char, idx) => {
