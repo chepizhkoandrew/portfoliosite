@@ -17,6 +17,8 @@ export default function ExperiencePage() {
   const [selectedActivity, setSelectedActivity] = useState<PMActivity | null>(null)
   const [descriptionGlitch, setDescriptionGlitch] = useState('product management')
   const [hireGlitch, setHireGlitch] = useState("You don't need to choose")
+  const [shouldWordGlitch, setShouldWordGlitch] = useState('should')
+  const [hireWordGlitch, setHireWordGlitch] = useState('hire')
 
   const playGlitchAnimation = useCallback((text: string, setter: (text: string) => void) => {
     let phase = 0
@@ -58,6 +60,8 @@ export default function ExperiencePage() {
     startGlitchCycle(2000, 'Career path', setDisplayTitle)
     startGlitchCycle(2500, 'product management', setDescriptionGlitch)
     startGlitchCycle(3000, "You don't need to choose", setHireGlitch)
+    startGlitchCycle(3500, 'should', setShouldWordGlitch)
+    startGlitchCycle(4000, 'hire', setHireWordGlitch)
 
     return () => {
       timeoutIds.forEach(id => clearTimeout(id))
@@ -382,7 +386,7 @@ export default function ExperiencePage() {
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
-            Why should you hire Andrii?
+            Why <span style={{ color: '#fbbf24' }}>{shouldWordGlitch}</span> you <span style={{ color: '#fbbf24' }}>{hireWordGlitch}</span> Andrii?
           </h2>
           <p className="text-neutral-400 font-light text-lg text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem' }}>
             <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / business / technical / communication skills. He has gone his way from a slide-maker to a product builder. He has strong business sense and can execute the work hands-on.
