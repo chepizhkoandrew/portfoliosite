@@ -15,7 +15,7 @@ export default function GlitchText({ text, className = '', style = {} }: GlitchT
             <span
               key={idx}
               style={{
-                fontSize: '0.8em',
+                fontSize: '0.9em',
                 display: 'inline-block',
                 lineHeight: 1,
               }}
