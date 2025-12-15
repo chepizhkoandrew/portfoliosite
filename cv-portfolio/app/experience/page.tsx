@@ -454,7 +454,7 @@ export default function ExperiencePage() {
             <div><span style={{ color: '#fbbf24' }}>{hireWordGlitch} Andrii</span> and get</div>
             <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>{shouldWordGlitch} pills</span> for the price of one.</div>
           </h2>
-          <div style={{ maxWidth: '800px', margin: '0 0 3rem 0', paddingLeft: '10px', paddingRight: '10px' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto 3rem auto', paddingLeft: '10px', paddingRight: '10px', textAlign: 'center' }}>
             <p className="text-neutral-400 font-light text-lg" style={{ marginBottom: '1rem' }}>
               <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / technical / communication skills.
             </p>
