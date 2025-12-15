@@ -455,10 +455,10 @@ export default function ExperiencePage() {
             <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>{shouldWordGlitch} pills</span> for the price of one.</div>
           </h2>
           <div style={{ maxWidth: '800px', margin: '0 auto 3rem auto', paddingLeft: '10px', paddingRight: '10px', textAlign: 'center' }}>
-            <p className="text-neutral-400 font-light text-lg" style={{ marginBottom: '1rem' }}>
+            <p className="text-neutral-100 font-light text-3xl md:text-4xl" style={{ marginBottom: '1rem' }}>
               <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / technical / communication skills.
             </p>
-            <p className="text-neutral-400 font-light text-lg">
+            <p className="text-neutral-100 font-light text-3xl md:text-4xl">
               He walked the path from a slide-maker to a product builder and can do the work hands-on.
             </p>
           </div>
