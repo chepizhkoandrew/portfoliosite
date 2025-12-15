@@ -189,7 +189,7 @@ export default function ExperiencePage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100" style={{ position: 'relative', zIndex: 1 }}>
-            <style>{`
+      <style>{`
         html {
           background-color: #0a0a0a;
         }
@@ -318,12 +318,7 @@ export default function ExperiencePage() {
 
       {/* Experience Section */}
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
-        <Link href="/" className="neon-back-link absolute top-20 left-1/2 transform -translate-x-1/2 inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center z-50" style={{ padding: '20px' }}>
-          <span>←</span>
-          <span>Back</span>
-        </Link>
-
-        <div className="max-w-6xl w-full" style={{ paddingTop: '150px' }}>
+        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
           <h1 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '40px' }}>
             {displayTitle}
           </h1>
@@ -369,17 +364,6 @@ export default function ExperiencePage() {
                 </div>
               </Link>
             ))}
-          </div>
-
-          <div className="mt-24 flex justify-center md:hidden">
-            <Link 
-              href="/" 
-              className="neon-back-link inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center"
-              style={{ paddingTop: '40px', paddingBottom: '40px' }}
-            >
-              <span>←</span>
-              <span>Back</span>
-            </Link>
           </div>
         </div>
       </section>
@@ -458,10 +442,19 @@ export default function ExperiencePage() {
       <footer className="relative border-t border-neutral-800/50 py-8 px-3 md:px-6 lg:px-12" style={{ zIndex: 10 }}>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/20 to-transparent" />
         
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center space-y-6">
           <p className="text-neutral-500 font-light text-sm">
             © 2025 {profile.name}. All rights reserved.
           </p>
+          
+          <Link 
+            href="/" 
+            className="neon-back-link inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center"
+            style={{ paddingTop: '20px', paddingBottom: '20px' }}
+          >
+            <span>←</span>
+            <span>Back</span>
+          </Link>
         </div>
       </footer>
 
