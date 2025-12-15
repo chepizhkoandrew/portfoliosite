@@ -331,7 +331,7 @@ export default function ExperiencePage() {
       </section>
 
       {/* Experience Cards Section */}
-      <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
+      <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10, marginTop: '24px' }}>
         <div className="max-w-6xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
             {experiences.map((exp) => (
