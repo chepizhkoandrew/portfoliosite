@@ -451,7 +451,7 @@ export default function ExperiencePage() {
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '24px' }}>
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
-            <div><span style={{ color: '#fbbf24' }}>{hireWordGlitch} Andrii</span> and get</div>
+            <div><span style={{ color: '#fbbf24' }}>{hireWordGlitch} Andrii</span> - get</div>
             <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>{shouldWordGlitch} pills</span> for the price of one.</div>
           </h2>
           <div style={{ maxWidth: '800px', margin: '0 auto 3rem auto', paddingLeft: '10px', paddingRight: '10px', textAlign: 'center' }}>
