@@ -379,16 +379,16 @@ export default function ExperiencePage() {
 
           <div className="flex gap-4 md:gap-8 justify-center" style={{ marginTop: '3rem' }}>
             <Link
-              href="/chatbot"
-              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
-            >
-              Talk to Assistant
-            </Link>
-            <Link
               href="/contact"
               className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
             >
               Get in Touch
+            </Link>
+            <Link
+              href="/chatbot"
+              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              Talk to Assistant
             </Link>
           </div>
         </div>
