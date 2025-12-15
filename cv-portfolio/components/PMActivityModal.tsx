@@ -43,17 +43,21 @@ export default function PMActivityModal({
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
         <div
-          className="bg-neutral-900 border border-neutral-700/50 rounded-sm w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl"
+          className="bg-neutral-900 border border-neutral-700/50 rounded-sm w-full max-h-[90vh] overflow-y-auto shadow-2xl"
           style={{
             boxShadow: '0 0 30px #f59e0b40, inset 0 0 30px #f59e0b10',
+            maxWidth: 'calc(100% - 20px)',
+            marginLeft: '10px',
+            marginRight: '10px',
           }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div
-            className="sticky top-0 bg-neutral-900/95 backdrop-blur border-b border-neutral-700/50 p-4 sm:p-6 flex justify-between items-start gap-4"
+            className="sticky top-0 bg-neutral-900/95 backdrop-blur border-b border-neutral-700/50 flex justify-between items-start gap-4"
             style={{
               borderBottomColor: '#f59e0b40',
+              padding: '1rem',
             }}
           >
             <h2 className="text-2xl sm:text-3xl font-light text-neutral-100 hover-laser">{title}</h2>
@@ -66,7 +70,7 @@ export default function PMActivityModal({
           </div>
 
           {/* Content */}
-          <div className="space-y-6" style={{ padding: '1.5rem', paddingLeft: 'calc(1.5rem + 10px)', paddingRight: 'calc(1.5rem + 10px)' }}>
+          <div className="space-y-6" style={{ padding: '1.5rem 1rem' }}>
             {/* Progress Bar */}
             <div>
               <AnimatedProgressBar value={proficiency} color="#fbbf24" label="Proficiency Level" />
