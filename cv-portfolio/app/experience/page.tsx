@@ -388,9 +388,14 @@ export default function ExperiencePage() {
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
             Why <span style={{ color: '#fbbf24' }}>{shouldWordGlitch}</span> you <span style={{ color: '#fbbf24' }}>{hireWordGlitch}</span> Andrii?
           </h2>
-          <p className="text-neutral-400 font-light text-lg text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem' }}>
-            <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / business / technical / communication skills. He has gone his way from a slide-maker to a product builder. He has strong business sense and can execute the work hands-on.
-          </p>
+          <div style={{ maxWidth: '800px', margin: '0 0 3rem 0' }}>
+            <p className="text-neutral-400 font-light text-lg" style={{ marginBottom: '1rem' }}>
+              <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / technical / communication skills.
+            </p>
+            <p className="text-neutral-400 font-light text-lg">
+              He walked the path from a slide-maker to a product builder and can do the work hands-on.
+            </p>
+          </div>
           
           <div className="flex justify-center" style={{ marginTop: '3rem' }}>
             <img 
