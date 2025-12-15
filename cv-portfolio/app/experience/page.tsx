@@ -300,9 +300,9 @@ export default function ExperiencePage() {
 
       <MobileMenu />
 
-      {/* Hero Image Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
-        <div className="max-w-6xl w-full flex justify-center">
+      {/* Career Path Hero Section with Title Overlay */}
+      <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
+        <div className="relative w-full max-w-6xl flex justify-center items-center">
           <img 
             src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765798506/career_keanu_tg9lnd.png"
             alt="Career journey"
@@ -314,16 +314,25 @@ export default function ExperiencePage() {
               borderRadius: '4px'
             }}
           />
+          <h1 
+            className="absolute text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" 
+            style={{
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 20,
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
+              width: '80%'
+            }}
+          >
+            {displayTitle}
+          </h1>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
-        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
-          <h1 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '40px' }}>
-            {displayTitle}
-          </h1>
-
+      {/* Experience Cards Section */}
+      <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
+        <div className="max-w-6xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
             {experiences.map((exp) => (
               <Link
