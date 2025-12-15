@@ -300,6 +300,23 @@ export default function ExperiencePage() {
 
       <MobileMenu />
 
+      {/* Hero Image Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
+        <div className="max-w-6xl w-full flex justify-center">
+          <img 
+            src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765798506/career_keanu_tg9lnd.png"
+            alt="Career journey"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+              maxHeight: '600px',
+              objectFit: 'contain',
+              borderRadius: '4px'
+            }}
+          />
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
