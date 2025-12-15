@@ -15,6 +15,7 @@ export default function ExperiencePage() {
   const [displayTitle, setDisplayTitle] = useState('Career path')
   const [selectedActivity, setSelectedActivity] = useState<PMActivity | null>(null)
   const [descriptionGlitch, setDescriptionGlitch] = useState('product management')
+  const [hireGlitch, setHireGlitch] = useState("You don't need to choose")
 
   useEffect(() => {
     const glitchTimer = setTimeout(() => {
@@ -58,6 +59,28 @@ export default function ExperiencePage() {
     }, 2500)
 
     return () => clearTimeout(descriptionGlitchTimer)
+  }, [])
+
+  useEffect(() => {
+    const hireGlitchTimer = setTimeout(() => {
+      const originalText = "You don't need to choose"
+      let phase = 0
+      
+      const interval = setInterval(() => {
+        if (phase < 10) {
+          setHireGlitch(glitchText(originalText))
+        } else if (phase < 20) {
+          const progress = (phase - 10) / 10
+          setHireGlitch(partialGlitchText(originalText, 1 - progress))
+        } else {
+          setHireGlitch(originalText)
+          clearInterval(interval)
+        }
+        phase++
+      }, 50)
+    }, 3000)
+
+    return () => clearTimeout(hireGlitchTimer)
   }, [])
 
   useEffect(() => {
@@ -368,13 +391,13 @@ export default function ExperiencePage() {
             Why should you hire Andrii?
           </h2>
           <p className="text-neutral-400 font-light text-lg text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem' }}>
-            You don't need to choose between soft / business / technical / communication skills. He has gone his way from a slide-maker to a product builder. He has strong business sense and can execute the work hands-on.
+            <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / business / technical / communication skills. He has gone his way from a slide-maker to a product builder. He has strong business sense and can execute the work hands-on.
           </p>
           
           <div className="flex justify-center" style={{ marginTop: '3rem' }}>
             <img 
-              src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765786566/3_pills_tm35ex.png"
-              alt="Skills pills"
+              src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765788092/Activities_and_skills_1536_x_620_px_ssibj5.png"
+              alt="Skills and activities"
               style={{
                 maxWidth: '100%',
                 height: 'auto',
