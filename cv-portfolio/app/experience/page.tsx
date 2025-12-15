@@ -6,6 +6,7 @@ import { profile } from '@/data/content'
 import { glitchText, partialGlitchText } from '@/lib/glitchEffect'
 import PMActivityCard from '@/components/PMActivityCard'
 import PMActivityModal from '@/components/PMActivityModal'
+import GlitchText from '@/components/GlitchText'
 import { pmActivities, PMActivity } from '@/data/pmActivities'
 import { MobileMenu } from '@/components/MobileMenu'
 
@@ -394,7 +395,7 @@ export default function ExperiencePage() {
               width: '80%'
             }}
           >
-            Career <span style={{ color: '#fbbf24' }}>{pathGlitch}</span>
+            Career <span style={{ color: '#fbbf24' }}><GlitchText text={pathGlitch} /></span>
           </h1>
         </div>
       </section>
@@ -451,12 +452,12 @@ export default function ExperiencePage() {
       <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
         <div className="max-w-6xl w-full" style={{ paddingTop: '24px' }}>
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
-            <div><span style={{ color: '#fbbf24' }}>{hireWordGlitch} Andrii</span> - get</div>
-            <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>{shouldWordGlitch} pills</span> for the price of one.</div>
+            <div><span style={{ color: '#fbbf24' }}><GlitchText text={hireWordGlitch} /> Andrii</span> - get</div>
+            <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}><GlitchText text={shouldWordGlitch} /> pills</span> for the price of one.</div>
           </h2>
           <div style={{ maxWidth: '800px', margin: '0 auto 3rem auto', paddingLeft: '10px', paddingRight: '10px', textAlign: 'center' }}>
             <p className="text-neutral-100 font-light text-3xl md:text-4xl" style={{ marginBottom: '1rem' }}>
-              <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / technical / communication skills.
+              <span style={{ color: '#fbbf24' }}><GlitchText text={hireGlitch} /></span> between soft / technical / communication skills.
             </p>
             <p className="text-neutral-100 font-light text-3xl md:text-4xl">
               He walked the path from a slide-maker to a product builder and can do the work hands-on.
@@ -503,7 +504,7 @@ export default function ExperiencePage() {
           </h2>
           <div style={{ paddingBottom: '3rem', marginBottom: '2rem' }}>
             <p className="text-neutral-100 font-light text-3xl md:text-4xl text-center" style={{ marginBottom: '0.5rem' }}>
-              Core <span style={{ color: '#fbbf24' }}>{descriptionGlitch}</span> capabilities and proficiencies
+              Core <span style={{ color: '#fbbf24' }}><GlitchText text={descriptionGlitch} /></span> capabilities and proficiencies
             </p>
             <p className="text-neutral-500 font-light text-xs text-center">
               [click card to expand]
