@@ -11,6 +11,82 @@ import { MobileMenu } from '@/components/MobileMenu'
 
 import { useState, useEffect, useCallback } from 'react'
 
+interface DevActivity extends PMActivity {}
+
+const devActivities: DevActivity[] = [
+  {
+    id: 'ai-chatbots',
+    title: 'AI Chatbots',
+    description: [
+      'Build chatbots that answer customer or internal questions using existing documents and data.',
+      'Train assistants on local knowledge bases with tools like LangChain, LlamaIndex, or OpenAI Assistants API.',
+      'Connect chatbots to Slack, WhatsApp, Instagram, Telegram, websites, or internal systems.',
+      'Enable chatbots to follow workflows, retrieve information from APIs, and update records when required.',
+    ],
+    proficiency: 78,
+  },
+  {
+    id: 'digital-knowledge-bases',
+    title: 'Digital Knowledge Bases',
+    description: [
+      'Audit existing knowledge bases: verify accuracy, remove duplicates, update outdated entries.',
+      'Build structured repositories with clear taxonomy, tagging, and version control.',
+      'Implement embedding-based search to improve information retrieval and support AI assistants.',
+      'Automate synchronisation across help centers, internal wikis, and chatbots.',
+    ],
+    proficiency: 82,
+  },
+  {
+    id: 'web-parsing-data-collection',
+    title: 'Web Parsing & Automated Data Collection',
+    description: [
+      'Create scrapers, crawlers, and pipelines for collecting structured data from websites, APIs, PDFs, and documents.',
+      'Evaluate and select reliable enrichment APIs from large marketplaces of tools.',
+      'Estimate operational costs to avoid overspending on high-volume API calls ($0.01–$0.03 per request).',
+      'Combine browser automation, API polling, ETL scheduling, and storage strategies for stable data acquisition.',
+      'Ensure compliance with rate limits, error handling, and long-term maintainability.',
+    ],
+    proficiency: 79,
+  },
+  {
+    id: 'generative-ai-pipelines',
+    title: 'Generative AI Pipelines & Content Automation',
+    description: [
+      'Automate production of text, summaries, images, audio, and structured outputs using OpenAI, Hugging Face, or custom models.',
+      'Deploy models on-premise where data protection or compliance requires it.',
+      'Generate advertising content, social media assets, product descriptions, emails, or batch documents at scale.',
+      'Set up workflows where human review is optional and only applied to final outputs.',
+      'Produce high-volume, consistent content with minimal manual effort.',
+    ],
+    proficiency: 81,
+  },
+  {
+    id: 'api-integrations',
+    title: 'API Integrations & System Connectivity',
+    description: [
+      'Connect CRMs, ERPs, messengers, payment systems, and internal tools into unified workflows.',
+      'Use Zapier, Make, n8n, or custom scripts when ready-made connectors are insufficient.',
+      'Implement MCP servers and AI-based data translation for complex or unstructured integrations.',
+      'Configure reliable authentication, error handling, retries, and monitoring for stable operation.',
+      'Integrate any system exposing an API, even when vendors do not provide ready solutions.',
+    ],
+    proficiency: 80,
+  },
+  {
+    id: 'internal-tools',
+    title: 'Internal Tools & Lightweight Applications',
+    description: [
+      'Build focused tools to remove operational bottlenecks: dashboards, calculators, validators, configuration helpers.',
+      'Embed tools into existing systems via iframes or deliver them as Chrome extensions for daily workflows.',
+      'Replace repetitive manual work with targeted utilities, saving months of FTE time annually.',
+      'Use Airtable, Softr, Retool, or similar platforms to create internal apps without full engineering cycles.',
+      'Allow power users to update tools directly through admin panels without additional development.',
+      'Use such prototypes to refine requirements before developing long-term custom systems.',
+    ],
+    proficiency: 77,
+  },
+]
+
 export default function ExperiencePage() {
   const [matrixActive, setMatrixActive] = useState(false)
   const [displayTitle, setDisplayTitle] = useState('Career path')
@@ -60,8 +136,8 @@ export default function ExperiencePage() {
     startGlitchCycle(2000, 'Career path', setDisplayTitle)
     startGlitchCycle(2500, 'product management', setDescriptionGlitch)
     startGlitchCycle(3000, "You don't need to choose", setHireGlitch)
-    startGlitchCycle(3500, 'should', setShouldWordGlitch)
-    startGlitchCycle(4000, 'hire', setHireWordGlitch)
+    startGlitchCycle(3500, 'Two', setShouldWordGlitch)
+    startGlitchCycle(4000, 'Hire', setHireWordGlitch)
 
     return () => {
       timeoutIds.forEach(id => clearTimeout(id))
@@ -156,18 +232,7 @@ export default function ExperiencePage() {
     }
     animate()
 
-    const stopTimer = setTimeout(() => {
-      canvas.classList.remove('active')
-      overlay.classList.remove('active')
-      setTimeout(() => {
-        cancelAnimationFrame(animationId)
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        setMatrixActive(false)
-      }, 1500)
-    }, 60000)
-
     return () => {
-      clearTimeout(stopTimer)
       cancelAnimationFrame(animationId)
       window.removeEventListener('resize', resizeCanvas)
     }
@@ -383,12 +448,13 @@ export default function ExperiencePage() {
       </section>
 
       {/* Why Hire Andrii Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
-        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
+      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
+        <div className="max-w-6xl w-full" style={{ paddingTop: '24px' }}>
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
-            Why <span style={{ color: '#fbbf24' }}>{shouldWordGlitch}</span> you <span style={{ color: '#fbbf24' }}>{hireWordGlitch}</span> Andrii?
+            <div><span style={{ color: '#fbbf24' }}>{hireWordGlitch}</span> Andrii and get</div>
+            <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>{shouldWordGlitch}</span> pills for the price of one.</div>
           </h2>
-          <div style={{ maxWidth: '800px', margin: '0 0 3rem 0' }}>
+          <div style={{ maxWidth: '800px', margin: '0 0 3rem 0', paddingLeft: '10px', paddingRight: '10px' }}>
             <p className="text-neutral-400 font-light text-lg" style={{ marginBottom: '1rem' }}>
               <span style={{ color: '#fbbf24' }}>{hireGlitch}</span> between soft / technical / communication skills.
             </p>
@@ -430,13 +496,13 @@ export default function ExperiencePage() {
       </section>
 
       {/* Activities and Skills Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
-        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
+      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-12" style={{ zIndex: 10, marginTop: '1rem' }}>
+        <div className="max-w-6xl w-full" style={{ paddingTop: '24px' }}>
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '1.5rem' }}>
             Activities and skills
           </h2>
           <div style={{ paddingBottom: '3rem', marginBottom: '2rem' }}>
-            <p className="text-neutral-400 font-light text-lg text-center" style={{ marginBottom: '0.5rem' }}>
+            <p className="text-neutral-100 font-light text-3xl md:text-4xl text-center" style={{ marginBottom: '0.5rem' }}>
               Core <span style={{ color: '#fbbf24' }}>{descriptionGlitch}</span> capabilities and proficiencies
             </p>
             <p className="text-neutral-500 font-light text-xs text-center">
@@ -460,6 +526,31 @@ export default function ExperiencePage() {
                 />
               </div>
             ))}
+          </div>
+
+          <div style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
+            <h3 className="text-3xl md:text-4xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
+              <div>Development & automation - focus on real world results</div>
+              <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>without disturbing</span> your <span style={{ color: '#fbbf24' }}>development team</span></div>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+              {devActivities.map((activity, idx) => (
+                <div
+                  key={activity.id}
+                  className="animate-in fade-in slide-in-from-bottom"
+                  style={{
+                    animationDelay: `${idx * 50}ms`,
+                  }}
+                >
+                  <PMActivityCard
+                    title={activity.title}
+                    proficiency={activity.proficiency}
+                    onClick={() => setSelectedActivity(activity)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -36,41 +36,114 @@ export default function PMActivityModal({
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(4px)',
+          zIndex: 40,
+          cursor: 'pointer',
+        }}
         onClick={onClose}
       />
 
-      {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none">
+      {/* Modal Container */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: '1rem',
+          left: '1rem',
+          right: '1rem',
+          bottom: '1rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 50,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* Modal Content */}
         <div
-          className="bg-neutral-900 border border-neutral-700/50 rounded-sm w-full max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto"
           style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '600px',
+            height: '100%',
+            maxHeight: '100%',
+            overflowY: 'auto',
+            backgroundColor: 'rgb(23, 23, 23)',
+            border: '1px solid rgb(55, 55, 55)',
+            borderRadius: '4px',
             boxShadow: '0 0 30px #f59e0b40, inset 0 0 30px #f59e0b10',
-            maxWidth: 'calc(100% - 20px)',
-            marginLeft: '10px',
-            marginRight: '10px',
+            pointerEvents: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            boxSizing: 'border-box',
           }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div
-            className="sticky top-0 bg-neutral-900/95 backdrop-blur border-b border-neutral-700/50 flex justify-between items-start gap-4"
             style={{
-              borderBottomColor: '#f59e0b40',
+              position: 'sticky',
+              top: 0,
+              backgroundColor: 'rgba(23, 23, 23, 0.95)',
+              backdropFilter: 'blur(10px)',
+              borderBottom: '1px solid rgba(245, 158, 11, 0.25)',
               padding: '1rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              gap: '1rem',
+              zIndex: 10,
             }}
           >
-            <h2 className="text-2xl sm:text-3xl font-light text-neutral-100 hover-laser">{title}</h2>
+            <h2 
+              style={{
+                margin: 0,
+                fontSize: 'clamp(1.125rem, 5vw, 1.875rem)',
+                fontWeight: 300,
+                color: 'rgb(245, 245, 245)',
+                wordBreak: 'break-word',
+                flex: 1,
+              }}
+            >
+              {title}
+            </h2>
             <button
               onClick={onClose}
-              className="text-neutral-400 hover:text-neutral-200 transition-colors flex-shrink-0 text-xl font-light"
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'rgb(156, 163, 175)',
+                cursor: 'pointer',
+                fontSize: '1.25rem',
+                fontWeight: 300,
+                flexShrink: 0,
+                padding: 0,
+                transition: 'color 0.3s ease',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'rgb(229, 231, 235)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgb(156, 163, 175)'}
             >
               ✕
             </button>
           </div>
 
           {/* Content */}
-          <div className="space-y-6" style={{ padding: '1.5rem 1rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem',
+              padding: '1.5rem 1rem',
+              flex: 1,
+              overflowY: 'auto',
+            }}
+          >
             {/* Progress Bar */}
             <div>
               <AnimatedProgressBar
@@ -82,15 +155,51 @@ export default function PMActivityModal({
             </div>
 
             {/* Activities */}
-            <div className="space-y-4">
-              <h3 className="text-neutral-300 font-light text-sm uppercase tracking-wider opacity-70">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <h3 
+                style={{
+                  margin: 0,
+                  color: 'rgb(209, 213, 219)',
+                  fontWeight: 300,
+                  fontSize: '0.875rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  opacity: 0.7,
+                }}
+              >
                 Activities
               </h3>
-              <div className="space-y-3">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {description.map((item, idx) => (
-                  <div key={idx} className="flex gap-3">
-                    <span className="text-yellow-500/80 flex-shrink-0 text-sm mt-1">●</span>
-                    <p className="text-sm text-neutral-300 font-light leading-relaxed">{item}</p>
+                  <div 
+                    key={idx} 
+                    style={{
+                      display: 'flex',
+                      gap: '0.75rem',
+                    }}
+                  >
+                    <span 
+                      style={{
+                        color: 'rgb(234, 179, 8)',
+                        flexShrink: 0,
+                        fontSize: '0.875rem',
+                        marginTop: '0.25rem',
+                        opacity: 0.8,
+                      }}
+                    >
+                      ●
+                    </span>
+                    <p 
+                      style={{
+                        margin: 0,
+                        fontSize: '0.875rem',
+                        color: 'rgb(209, 213, 219)',
+                        fontWeight: 300,
+                        lineHeight: 1.625,
+                      }}
+                    >
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -111,30 +220,8 @@ export default function PMActivityModal({
           }
         }
 
-        .fixed:has(> div[style*="box-shadow"]) > div:last-child {
+        div[style*="maxHeight: 90vh"] {
           animation: modal-enter 0.2s ease-out;
-        }
-
-        .hover-laser {
-          position: relative;
-          transition: all 0.3s ease;
-        }
-        .hover-laser::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background: linear-gradient(90deg, 
-            #00FFC8 0%,
-            #FF00FF 50%,
-            #F0FF00 100%
-          );
-          transition: width 0.3s ease;
-        }
-        .hover-laser:hover::after {
-          width: 100%;
         }
       `}</style>
     </>

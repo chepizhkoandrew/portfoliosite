@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useState, useEffect } from 'react'
 
 interface PMActivityCardProps {
   title: string
@@ -13,10 +13,13 @@ function PMActivityCard({
   proficiency,
   onClick,
 }: PMActivityCardProps) {
-  const { initialDelay, duration } = useMemo(() => ({
-    initialDelay: Math.random() * 0.8,
-    duration: 0.5 + Math.random() * 0.6,
-  }), [])
+  const [initialDelay, setInitialDelay] = useState(0)
+  const [duration, setDuration] = useState(1.1)
+
+  useEffect(() => {
+    setInitialDelay(Math.random() * 0.8)
+    setDuration(0.5 + Math.random() * 0.6)
+  }, [])
 
   const handleClick = useCallback(() => {
     onClick()
