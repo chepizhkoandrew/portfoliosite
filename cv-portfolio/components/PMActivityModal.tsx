@@ -41,9 +41,9 @@ export default function PMActivityModal({
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none">
         <div
-          className="bg-neutral-900 border border-neutral-700/50 rounded-sm w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+          className="bg-neutral-900 border border-neutral-700/50 rounded-sm w-full max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto"
           style={{
             boxShadow: '0 0 30px #f59e0b40, inset 0 0 30px #f59e0b10',
             maxWidth: 'calc(100% - 20px)',

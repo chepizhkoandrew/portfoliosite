@@ -4,12 +4,17 @@ import Link from 'next/link'
 import { experiences } from '@/data/experience'
 import { profile } from '@/data/content'
 import { glitchText, partialGlitchText } from '@/lib/glitchEffect'
+import PMActivityCard from '@/components/PMActivityCard'
+import PMActivityModal from '@/components/PMActivityModal'
+import { pmActivities, PMActivity } from '@/data/pmActivities'
 
 import { useState, useEffect } from 'react'
 
 export default function ExperiencePage() {
   const [matrixActive, setMatrixActive] = useState(false)
   const [displayTitle, setDisplayTitle] = useState('Career path')
+  const [selectedActivity, setSelectedActivity] = useState<PMActivity | null>(null)
+  const [descriptionGlitch, setDescriptionGlitch] = useState('product management')
 
   useEffect(() => {
     const glitchTimer = setTimeout(() => {
@@ -31,6 +36,28 @@ export default function ExperiencePage() {
     }, 2000)
 
     return () => clearTimeout(glitchTimer)
+  }, [])
+
+  useEffect(() => {
+    const descriptionGlitchTimer = setTimeout(() => {
+      const originalText = 'product management'
+      let phase = 0
+      
+      const interval = setInterval(() => {
+        if (phase < 10) {
+          setDescriptionGlitch(glitchText(originalText))
+        } else if (phase < 20) {
+          const progress = (phase - 10) / 10
+          setDescriptionGlitch(partialGlitchText(originalText, 1 - progress))
+        } else {
+          setDescriptionGlitch(originalText)
+          clearInterval(interval)
+        }
+        phase++
+      }, 50)
+    }, 2500)
+
+    return () => clearTimeout(descriptionGlitchTimer)
   }, [])
 
   useEffect(() => {
@@ -241,6 +268,29 @@ export default function ExperiencePage() {
           70% { opacity: 0.1; }
           80% { opacity: 0.25; }
         }
+
+        @keyframes slide-in-from-bottom {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .slide-in-from-bottom {
+          animation: slide-in-from-bottom 0.5s ease-out forwards;
+        }
+
+        .animate-in {
+          animation-fill-mode: both;
+        }
+
+        .fade-in {
+          opacity: 1;
+        }
       `}</style>
 
       {/* Experience Section */}
@@ -251,7 +301,7 @@ export default function ExperiencePage() {
         </Link>
 
         <div className="max-w-6xl w-full" style={{ paddingTop: '150px' }}>
-          <h1 className="text-5xl md:text-6xl font-light text-neutral-100 text-center" style={{ marginBottom: '40px' }}>
+          <h1 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '40px' }}>
             {displayTitle}
           </h1>
 
@@ -310,6 +360,51 @@ export default function ExperiencePage() {
           </div>
         </div>
       </section>
+
+      {/* Activities and Skills Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-3 md:px-6 lg:px-12 py-20" style={{ zIndex: 10 }}>
+        <div className="max-w-6xl w-full" style={{ paddingTop: '50px' }}>
+          <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '1.5rem' }}>
+            Activities and skills
+          </h2>
+          <div style={{ paddingBottom: '3rem', marginBottom: '2rem' }}>
+            <p className="text-neutral-400 font-light text-lg text-center" style={{ marginBottom: '0.5rem' }}>
+              Core <span style={{ color: '#fbbf24' }}>{descriptionGlitch}</span> capabilities and proficiencies
+            </p>
+            <p className="text-neutral-500 font-light text-xs text-center">
+              [click card to expand]
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+            {pmActivities.map((activity, idx) => (
+              <div
+                key={activity.id}
+                className="animate-in fade-in slide-in-from-bottom"
+                style={{
+                  animationDelay: `${idx * 50}ms`,
+                }}
+              >
+                <PMActivityCard
+                  title={activity.title}
+                  proficiency={activity.proficiency}
+                  onClick={() => setSelectedActivity(activity)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modal */}
+      {selectedActivity && (
+        <PMActivityModal
+          title={selectedActivity.title}
+          description={selectedActivity.description}
+          proficiency={selectedActivity.proficiency}
+          onClose={() => setSelectedActivity(null)}
+        />
+      )}
 
       {/* Footer */}
       <footer className="relative border-t border-neutral-800/50 py-8 px-3 md:px-6 lg:px-12" style={{ zIndex: 10 }}>

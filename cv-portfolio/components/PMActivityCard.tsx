@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, memo, useCallback, useMemo } from 'react'
 
 interface PMActivityCardProps {
   title: string
@@ -8,33 +8,32 @@ interface PMActivityCardProps {
   onClick: () => void
 }
 
-export default function PMActivityCard({
+function PMActivityCard({
   title,
   proficiency,
   onClick,
 }: PMActivityCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [animationKey, setAnimationKey] = useState(0)
+  const { initialDelay, duration } = useMemo(() => ({
+    initialDelay: Math.random() * 0.8,
+    duration: 0.5 + Math.random() * 0.6,
+  }), [])
 
-  const handleHover = () => {
-    setIsHovered(true)
-    setAnimationKey((prev) => prev + 1)
-  }
+  const handleClick = useCallback(() => {
+    onClick()
+  }, [onClick])
 
   return (
     <div
-      className="border border-neutral-800/50 rounded-sm overflow-hidden transition-all duration-300 cursor-pointer p-4 sm:p-6 group"
+      className="glow-button border border-neutral-800/50 rounded-sm overflow-hidden cursor-pointer p-4 sm:p-6 group"
       style={{
         backgroundColor: 'rgba(23, 23, 23, 0.3)',
-        boxShadow: 'inset 0 0 20px rgba(0,0,0,0.3)',
+        boxShadow: '0 0 20px rgba(251, 191, 36, 0.1), inset 0 0 20px rgba(0,0,0,0.3)',
       }}
-      onClick={onClick}
-      onMouseEnter={handleHover}
-      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       {/* Card Header */}
       <div className="mb-6">
-        <h3 className="text-lg sm:text-xl font-light text-neutral-100 transition-colors">
+        <h3 className="text-lg sm:text-xl font-light text-neutral-100 group-hover:text-neutral-50 transition-colors">
           {title}
         </h3>
       </div>
@@ -49,14 +48,13 @@ export default function PMActivityCard({
           }}
         >
           <div
-            key={animationKey}
             className="absolute top-0 left-0 h-full rounded-full animate-progress-load"
             style={{
               width: `${proficiency}%`,
               backgroundColor: '#fbbf24',
               boxShadow: '0 0 8px #fbbf24, inset 0 0 8px #fbbf2440',
-              animationDelay: isHovered ? '0s' : `${Math.random() * 0.8}s`,
-              animationDuration: `${0.5 + Math.random() * 0.6}s`,
+              animationDelay: `${initialDelay}s`,
+              animationDuration: `${duration}s`,
             }}
           />
         </div>
@@ -79,7 +77,21 @@ export default function PMActivityCard({
         .animate-progress-load {
           animation: progress-load ease-out forwards;
         }
+
+        .glow-button {
+          box-shadow: 0 0 20px rgba(251, 191, 36, 0.1) !important;
+          transition: all 0.3s ease;
+        }
+
+        .glow-button:hover {
+          box-shadow: 0 0 30px rgba(251, 191, 36, 0.3),
+                      0 0 60px rgba(255, 0, 150, 0.2) !important;
+          transform: translateY(-2px);
+          border-color: rgba(251, 191, 36, 0.5) !important;
+        }
       `}</style>
     </div>
   )
 }
+
+export default memo(PMActivityCard)

@@ -25,27 +25,35 @@ export default function ProductDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-20 pb-16" style={{ paddingLeft: 'calc(1rem + 10px)', paddingRight: 'calc(1rem + 10px)' }}>
+      <div className="pt-20 pb-16 dashboard-outer">
         <style>{`
+          .dashboard-outer {
+            padding-left: calc(1rem + 10px) !important;
+            padding-right: calc(1rem + 10px) !important;
+          }
+          .dashboard-main {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+          }
           @media (min-width: 640px) {
-            .dashboard-main {
-              padding-left: calc(1.5rem + 10px);
-              padding-right: calc(1.5rem + 10px);
+            .dashboard-outer {
+              padding-left: calc(1.5rem + 10px) !important;
+              padding-right: calc(1.5rem + 10px) !important;
             }
           }
           @media (min-width: 1024px) {
-            .dashboard-main {
-              padding-left: calc(2rem + 10px);
-              padding-right: calc(2rem + 10px);
+            .dashboard-outer {
+              padding-left: calc(2rem + 10px) !important;
+              padding-right: calc(2rem + 10px) !important;
             }
           }
         `}</style>
         <div className="dashboard-main">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
-            <div className="mb-12 text-center">
-              <h1 className="text-4xl sm:text-5xl font-light text-neutral-100 mb-3">Product Dashboard</h1>
-              <p className="text-neutral-400 font-light text-lg">
+            <div className="text-center dashboard-header">
+              <h1 className="text-4xl sm:text-5xl font-light text-neutral-100 dashboard-title">Product Dashboard</h1>
+              <p className="text-neutral-400 font-light text-lg dashboard-description">
                 Core activities and responsibilities in product management
               </p>
             </div>
@@ -73,23 +81,9 @@ export default function ProductDashboard() {
               ))}
             </div>
 
-            {/* Proficiency Legend */}
-            <div className="mt-16 pt-8 border-t border-neutral-800/50 text-center">
-              <div className="inline-block">
-                <p className="text-neutral-400 font-light text-sm mb-3">Proficiency Level</p>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-8 h-2 rounded-full border border-neutral-700/30"
-                      style={{
-                        backgroundColor: '#fbbf24',
-                        boxShadow: '0 0 8px #fbbf24, inset 0 0 8px #fbbf2440',
-                      }}
-                    />
-                    <span className="text-xs text-neutral-500 font-light">Proficiency Meter</span>
-                  </div>
-                </div>
-              </div>
+            {/* Legend */}
+            <div className="border-t border-neutral-800/50 dashboard-legend">
+              <p className="text-xs text-neutral-500 font-light">Click card to expand</p>
             </div>
           </div>
         </div>
@@ -106,6 +100,25 @@ export default function ProductDashboard() {
       )}
 
       <style>{`
+        .dashboard-header {
+          margin-bottom: 2rem !important;
+        }
+
+        .dashboard-title {
+          margin-bottom: 1rem !important;
+        }
+
+        .dashboard-description {
+          padding-bottom: 2rem !important;
+        }
+
+        .dashboard-legend {
+          margin-top: 4rem !important;
+          padding-top: 3rem !important;
+          display: flex !important;
+          justify-content: center !important;
+        }
+
         @keyframes slide-in-from-bottom {
           from {
             opacity: 0;
