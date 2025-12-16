@@ -66,14 +66,13 @@ export default function CVPage() {
       const html2pdf = (await import('html2pdf.js')).default
       const element = cvRef.current
       const opt = {
-        margin: { top: 6, left: 8, bottom: 6, right: 8 },
+        margin: [6, 8, 6, 8],
         filename: 'Andrii_Chepizhko_CV.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
-        pagebreak: { mode: 'avoid-all' },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { format: 'a4', orientation: 'portrait' },
       }
-      html2pdf().set(opt).from(element).save()
+      await html2pdf().set(opt).from(element).save()
     } catch (error) {
       console.error('Failed to download PDF:', error)
       alert('Failed to generate PDF. Please try again.')
