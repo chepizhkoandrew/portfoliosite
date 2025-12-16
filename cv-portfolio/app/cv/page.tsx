@@ -69,8 +69,9 @@ export default function CVPage() {
         margin: 0,
         filename: 'Andrii_Chepizhko_CV.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
-        jsPDF: { format: 'a4', orientation: 'portrait' },
+        html2canvas: { scale: 1, useCORS: true, logging: false, allowTaint: true },
+        jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
+        pagebreak: { mode: 'avoid-all' },
       }
       await html2pdf().set(opt).from(element).save()
     } catch (error) {
