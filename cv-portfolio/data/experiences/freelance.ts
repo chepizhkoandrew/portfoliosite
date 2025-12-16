@@ -5,7 +5,7 @@ export const freelanceExperience = {
   company: 'Outsourcing of IT Development & Product Management',
   startYear: 2024,
   endYear: 2025,
-  duration: '2024 - 2025',
+  duration: '2024 - 2025 (2 years)',
   color: '#8b5cf6',
   overview: 'Several assignments for different clients across multiple industries',
 

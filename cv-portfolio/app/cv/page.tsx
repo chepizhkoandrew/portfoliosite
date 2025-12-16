@@ -79,6 +79,56 @@ export default function CVPage() {
     }
   }
 
+  const renderExperienceRow = (exp: typeof experiences[0]) => (
+    <a 
+      key={exp.id} 
+      href={`/experience/${exp.id}`}
+      style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 1.5fr minmax(100px, auto)', gap: '8px', alignItems: 'start' }}>
+        {exp.logo && (
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              flexShrink: 0,
+              backgroundImage: `url(${exp.logo})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
+          />
+        )}
+        <div>
+          <h4 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
+            {exp.title}
+          </h4>
+          {exp.id !== 'freelance' && (
+            <p style={{ margin: '1px 0 0 0', fontSize: '9px', color: '#888' }}>
+              {exp.company}
+            </p>
+          )}
+        </div>
+        <div style={{ fontSize: '9px', color: '#666', lineHeight: 1.4 }}>
+          {exp.id === 'freelance' ? (
+            <div>
+              {exp.description[0]}<br />
+              <strong style={{ color: '#555' }}>Projects:</strong> Tax Advisory CRM prototype, E-commerce Commissions Module, Sports League Management App logic and design, Online Casino Metrics Framework, Online Casino Deposit Flow Redesign, Gen-AI Content Pipeline for Instagram
+            </div>
+          ) : (
+            <div>
+              {exp.description[0]}<br />
+              <span style={{ color: '#555' }}>{exp.description[1]}</span>
+            </div>
+          )}
+        </div>
+        <div style={{ textAlign: 'right', whiteSpace: 'nowrap', flexShrink: 0, fontSize: '9px', color: '#888' }}>
+          {exp.duration}
+        </div>
+      </div>
+    </a>
+  )
+
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4">
       <MobileMenu />
@@ -106,33 +156,42 @@ export default function CVPage() {
         style={{
           width: '210mm',
           minHeight: '297mm',
-          padding: '20mm',
+          padding: '6mm 8mm',
           margin: '0 auto',
-          fontSize: '11px',
+          fontSize: '12px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}
       >
         {/* Intro Section */}
         <div style={{ marginBottom: '12mm' }}>
-          <h1 style={{ margin: '0 0 4px 0', fontSize: '24px', fontWeight: 300 }}>
+          <h1 style={{ margin: '0 0 4px 0', fontSize: '26px', fontWeight: 300 }}>
             {profile.name}
           </h1>
-          <h2 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 400, color: '#666' }}>
+          <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#666' }}>
             {profile.title}
           </h2>
-          <p style={{ margin: '0 0 8px 0', fontSize: '10px', color: '#888', lineHeight: 1.4 }}>
+          <p style={{ margin: '0 0 8px 0', fontSize: '11px', color: '#888', lineHeight: 1.4 }}>
             {profile.bio.secondLine}
           </p>
         </div>
 
         {/* Contact Section */}
         <div style={{ marginBottom: '12mm', paddingBottom: '8mm', borderBottom: '1px solid #ddd' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '11px' }}>
             <div>
               <span style={{ color: '#666' }}>Email:</span> {profile.email}
             </div>
             <div>
               <span style={{ color: '#666' }}>Phone:</span> {profile.phone}
+            </div>
+            <div>
+              <span style={{ color: '#666' }}>Website:</span>{' '}
+              <a href={profile.website} style={{ color: '#0066cc', textDecoration: 'none' }}>
+                Portfolio
+              </a>
+            </div>
+            <div>
+              <span style={{ color: '#666' }}>Location:</span> Vigo, Galicia
             </div>
             <div>
               <span style={{ color: '#666' }}>LinkedIn:</span>{' '}
@@ -141,54 +200,23 @@ export default function CVPage() {
               </a>
             </div>
             <div>
-              <span style={{ color: '#666' }}>Location:</span> Vigo, Galicia
+              <span style={{ color: '#666' }}>AI Assistant:</span>{' '}
+              <a href={profile.personalAssistant} style={{ color: '#0066cc', textDecoration: 'none' }}>
+                Chat
+              </a>
             </div>
           </div>
         </div>
 
         {/* Experience Section */}
         <div style={{ marginBottom: '12mm' }}>
-          <h3 style={{ margin: '0 0 8px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <h3 style={{ margin: '0 0 6mm 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             Professional Experience
           </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6mm' }}>
-            {experiences.slice(0, 5).map((exp) => (
-              <div key={exp.id} style={{ display: 'flex', gap: '8px' }}>
-                {exp.logo && (
-                  <div
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      flexShrink: 0,
-                      backgroundImage: `url(${exp.logo})`,
-                      backgroundSize: 'contain',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center',
-                    }}
-                  />
-                )}
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px' }}>
-                    <h4 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
-                      {exp.title}
-                    </h4>
-                    <span style={{ fontSize: '10px', color: '#888' }}>
-                      {exp.duration}
-                    </span>
-                  </div>
-                  <p style={{ margin: '0 0 2px 0', fontSize: '10px', color: '#666' }}>
-                    {exp.company}
-                  </p>
-                  <ul style={{ margin: '2px 0 0 0', paddingLeft: '16px', fontSize: '9px', lineHeight: 1.3, color: '#555' }}>
-                    {exp.description.slice(0, 2).map((desc, idx) => (
-                      <li key={idx} style={{ margin: '2px 0' }}>
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+            <div style={{ height: 0, overflow: 'hidden' }} />
+            {renderExperienceRow(experiences[0])}
+            {experiences.slice(1, 6).map((exp) => renderExperienceRow(exp))}
           </div>
         </div>
 
@@ -199,14 +227,14 @@ export default function CVPage() {
             <h3 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Product Management
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4mm' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
               {pmActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <p style={{ margin: 0, fontSize: '10px', fontWeight: 500 }}>
+                    <p style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
                       {activity.title}
                     </p>
-                    <span style={{ fontSize: '9px', color: '#888' }}>
+                    <span style={{ fontSize: '10px', color: '#888' }}>
                       {activity.proficiency}%
                     </span>
                   </div>
@@ -238,14 +266,14 @@ export default function CVPage() {
             <h3 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Development & Automation
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4mm' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
               {devActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <p style={{ margin: 0, fontSize: '10px', fontWeight: 500 }}>
+                    <p style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
                       {activity.title}
                     </p>
-                    <span style={{ fontSize: '9px', color: '#888' }}>
+                    <span style={{ fontSize: '10px', color: '#888' }}>
                       {activity.proficiency}%
                     </span>
                   </div>

@@ -39,6 +39,7 @@ export const experiences: Experience[] = [
     logo: '/experienceicons/priroda.png',
     description: [
       'Digital operations system for the flower shops business',
+      'Commercial product for florist shops in Spain addressing new tax compliance requirements (Verifactu)',
       'Addressing urgent digitalization needs for retail business in Spain (*Verifactu)',
       'Developing product, testing with clients, managing marketing and operational/regulatory steps for launch in Spain',
     ],
@@ -49,7 +50,7 @@ export const experiences: Experience[] = [
     company: 'Outsourcing of IT Development & Product Management',
     startYear: 2024,
     endYear: 2025,
-    duration: '2024 - 2025 (1 year)',
+    duration: '2024 - 2025 (2 years)',
     type: 'freelance',
     color: '#8b5cf6',
     logo: '/experienceicons/freelance.png',
@@ -74,6 +75,7 @@ export const experiences: Experience[] = [
     color: '#f59e0b',
     logo: '/experienceicons/boosta.png',
     description: [
+      'EdTech tutoring platform and ghost-writing services portfolio targeting Tier 1 country students',
       'Reduced cycle time (4 months→6 weeks) of new products and major features release',
       'Organized 3 scrum teams, cleared and reprioritized backlogs',
       'Re-launched SDLC flow for 3x faster development and release of new product sites',
@@ -96,6 +98,7 @@ export const experiences: Experience[] = [
     color: '#06b6d4',
     logo: '/experienceicons/takeoff.png',
     description: [
+      'Software-and-hardware solution for grocery retailers to speed up online food order fulfillment',
       'Led product scalability initiatives in e-grocery automation (B2B SaaS)',
       'Managed 2 scrum teams daily, worked with grocery shop network clients',
       'Reduced retailer onboarding from ~3 months to 3-4 weeks (3x improvement)',
@@ -122,6 +125,7 @@ export const experiences: Experience[] = [
     color: '#ec4899',
     logo: '/experienceicons/eleks.png',
     description: [
+      'Comprehensive ERP solution for agricultural company managing crop fields and machinery operations',
       'Managed the scope and overall logic of the ERP system for 50,000 field operations',
       'Coordinated system for 7,500 fields and 12,000 machine fleet',
       'Responsible for scope, logic, and client expectations',
@@ -146,6 +150,7 @@ export const experiences: Experience[] = [
     color: '#6366f1',
     logo: '/experienceicons/ey.png',
     description: [
+      'IT systems design, process optimization, and KPI development across corporate, government, and industrial sectors',
       'Different projects across Ukraine and Kazakhstan',
       'Operational consultancy for major corporate clients: banks, government institutions, factories',
       'Helped top-management reduce operational costs, frame processes, and plan IT automations',
