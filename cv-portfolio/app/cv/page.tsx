@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { profile } from '@/data/content'
 import { experiences } from '@/data/experience'
 import { pmActivities } from '@/data/pmActivities'
-import AnimatedProgressBar from '@/components/AnimatedProgressBar'
 import { MobileMenu } from '@/components/MobileMenu'
 
 const devActivities = [
