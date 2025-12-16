@@ -8,12 +8,16 @@ interface MobileMenuProps {
   onDownloadCV?: () => void
 }
 
+type MenuItem = 
+  | { label: string; href: string; highlight?: boolean }
+  | { label: string; action: () => void; isAction: true; highlight?: boolean }
+
 export function MobileMenu({ onDownloadCV }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { label: 'About Andrii', href: '/experience' },
     { label: 'Get in touch', href: '/contact' },
     { label: 'Talk to Assistant', href: '/chatbot', highlight: true },
@@ -44,14 +48,12 @@ export function MobileMenu({ onDownloadCV }: MobileMenuProps) {
       {isOpen && (
         <div className="fixed top-16 right-6 z-40 bg-neutral-900 border border-neutral-700 rounded-sm shadow-lg min-w-48 py-3">
           {menuItems.map((item) => {
-            const isAction = 'isAction' in item && item.isAction
-            
-            if (isAction) {
+            if ('action' in item) {
               return (
                 <button
                   key={item.label}
                   onClick={() => {
-                    item.action?.()
+                    item.action()
                     setIsOpen(false)
                   }}
                   className={`block w-full text-left px-6 py-4 transition-colors ${
