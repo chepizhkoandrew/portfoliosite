@@ -97,20 +97,24 @@ export default function ExperiencePage() {
   const [shouldWordGlitch, setShouldWordGlitch] = useState('should')
   const [hireWordGlitch, setHireWordGlitch] = useState('hire')
 
-  const playGlitchAnimation = useCallback((text: string, setter: (text: string) => void) => {
+  const playGlitchAnimation = useCallback((textItems: Array<{ text: string; setter: (text: string) => void }>) => {
     let phase = 0
     
     const interval = setInterval(() => {
-      if (phase < 10) {
-        setter(glitchText(text))
-      } else if (phase < 20) {
-        const progress = (phase - 10) / 10
-        setter(partialGlitchText(text, 1 - progress))
-      } else {
-        setter(text)
+      textItems.forEach(({ text, setter }) => {
+        if (phase < 2) {
+          setter(glitchText(text))
+        } else if (phase < 15) {
+          const progress = (phase - 2) / 13
+          setter(partialGlitchText(text, progress))
+        } else {
+          setter(text)
+        }
+      })
+      phase++
+      if (phase > 15) {
         clearInterval(interval)
       }
-      phase++
     }, 50)
     
     return interval
@@ -120,13 +124,21 @@ export default function ExperiencePage() {
     const timeoutIds: NodeJS.Timeout[] = []
     const intervalIds: NodeJS.Timeout[] = []
 
-    const startGlitchCycle = (delay: number, text: string, setter: (text: string) => void) => {
+    const textItems = [
+      { text: 'path', setter: setPathGlitch },
+      { text: 'product management', setter: setDescriptionGlitch },
+      { text: "You don't need to choose", setter: setHireGlitch },
+      { text: 'Two', setter: setShouldWordGlitch },
+      { text: 'Hire', setter: setHireWordGlitch },
+    ]
+
+    const startSyncedGlitchCycle = (delay: number) => {
       const timeout = setTimeout(() => {
-        const interval = playGlitchAnimation(text, setter)
+        const interval = playGlitchAnimation(textItems)
         intervalIds.push(interval as unknown as NodeJS.Timeout)
         
         const recurringInterval = setInterval(() => {
-          playGlitchAnimation(text, setter)
+          playGlitchAnimation(textItems)
         }, 6000)
         intervalIds.push(recurringInterval as unknown as NodeJS.Timeout)
       }, delay)
@@ -134,11 +146,7 @@ export default function ExperiencePage() {
       timeoutIds.push(timeout)
     }
 
-    startGlitchCycle(2000, 'path', setPathGlitch)
-    startGlitchCycle(2500, 'product management', setDescriptionGlitch)
-    startGlitchCycle(3000, "You don't need to choose", setHireGlitch)
-    startGlitchCycle(3500, 'Two', setShouldWordGlitch)
-    startGlitchCycle(4000, 'Hire', setHireWordGlitch)
+    startSyncedGlitchCycle(2000)
 
     return () => {
       timeoutIds.forEach(id => clearTimeout(id))
@@ -502,12 +510,9 @@ export default function ExperiencePage() {
           <h2 className="text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '1.5rem' }}>
             Activities and skills
           </h2>
-          <div style={{ paddingBottom: '3rem', marginBottom: '2rem' }}>
+          <div style={{ marginBottom: '2rem' }}>
             <p className="text-neutral-100 font-light text-3xl md:text-4xl text-center" style={{ marginBottom: '0.5rem' }}>
               Core <span style={{ color: '#fbbf24' }}><GlitchText text={descriptionGlitch} /></span> capabilities and proficiencies
-            </p>
-            <p className="text-neutral-500 font-light text-xs text-center">
-              [click card to expand]
             </p>
           </div>
 
@@ -530,10 +535,12 @@ export default function ExperiencePage() {
           </div>
 
           <div style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
-            <h3 className="text-3xl md:text-4xl font-light text-neutral-100 text-center hover-laser" style={{ marginBottom: '2rem' }}>
-              <div>Development & automation - focus on real world results</div>
-              <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>without disturbing</span> your <span style={{ color: '#fbbf24' }}>development team</span></div>
-            </h3>
+            <div style={{ marginBottom: '2rem' }}>
+              <h3 className="text-3xl md:text-4xl font-light text-neutral-100 text-center hover-laser">
+                <div>Development & automation - focus on real world results</div>
+                <div style={{ marginTop: '0.5rem' }}><span style={{ color: '#fbbf24' }}>without disturbing</span> your <span style={{ color: '#fbbf24' }}>development team</span></div>
+              </h3>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
               {devActivities.map((activity, idx) => (

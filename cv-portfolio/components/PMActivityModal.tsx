@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import AnimatedProgressBar from './AnimatedProgressBar'
 
 interface PMActivityModalProps {
@@ -16,6 +17,8 @@ export default function PMActivityModal({
   proficiency,
   onClose,
 }: PMActivityModalProps) {
+  const router = useRouter()
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -31,6 +34,13 @@ export default function PMActivityModal({
       document.body.style.overflow = 'unset'
     }
   }, [onClose])
+
+  const handleSeeDetails = () => {
+    const bulletPoints = description.map((point) => `• ${point}`).join('\n')
+    const message = `I am interested in how Andrii can help with these things. Did he have practical experience with such things or it's just a marketing / AI fluff?\n\n${bulletPoints}`
+    const encodedMessage = encodeURIComponent(message)
+    router.push(`/chatbot?initialMessage=${encodedMessage}`)
+  }
 
   return (
     <>
@@ -204,6 +214,38 @@ export default function PMActivityModal({
                 ))}
               </div>
             </div>
+
+            {/* See Details Button */}
+            <button
+              onClick={handleSeeDetails}
+              style={{
+                backgroundColor: 'rgb(23, 23, 23)',
+                border: '1px solid rgb(55, 55, 55)',
+                color: 'rgb(245, 245, 245)',
+                padding: '0.75rem 1.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 300,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                cursor: 'pointer',
+                borderRadius: '4px',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 0 20px rgba(0, 255, 200, 0.1)',
+                marginTop: '0.5rem',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(0, 255, 200, 0.5)'
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 200, 0.3), 0 0 60px rgba(255, 0, 255, 0.2)'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgb(55, 55, 55)'
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 200, 0.1)'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              See Details
+            </button>
           </div>
         </div>
       </div>

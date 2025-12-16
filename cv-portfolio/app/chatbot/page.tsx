@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiRefreshCw } from 'react-icons/fi';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { formatMessage } from '@/lib/formatMessage';
 
 const styles = `
@@ -47,6 +48,7 @@ const suggestedQuestions = [
 ];
 
 export default function ChatbotPage() {
+  const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -56,12 +58,22 @@ export default function ChatbotPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const titleText = "Chat with Andrii's assistant";
   const lastMessageCountRef = useRef(0);
+  const initialMessageSentRef = useRef(false);
 
   useEffect(() => {
     if (!conversationId) {
       setConversationId(`conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
     }
   }, [conversationId]);
+
+  useEffect(() => {
+    const initialMessage = searchParams.get('initialMessage');
+    if (initialMessage && conversationId && !initialMessageSentRef.current) {
+      initialMessageSentRef.current = true;
+      const decodedMessage = decodeURIComponent(initialMessage);
+      handleSendMessage(null, decodedMessage);
+    }
+  }, [conversationId, searchParams]);
 
   useEffect(() => {
     if (messages.length > lastMessageCountRef.current && messages[messages.length - 1]?.role === 'assistant') {
@@ -114,13 +126,6 @@ export default function ChatbotPage() {
   }, []);
 
 
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey) {
-      e.preventDefault();
-      handleSendMessage(e as any, input);
-    }
-  };
 
   const handleSendMessage = async (e: React.FormEvent | null, messageToSend?: string) => {
     if (e) e.preventDefault();
@@ -189,6 +194,13 @@ export default function ChatbotPage() {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey) {
+      e.preventDefault();
+      handleSendMessage(e as any, input);
+    }
+  };
+
   const handleClearChat = () => {
     setMessages([]);
     setAnsweredQuestions(new Set());
@@ -199,9 +211,9 @@ export default function ChatbotPage() {
     <div className="min-h-screen bg-neutral-950 text-slate-100 flex flex-col">
       <style>{styles}</style>
       
-      <Link href="/" className="neon-back-link absolute top-20 left-1/2 transform -translate-x-1/2 inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center z-20">
+      <Link href="/experience" className="neon-back-link absolute top-20 left-1/2 transform -translate-x-1/2 inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center z-20">
         <span>←</span>
-        <span>Back to home</span>
+        <span>Back to experiences</span>
       </Link>
 
       <div className="flex-1 w-full flex flex-col items-center justify-start" style={{ padding: '100px 20px' }}>
