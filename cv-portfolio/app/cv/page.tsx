@@ -131,7 +131,7 @@ export default function CVPage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4">
-      <MobileMenu />
+      <MobileMenu onDownloadCV={handleDownloadPDF} />
       
       <div className="max-w-4xl mx-auto mb-8">
         <div className="flex gap-4 justify-center items-center flex-wrap">
