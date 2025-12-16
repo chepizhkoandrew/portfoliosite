@@ -27,19 +27,8 @@ const devActivities: DevActivity[] = [
     proficiency: 78,
   },
   {
-    id: 'digital-knowledge-bases',
-    title: 'Digital Knowledge Bases',
-    description: [
-      'Audit existing knowledge bases: verify accuracy, remove duplicates, update outdated entries.',
-      'Build structured repositories with clear taxonomy, tagging, and version control.',
-      'Implement embedding-based search to improve information retrieval and support AI assistants.',
-      'Automate synchronisation across help centers, internal wikis, and chatbots.',
-    ],
-    proficiency: 82,
-  },
-  {
     id: 'web-parsing-data-collection',
-    title: 'Web Parsing & Automated Data Collection',
+    title: 'Web Parsing & Data Collection',
     description: [
       'Create scrapers, crawlers, and pipelines for collecting structured data from websites, APIs, PDFs, and documents.',
       'Evaluate and select reliable enrichment APIs from large marketplaces of tools.',
@@ -51,7 +40,7 @@ const devActivities: DevActivity[] = [
   },
   {
     id: 'generative-ai-pipelines',
-    title: 'Generative AI Pipelines & Content Automation',
+    title: 'Gen-AI Pipelines & Content Creation',
     description: [
       'Automate production of text, summaries, images, audio, and structured outputs using OpenAI, Hugging Face, or custom models.',
       'Deploy models on-premise where data protection or compliance requires it.',
@@ -60,6 +49,45 @@ const devActivities: DevActivity[] = [
       'Produce high-volume, consistent content with minimal manual effort.',
     ],
     proficiency: 81,
+  },
+  {
+    id: 'data-modeling',
+    title: 'Data Modeling',
+    description: [
+      'Analyse business requirements and translate them into clear data structures for systems and applications.',
+      'Map entities, attributes, and relationships to form a consistent logical data model.',
+      'Identify existing data sources, review their structure, and plan how they should interact.',
+      'Define connection types, hierarchy, and data flow between components.',
+      'Create visual diagrams and topology maps to show how the whole system fits together.',
+      'Support engineering teams with a stable, predictable data foundation before development starts.',
+    ],
+    proficiency: 85,
+  },
+  {
+    id: 'reverse-engineering',
+    title: 'Reverse Engineering',
+    description: [
+      'Analyse existing systems when documentation is missing or outdated and no one can explain how they work.',
+      'Discover hidden logic, legacy algorithms, and undocumented workflows by testing real scenarios.',
+      'Audit system behaviour to verify whether processes operate as originally intended.',
+      'Collect knowledge from team members before organisational changes or support transitions.',
+      'Create clear documentation that explains how the system functions today and what risks exist.',
+      'This approach was used in large-scale support-transfer projects, such as migrating pharma system support from Russia to Ukraine.',
+    ],
+    proficiency: 88,
+  },
+  {
+    id: 'low-code-prototyping',
+    title: 'Low-Code Prototyping',
+    description: [
+      'Build functional MVPs using platforms like Airtable, Softr, Retool, Glide, or similar tools.',
+      'Enable clients to test real workflows, validate assumptions, and understand the actual value of the solution.',
+      'Provide an interactive environment where users can "touch and try" the product before core development begins.',
+      'Capture detailed insights about required features, missing flows, and true priorities based on real usage.',
+      'Reduce risk for engineering teams by replacing a vague scope with a validated, working reference model.',
+      'Accelerate discovery and reduce wasted development time by confirming what should and should not be built.',
+    ],
+    proficiency: 86,
   },
   {
     id: 'api-integrations',
@@ -74,8 +102,19 @@ const devActivities: DevActivity[] = [
     proficiency: 80,
   },
   {
+    id: 'digital-knowledge-bases',
+    title: 'Digital Knowledge Bases',
+    description: [
+      'Audit existing knowledge bases: verify accuracy, remove duplicates, update outdated entries.',
+      'Build structured repositories with clear taxonomy, tagging, and version control.',
+      'Implement embedding-based search to improve information retrieval and support AI assistants.',
+      'Automate synchronisation across help centers, internal wikis, and chatbots.',
+    ],
+    proficiency: 82,
+  },
+  {
     id: 'internal-tools',
-    title: 'Internal Tools & Lightweight Applications',
+    title: 'Internal Tools, Apps, Portals',
     description: [
       'Build focused tools to remove operational bottlenecks: dashboards, calculators, validators, configuration helpers.',
       'Embed tools into existing systems via iframes or deliver them as Chrome extensions for daily workflows.',
@@ -542,22 +581,76 @@ export default function ExperiencePage() {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
-              {devActivities.map((activity, idx) => (
-                <div
-                  key={activity.id}
-                  className="animate-in fade-in slide-in-from-bottom"
-                  style={{
-                    animationDelay: `${idx * 50}ms`,
-                  }}
-                >
-                  <PMActivityCard
-                    title={activity.title}
-                    proficiency={activity.proficiency}
-                    onClick={() => setSelectedActivity(activity)}
-                  />
-                </div>
-              ))}
+            {/* AI Automation */}
+            <div style={{ marginBottom: '3rem' }}>
+              <h4 style={{ margin: '0 0 1.5rem 0', fontSize: '1.125rem', fontWeight: 400, color: 'rgb(209, 213, 219)', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.8 }}>
+                AI Automation
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                {devActivities.slice(0, 3).map((activity, idx) => (
+                  <div
+                    key={activity.id}
+                    className="animate-in fade-in slide-in-from-bottom"
+                    style={{
+                      animationDelay: `${idx * 50}ms`,
+                    }}
+                  >
+                    <PMActivityCard
+                      title={activity.title}
+                      proficiency={activity.proficiency}
+                      onClick={() => setSelectedActivity(activity)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* System Logic & Prototyping */}
+            <div style={{ marginBottom: '3rem' }}>
+              <h4 style={{ margin: '0 0 1.5rem 0', fontSize: '1.125rem', fontWeight: 400, color: 'rgb(209, 213, 219)', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.8 }}>
+                System Logic & Prototyping
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                {devActivities.slice(3, 6).map((activity, idx) => (
+                  <div
+                    key={activity.id}
+                    className="animate-in fade-in slide-in-from-bottom"
+                    style={{
+                      animationDelay: `${idx * 50}ms`,
+                    }}
+                  >
+                    <PMActivityCard
+                      title={activity.title}
+                      proficiency={activity.proficiency}
+                      onClick={() => setSelectedActivity(activity)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Integration & Operational Tools */}
+            <div>
+              <h4 style={{ margin: '0 0 1.5rem 0', fontSize: '1.125rem', fontWeight: 400, color: 'rgb(209, 213, 219)', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.8 }}>
+                Integration & Operational Tools
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                {devActivities.slice(6, 9).map((activity, idx) => (
+                  <div
+                    key={activity.id}
+                    className="animate-in fade-in slide-in-from-bottom"
+                    style={{
+                      animationDelay: `${idx * 50}ms`,
+                    }}
+                  >
+                    <PMActivityCard
+                      title={activity.title}
+                      proficiency={activity.proficiency}
+                      onClick={() => setSelectedActivity(activity)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
