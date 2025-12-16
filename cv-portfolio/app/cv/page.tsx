@@ -210,9 +210,14 @@ export default function CVPage() {
 
         {/* Experience Section */}
         <div style={{ marginBottom: '12mm' }}>
-          <h3 style={{ margin: '0 0 6mm 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            Professional Experience
-          </h3>
+          <div style={{ marginBottom: '6mm' }}>
+            <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Professional Experience
+            </h3>
+            <p style={{ margin: 0, fontSize: '9px', color: '#999' }}>
+              [click for details]
+            </p>
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
             <div style={{ height: 0, overflow: 'hidden' }} />
             {renderExperienceRow(experiences[0])}
