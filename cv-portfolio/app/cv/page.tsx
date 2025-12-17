@@ -262,7 +262,7 @@ export default function CVPage() {
         </div>
 
         {/* Skills Section Header */}
-        <div style={{ marginBottom: '6mm', paddingBottom: '4mm', borderBottom: '1px solid #ddd' }}>
+        <div style={{ marginBottom: '6mm', paddingTop: '4mm', borderTop: '1px solid #ddd' }}>
           <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             Skills and Activities Performed
           </h3>
