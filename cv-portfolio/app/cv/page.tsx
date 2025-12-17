@@ -261,6 +261,13 @@ export default function CVPage() {
           </div>
         </div>
 
+        {/* Skills Section Header */}
+        <div style={{ marginBottom: '6mm' }}>
+          <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Skills and Activities Performed
+          </h3>
+        </div>
+
         {/* Skills Section */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10mm', marginBottom: '8mm' }}>
           {/* Product Management Skills */}
