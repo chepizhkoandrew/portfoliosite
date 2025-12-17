@@ -101,7 +101,7 @@ export default function CVPage() {
       href={`/experience/${exp.id}`}
       style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '10mm', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '6mm', alignItems: 'start' }}>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
           {exp.logo && (
             <div
@@ -197,7 +197,7 @@ export default function CVPage() {
 
         {/* Contact Section */}
         <div style={{ marginBottom: '6mm', paddingBottom: '4mm', borderBottom: '1px solid #ddd' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '10mm', fontSize: '11px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '6mm', fontSize: '11px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
               <div>
                 <span style={{ color: '#666' }}>Email:</span> {profile.email}
@@ -268,7 +268,7 @@ export default function CVPage() {
         </div>
 
         {/* Skills Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10mm', marginBottom: '4mm' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6mm', marginBottom: '4mm' }}>
           {/* Product Management Skills */}
           <div>
             <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
