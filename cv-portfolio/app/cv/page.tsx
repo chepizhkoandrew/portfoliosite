@@ -191,7 +191,7 @@ export default function CVPage() {
           <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#888', lineHeight: 1.4 }}>
             {visibleH2}
           </h2>
-          <h2 style={{ margin: '0 0 8px 0', fontSize: '15px', fontWeight: 400, color: '#fff', lineHeight: 1.4, visibility: 'hidden', height: 0, overflow: 'hidden' }}>
+          <h2 style={{ margin: '0 0 8px 0', fontSize: '1px', fontWeight: 400, color: '#fff', lineHeight: 1, letterSpacing: '0px' }}>
             {invisibleH2}
           </h2>
         </div>
