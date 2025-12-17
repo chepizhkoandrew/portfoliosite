@@ -101,7 +101,7 @@ export default function CVPage() {
       href={`/experience/${exp.id}`}
       style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr 1fr', gap: '10mm', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 1fr', gap: '10mm', alignItems: 'start' }}>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
           {exp.logo && (
             <div
@@ -198,7 +198,7 @@ export default function CVPage() {
 
         {/* Contact Section */}
         <div style={{ marginBottom: '12mm', paddingBottom: '8mm', borderBottom: '1px solid #ddd' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr 1fr', gap: '10mm', fontSize: '11px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 1fr', gap: '10mm', fontSize: '11px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
               <div>
                 <span style={{ color: '#666' }}>Email:</span> {profile.email}
