@@ -181,7 +181,7 @@ export default function CVPage() {
         }}
       >
         {/* Intro Section */}
-        <div style={{ marginBottom: '12mm' }}>
+        <div style={{ marginBottom: '6mm' }}>
           <h1 style={{ margin: '0 0 4px 0', fontSize: '26px', fontWeight: 300 }}>
             {profile.name}
           </h1>
@@ -197,7 +197,7 @@ export default function CVPage() {
         </div>
 
         {/* Contact Section */}
-        <div style={{ marginBottom: '12mm', paddingBottom: '8mm', borderBottom: '1px solid #ddd' }}>
+        <div style={{ marginBottom: '6mm', paddingBottom: '4mm', borderBottom: '1px solid #ddd' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '10mm', fontSize: '11px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
               <div>
@@ -245,7 +245,7 @@ export default function CVPage() {
         </div>
 
         {/* Experience Section */}
-        <div style={{ marginBottom: '12mm' }}>
+        <div style={{ marginBottom: '6mm' }}>
           <div style={{ marginBottom: '6mm' }}>
             <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Professional Experience
@@ -262,14 +262,14 @@ export default function CVPage() {
         </div>
 
         {/* Skills Section Header */}
-        <div style={{ marginBottom: '6mm' }}>
+        <div style={{ marginBottom: '6mm', paddingBottom: '4mm', borderBottom: '1px solid #ddd' }}>
           <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             Skills and Activities Performed
           </h3>
         </div>
 
         {/* Skills Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10mm', marginBottom: '8mm' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10mm', marginBottom: '4mm' }}>
           {/* Product Management Skills */}
           <div>
             <h3 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
