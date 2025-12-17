@@ -148,10 +148,10 @@ export default function CVPage() {
   )
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4 flex flex-col items-center">
       <MobileMenu onDownloadCV={handleOpenModal} />
       
-      <div className="max-w-4xl mx-auto mb-8">
+      <div className="w-full flex justify-center mb-8">
         <div className="flex gap-4 justify-center items-center flex-wrap">
           <button
             onClick={handleOpenModal}
@@ -170,12 +170,11 @@ export default function CVPage() {
 
       <div
         ref={cvRef}
-        className="mx-auto bg-white text-black"
+        className="bg-white text-black"
         style={{
           width: 'min(210mm, calc(100% - 32px))',
           minHeight: '297mm',
           padding: '6mm 8mm',
-          margin: '0 auto',
           fontSize: '12px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}
@@ -350,7 +349,7 @@ export default function CVPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto mt-8 text-center text-neutral-500 text-sm">
+      <div className="mt-8 text-center text-neutral-500 text-sm">
         <p>A4 Portrait Format - Optimized for Printing</p>
       </div>
 
