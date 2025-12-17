@@ -101,29 +101,31 @@ export default function CVPage() {
       href={`/experience/${exp.id}`}
       style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 1.5fr minmax(100px, auto)', gap: '8px', alignItems: 'start' }}>
-        {exp.logo && (
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              flexShrink: 0,
-              backgroundImage: `url(${exp.logo})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-            }}
-          />
-        )}
-        <div>
-          <h4 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
-            {exp.title}
-          </h4>
-          {exp.id !== 'freelance' && (
-            <p style={{ margin: '1px 0 0 0', fontSize: '9px', color: '#888' }}>
-              {exp.company}
-            </p>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10mm', alignItems: 'start' }}>
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
+          {exp.logo && (
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                flexShrink: 0,
+                backgroundImage: `url(${exp.logo})`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            />
           )}
+          <div>
+            <h4 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
+              {exp.title}
+            </h4>
+            {exp.id !== 'freelance' && (
+              <p style={{ margin: '1px 0 0 0', fontSize: '9px', color: '#888' }}>
+                {exp.company}
+              </p>
+            )}
+          </div>
         </div>
         <div style={{ fontSize: '9px', color: '#666', lineHeight: 1.4 }}>
           {exp.id === 'freelance' ? (
@@ -196,33 +198,48 @@ export default function CVPage() {
 
         {/* Contact Section */}
         <div style={{ marginBottom: '12mm', paddingBottom: '8mm', borderBottom: '1px solid #ddd' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '11px' }}>
-            <div>
-              <span style={{ color: '#666' }}>Email:</span> {profile.email}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10mm', fontSize: '11px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+              <div>
+                <span style={{ color: '#666' }}>Email:</span> {profile.email}
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>Website:</span>{' '}
+                <a href={profile.website} style={{ color: '#0066cc', textDecoration: 'none' }}>
+                  Portfolio
+                </a>
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>LinkedIn:</span>{' '}
+                <a href={profile.social.linkedin} style={{ color: '#0066cc', textDecoration: 'none' }}>
+                  Profile
+                </a>
+              </div>
             </div>
-            <div>
-              <span style={{ color: '#666' }}>Phone:</span> {profile.phone}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+              <div>
+                <span style={{ color: '#666' }}>Phone:</span> {profile.phone}
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>Location:</span> Vigo, Galicia
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>AI Assistant:</span>{' '}
+                <a href={profile.personalAssistant} style={{ color: '#0066cc', textDecoration: 'none' }}>
+                  Chat
+                </a>
+              </div>
             </div>
-            <div>
-              <span style={{ color: '#666' }}>Website:</span>{' '}
-              <a href={profile.website} style={{ color: '#0066cc', textDecoration: 'none' }}>
-                Portfolio
-              </a>
-            </div>
-            <div>
-              <span style={{ color: '#666' }}>Location:</span> Vigo, Galicia
-            </div>
-            <div>
-              <span style={{ color: '#666' }}>LinkedIn:</span>{' '}
-              <a href={profile.social.linkedin} style={{ color: '#0066cc', textDecoration: 'none' }}>
-                Profile
-              </a>
-            </div>
-            <div>
-              <span style={{ color: '#666' }}>AI Assistant:</span>{' '}
-              <a href={profile.personalAssistant} style={{ color: '#0066cc', textDecoration: 'none' }}>
-                Chat
-              </a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+              <div>
+                <span style={{ color: '#666' }}>Full time rate:</span> €3,000
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>Hourly rate:</span> €20/hour
+              </div>
+              <div>
+                <span style={{ color: '#666' }}>Availability:</span> now
+              </div>
             </div>
           </div>
         </div>
@@ -237,7 +254,7 @@ export default function CVPage() {
               [click for details]
             </p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6mm' }}>
             <div style={{ height: 0, overflow: 'hidden' }} />
             {renderExperienceRow(experiences[0])}
             {experiences.slice(1, 6).map((exp) => renderExperienceRow(exp))}
