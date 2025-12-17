@@ -117,9 +117,9 @@ export default function CVPage() {
             />
           )}
           <div>
-            <h4 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
+            <h2 style={{ margin: 0, fontSize: '11px', fontWeight: 600 }}>
               {exp.title}
-            </h4>
+            </h2>
             {exp.id !== 'freelance' && (
               <p style={{ margin: '1px 0 0 0', fontSize: '9px', color: '#888' }}>
                 {exp.company}
@@ -247,9 +247,9 @@ export default function CVPage() {
         {/* Experience Section */}
         <div style={{ marginBottom: '6mm' }}>
           <div style={{ marginBottom: '6mm' }}>
-            <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <h2 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Professional Experience
-            </h3>
+            </h2>
             <p style={{ margin: 0, fontSize: '9px', color: '#999' }}>
               [click for details]
             </p>
@@ -263,25 +263,25 @@ export default function CVPage() {
 
         {/* Skills Section Header */}
         <div style={{ marginBottom: '6mm', paddingTop: '4mm', borderTop: '1px solid #ddd' }}>
-          <h3 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <h2 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             Skills and Activities Performed
-          </h3>
+          </h2>
         </div>
 
         {/* Skills Section */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10mm', marginBottom: '4mm' }}>
           {/* Product Management Skills */}
           <div>
-            <h3 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Product Management
-            </h3>
+            </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
               {pmActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <p style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
+                    <h2 style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
                       {activity.title}
-                    </p>
+                    </h2>
                     <span style={{ fontSize: '10px', color: '#888' }}>
                       {activity.proficiency}%
                     </span>
@@ -311,16 +311,16 @@ export default function CVPage() {
 
           {/* Development & Automation Skills */}
           <div>
-            <h3 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Development & Automation
-            </h3>
+            </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
               {devActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <p style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
+                    <h2 style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
                       {activity.title}
-                    </p>
+                    </h2>
                     <span style={{ fontSize: '10px', color: '#888' }}>
                       {activity.proficiency}%
                     </span>
