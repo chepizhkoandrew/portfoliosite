@@ -21,7 +21,7 @@ export function MobileMenu({ onDownloadCV }: MobileMenuProps) {
     { label: 'About Andrii', href: '/experience' },
     { label: 'Get in touch', href: '/contact' },
     { label: 'Talk to Assistant', href: '/chatbot', highlight: true },
-    ...(onDownloadCV ? [{ label: 'Download CV', action: onDownloadCV, isAction: true }] : []),
+    ...(onDownloadCV ? [{ label: 'Download CV', action: onDownloadCV, isAction: true } as const] : []),
   ]
 
   return (
