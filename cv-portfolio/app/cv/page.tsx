@@ -140,7 +140,7 @@ export default function CVPage() {
             </div>
           )}
         </div>
-        <div style={{ textAlign: 'right', whiteSpace: 'nowrap', flexShrink: 0, fontSize: '9px', color: '#888' }}>
+        <div style={{ textAlign: 'left', whiteSpace: 'nowrap', flexShrink: 0, fontSize: '9px', color: '#888' }}>
           {exp.duration}
         </div>
       </div>
