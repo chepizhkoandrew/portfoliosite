@@ -1,8 +1,6 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
-import { useState, useRef, useEffect } from 'react';
+import { Suspense, useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiRefreshCw } from 'react-icons/fi';
 import Link from 'next/link';
@@ -49,7 +47,7 @@ const suggestedQuestions = [
   'This all looks expensive. What\'s his rate?',
 ];
 
-export default function ChatbotPage() {
+function ChatbotContent() {
   const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -320,5 +318,13 @@ export default function ChatbotPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ChatbotPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-neutral-950 text-slate-100 flex items-center justify-center">Loading...</div>}>
+      <ChatbotContent />
+    </Suspense>
   );
 }
