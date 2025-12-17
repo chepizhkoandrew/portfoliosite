@@ -170,9 +170,9 @@ export default function CVPage() {
 
       <div
         ref={cvRef}
-        className="max-w-4xl mx-auto bg-white text-black"
+        className="mx-auto bg-white text-black"
         style={{
-          width: '210mm',
+          width: 'min(210mm, calc(100% - 32px))',
           minHeight: '297mm',
           padding: '6mm 8mm',
           margin: '0 auto',
