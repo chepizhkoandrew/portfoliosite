@@ -69,30 +69,97 @@ export default function CVPage() {
   }
 
   const handleGeneratePDF = async (newVisibleH2: string, newInvisibleH2: string) => {
-    setVisibleH2(newVisibleH2)
-    setInvisibleH2(newInvisibleH2)
+    if (!cvRef.current) return
     
-    setTimeout(async () => {
-      if (!cvRef.current) return
+    try {
+      const { default: html2pdf } = await import('html2pdf.js')
       
-      try {
-        const html2pdf = (await import('html2pdf.js')).default
-        const element = cvRef.current
-        
-        const opt = {
-          margin: 0,
-          filename: 'Andrii_Chepizhko_CV.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 1, useCORS: true, logging: false, allowTaint: true },
-          jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
-          pagebreak: { mode: 'avoid-all' },
-        }
-        await html2pdf().set(opt).from(element).save()
-      } catch (error) {
-        console.error('Failed to download PDF:', error)
-        alert('Failed to generate PDF. Please try again.')
+      const elementClone = cvRef.current.cloneNode(true) as HTMLElement
+      
+      const visibleH2El = elementClone.querySelector('[data-content-type="visible-h2"]')
+      const invisibleH2El = elementClone.querySelector('[data-content-type="invisible-h2"]')
+      
+      if (visibleH2El && visibleH2El instanceof HTMLElement) {
+        visibleH2El.textContent = newVisibleH2
       }
-    }, 100)
+      if (invisibleH2El && invisibleH2El instanceof HTMLElement) {
+        invisibleH2El.remove()
+      }
+      
+      const opt = {
+        margin: 0,
+        filename: 'Andrii_Chepizhko_CV.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
+      }
+      
+      const { PDFDocument, rgb } = await import('pdf-lib')
+      
+      const pdfBlob: Blob = await new Promise((resolve, reject) => {
+        html2pdf()
+          .set(opt)
+          .from(elementClone)
+          .toPdf()
+          .get('pdf', (pdf: any) => {
+            try {
+              const blob = pdf.output('blob')
+              resolve(blob)
+            } catch (e) {
+              reject(e)
+            }
+          })
+      })
+      
+      const pdfBytes = await pdfBlob.arrayBuffer()
+      const pdfDoc = await PDFDocument.load(pdfBytes)
+      
+      while (pdfDoc.getPageCount() > 1) {
+        pdfDoc.removePage(pdfDoc.getPageCount() - 1)
+      }
+      
+      const pages = pdfDoc.getPages()
+      if (pages.length > 0 && newInvisibleH2 && newInvisibleH2.trim().length > 0) {
+        const firstPage = pages[0]
+        const pageHeight = firstPage.getHeight()
+        const sanitizedText = newInvisibleH2.replace(/[^\x00-\x7F]/g, '?')
+        
+        try {
+          const courierFont = await pdfDoc.embedFont('Courier')
+          const yPosition = pageHeight - 20
+          
+          firstPage.drawText(sanitizedText, {
+            x: 20,
+            y: yPosition,
+            size: 3,
+            color: rgb(0.9, 0.9, 0.9),
+            font: courierFont,
+          })
+          console.log('✓ Added hidden text to PDF via post-processing, text:', sanitizedText.substring(0, 80))
+        } catch (e) {
+          console.warn('Error adding text:', e)
+        }
+      }
+      
+      const modifiedPdfBytes = await pdfDoc.save()
+      const modifiedBlob = new Blob([modifiedPdfBytes as any], { type: 'application/pdf' })
+      
+      const url = URL.createObjectURL(modifiedBlob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'Andrii_Chepizhko_CV.pdf'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+      
+      setVisibleH2(newVisibleH2)
+      setInvisibleH2(newInvisibleH2)
+    } catch (error) {
+      console.error('Failed to generate PDF:', error)
+      console.error('Error details:', error instanceof Error ? error.message : String(error))
+      alert('Failed to generate PDF. Check console for details.')
+    }
   }
 
   const renderExperienceRow = (exp: typeof experiences[0]) => (
@@ -104,15 +171,14 @@ export default function CVPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '6mm', alignItems: 'start' }}>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
           {exp.logo && (
-            <div
+            <img
+              src={exp.logo}
+              alt={exp.title}
               style={{
                 width: '32px',
                 height: '32px',
                 flexShrink: 0,
-                backgroundImage: `url(${exp.logo})`,
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
+                objectFit: 'contain',
               }}
             />
           )}
@@ -148,7 +214,7 @@ export default function CVPage() {
   )
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4 flex flex-col items-center">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4 flex flex-col items-center page-container">
       <MobileMenu onDownloadCV={handleOpenModal} />
       
       <div className="w-full flex justify-center mb-8">
@@ -173,24 +239,26 @@ export default function CVPage() {
         className="bg-white text-black"
         style={{
           width: 'min(210mm, calc(100% - 32px))',
+          height: '297mm',
           minHeight: '297mm',
           padding: '6mm 8mm',
           fontSize: '12px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
+          overflow: 'hidden',
         }}
       >
         {/* Intro Section */}
-        <div style={{ marginBottom: '6mm' }}>
+        <div style={{ marginBottom: '2mm' }}>
           <h1 style={{ margin: '0 0 4px 0', fontSize: '26px', fontWeight: 300 }}>
             {profile.name}
           </h1>
           <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#666' }}>
             {profile.title}
           </h2>
-          <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#888', lineHeight: 1.4 }}>
+          <h2 data-content-type="visible-h2" style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#888', lineHeight: 1.4 }}>
             {visibleH2}
           </h2>
-          <h2 style={{ margin: '0 0 8px 0', fontSize: '1px', fontWeight: 400, color: '#fff', lineHeight: 1, letterSpacing: '0px' }}>
+          <h2 data-content-type="invisible-h2" style={{ margin: '0 0 4px 0', fontSize: '5px', fontWeight: 400, color: '#111111', lineHeight: 1.4 }}>
             {invisibleH2}
           </h2>
         </div>
@@ -244,8 +312,8 @@ export default function CVPage() {
         </div>
 
         {/* Experience Section */}
-        <div style={{ marginBottom: '6mm' }}>
-          <div style={{ marginBottom: '6mm' }}>
+        <div style={{ marginBottom: '4mm' }}>
+          <div style={{ marginBottom: '3mm' }}>
             <h2 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Professional Experience
             </h2>
@@ -274,7 +342,7 @@ export default function CVPage() {
             <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Product Management
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1mm' }}>
               {pmActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
@@ -313,7 +381,7 @@ export default function CVPage() {
             <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Development & Automation
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2mm' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1mm' }}>
               {devActivities.map((activity) => (
                 <div key={activity.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>

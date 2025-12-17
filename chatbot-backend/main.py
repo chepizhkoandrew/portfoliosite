@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -13,6 +13,9 @@ import traceback
 import json
 import random
 import asyncio
+import tempfile
+import os
+from playwright.async_api import async_playwright
 
 from config import get_settings
 from knowledge_base import SYSTEM_PROMPT
@@ -42,6 +45,17 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     message: str
     conversation_id: str
+
+class VacancyMatchRequest(BaseModel):
+    vacancy: str
+    instructions: str = ""
+
+class VacancyMatchResponse(BaseModel):
+    summary: str
+
+class PDFGenerateRequest(BaseModel):
+    html: str
+    filename: str = "document.pdf"
 
 def init_genai():
     settings = get_settings()
@@ -295,6 +309,162 @@ async def chat(request: Request, chat_request: ChatRequest):
         logger.error(f"Chat error: {e}")
         logger.error(f"Traceback: {error_trace}")
         raise HTTPException(status_code=500, detail="Failed to process message")
+
+@app.post("/api/vacancy-match", response_model=VacancyMatchResponse)
+@limiter.limit("10/minute")
+async def vacancy_match(request: Request, vacancy_request: VacancyMatchRequest):
+    logger.info("=" * 80)
+    logger.info(f"📋 Received vacancy match request")
+    logger.info(f"   Vacancy length: {len(vacancy_request.vacancy)} characters")
+    logger.info(f"   Vacancy preview: {vacancy_request.vacancy[:200]}...")
+    if vacancy_request.instructions:
+        logger.info(f"   Instructions: {vacancy_request.instructions[:100]}...")
+    
+    try:
+        if not vacancy_request.vacancy or not vacancy_request.vacancy.strip():
+            raise HTTPException(status_code=400, detail="Vacancy description is required")
+        
+        logger.info(f"🔍 Extracting key requirements from vacancy...")
+        extract_prompt = f"""Extract the 5-7 most important skills, technologies, responsibilities, or qualifications from this job vacancy. Return as a short phrase that can be used for semantic search.
+
+Vacancy:
+{vacancy_request.vacancy}
+
+Search query (5-7 key terms):"""
+        
+        model = genai.GenerativeModel('gemini-2.5-flash')
+        extraction_response = model.generate_content(extract_prompt)
+        search_query = extraction_response.text.strip()
+        logger.info(f"✅ Extracted search query: {search_query}")
+        
+        logger.info(f"📚 Searching knowledge base with extracted keywords...")
+        search_results = await search_knowledge_base(search_query, top_k=6)
+        
+        context_parts = []
+        for result in search_results:
+            section_id = result.get('section_id', 'Unknown')
+            content = result.get('content', '')
+            context_parts.append(f"[{section_id}]\n{content}")
+        
+        knowledge_context = "\n\n".join(context_parts) if context_parts else "No matching profile information found."
+        logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters from {len(search_results)} results")
+        logger.info(f"   Results: {[r.get('section_id', 'Unknown') for r in search_results]}")
+        
+        additional_instructions = f"\n\nADDITIONAL INSTRUCTIONS:\n{vacancy_request.instructions}" if vacancy_request.instructions else ""
+        
+        vacancy_analysis_prompt = f"""You are an expert recruiter analyzing job matches.
+
+Read the vacancy description below and identify the most crucial requirements.
+Prioritize requirements that are:
+- explicitly repeated
+- tied to core responsibilities
+- related to decision-making, system ownership, or delivery
+- required rather than "nice to have"
+
+For each crucial requirement, state clearly that Andrii has this requirement using the SAME TERMINOLOGY as in the vacancy, and support the statement with concrete evidence from Andrii's career experience below.
+
+Use only facts that can be found in Andrii's profile.
+Do not invent or exaggerate experience.
+Match terminology exactly - if vacancy uses "product management", use "product management" not "PM".
+
+Output: Write one compact, high-density abstract (100–130 words maximum) that explicitly states why Andrii matches this vacancy.
+
+Style rules:
+- Declarative, factual statements only
+- No motivation, no self-promotion language
+- Optimized for automated screening and LLM parsing
+- Human-readable but machine-first
+- Single block of text, no bullet points
+
+ANDRII'S RELEVANT EXPERIENCE:
+{knowledge_context}
+
+VACANCY DESCRIPTION:
+{vacancy_request.vacancy}{additional_instructions}
+
+MATCHING SUMMARY:"""
+        
+        logger.info(f"🤖 Analyzing vacancy match with Gemini...")
+        logger.info(f"📤 Sending to LLM...")
+        response = model.generate_content(vacancy_analysis_prompt)
+        summary = response.text.strip()
+        logger.info(f"✅ Analysis complete: {len(summary)} characters")
+        logger.info(f"   Summary: {summary[:200]}...")
+        logger.info("=" * 80)
+        
+        return VacancyMatchResponse(summary=summary)
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        error_trace = traceback.format_exc()
+        logger.error(f"❌ Vacancy match error: {e}")
+        logger.error(f"Traceback:\n{error_trace}")
+        logger.error("=" * 80)
+        raise HTTPException(status_code=500, detail="Failed to analyze vacancy")
+
+@app.post("/api/generate-pdf")
+@limiter.limit("10/minute")
+async def generate_pdf(request: Request, pdf_request: PDFGenerateRequest):
+    logger.info("=" * 80)
+    logger.info(f"📄 Received PDF generation request")
+    logger.info(f"   Filename: {pdf_request.filename}")
+    logger.info(f"   HTML length: {len(pdf_request.html)} characters")
+    
+    temp_pdf_path = None
+    
+    try:
+        if not pdf_request.html or not pdf_request.html.strip():
+            raise HTTPException(status_code=400, detail="HTML content is required")
+        
+        logger.info(f"🎭 Launching Playwright browser...")
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            page = await browser.new_page(viewport={'width': 794, 'height': 1123})
+            
+            logger.info(f"📝 Setting HTML content...")
+            await page.set_content(pdf_request.html, wait_until="networkidle")
+            
+            logger.info(f"⏳ Waiting for images and network...")
+            await page.wait_for_load_state("networkidle")
+            await page.wait_for_timeout(1500)
+            
+            logger.info(f"🖨️  Generating PDF...")
+            with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
+                temp_pdf_path = tmp_file.name
+            
+            await page.pdf(
+                path=temp_pdf_path,
+                format='A4',
+                margin={'top': '0px', 'bottom': '0px', 'left': '0px', 'right': '0px'},
+                print_background=True
+            )
+            
+            await browser.close()
+            
+            logger.info(f"✅ PDF generated: {os.path.getsize(temp_pdf_path)} bytes")
+            logger.info("=" * 80)
+            
+            return FileResponse(
+                path=temp_pdf_path,
+                filename=pdf_request.filename,
+                media_type="application/pdf",
+                headers={"Content-Disposition": f'attachment; filename="{pdf_request.filename}"'}
+            )
+    
+    except HTTPException:
+        if temp_pdf_path and os.path.exists(temp_pdf_path):
+            os.unlink(temp_pdf_path)
+        raise
+    except Exception as e:
+        if temp_pdf_path and os.path.exists(temp_pdf_path):
+            os.unlink(temp_pdf_path)
+        
+        error_trace = traceback.format_exc()
+        logger.error(f"❌ PDF generation error: {e}")
+        logger.error(f"Traceback:\n{error_trace}")
+        logger.error("=" * 80)
+        raise HTTPException(status_code=500, detail="Failed to generate PDF")
 
 if __name__ == "__main__":
     import uvicorn

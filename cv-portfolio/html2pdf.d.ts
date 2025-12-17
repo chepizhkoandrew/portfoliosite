@@ -11,6 +11,8 @@ declare module 'html2pdf.js' {
   interface Html2Pdf {
     set(options: Html2PdfOptions): Html2Pdf
     from(element: HTMLElement): Html2Pdf
+    toPdf(): Html2Pdf
+    get(prop: string, callback: (pdf: any) => void): void
     save(): Promise<void>
   }
 
