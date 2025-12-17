@@ -1,11 +1,12 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { profile } from '@/data/content'
 import { experiences } from '@/data/experience'
 import { pmActivities } from '@/data/pmActivities'
 import { MobileMenu } from '@/components/MobileMenu'
+import { PDFGenerationModal } from '@/components/PDFGenerationModal'
 
 const devActivities = [
   {
@@ -55,28 +56,43 @@ const devActivities = [
   },
 ]
 
+const DEFAULT_VISIBLE_H2 = 'I can build and launch IT products, from idea to a working solution.'
+
 export default function CVPage() {
   const cvRef = useRef<HTMLDivElement>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [visibleH2, setVisibleH2] = useState(DEFAULT_VISIBLE_H2)
+  const [invisibleH2, setInvisibleH2] = useState('')
 
-  const handleDownloadPDF = async () => {
-    if (!cvRef.current) return
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleGeneratePDF = async (newVisibleH2: string, newInvisibleH2: string) => {
+    setVisibleH2(newVisibleH2)
+    setInvisibleH2(newInvisibleH2)
     
-    try {
-      const html2pdf = (await import('html2pdf.js')).default
-      const element = cvRef.current
-      const opt = {
-        margin: 0,
-        filename: 'Andrii_Chepizhko_CV.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 1, useCORS: true, logging: false, allowTaint: true },
-        jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
-        pagebreak: { mode: 'avoid-all' },
+    setTimeout(async () => {
+      if (!cvRef.current) return
+      
+      try {
+        const html2pdf = (await import('html2pdf.js')).default
+        const element = cvRef.current
+        
+        const opt = {
+          margin: 0,
+          filename: 'Andrii_Chepizhko_CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 1, useCORS: true, logging: false, allowTaint: true },
+          jsPDF: { format: 'a4', orientation: 'portrait', compress: true },
+          pagebreak: { mode: 'avoid-all' },
+        }
+        await html2pdf().set(opt).from(element).save()
+      } catch (error) {
+        console.error('Failed to download PDF:', error)
+        alert('Failed to generate PDF. Please try again.')
       }
-      await html2pdf().set(opt).from(element).save()
-    } catch (error) {
-      console.error('Failed to download PDF:', error)
-      alert('Failed to generate PDF. Please try again.')
-    }
+    }, 100)
   }
 
   const renderExperienceRow = (exp: typeof experiences[0]) => (
@@ -131,12 +147,12 @@ export default function CVPage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 py-8 px-4">
-      <MobileMenu onDownloadCV={handleDownloadPDF} />
+      <MobileMenu onDownloadCV={handleOpenModal} />
       
       <div className="max-w-4xl mx-auto mb-8">
         <div className="flex gap-4 justify-center items-center flex-wrap">
           <button
-            onClick={handleDownloadPDF}
+            onClick={handleOpenModal}
             className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-light transition-colors"
           >
             Download as PDF
@@ -170,9 +186,12 @@ export default function CVPage() {
           <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#666' }}>
             {profile.title}
           </h2>
-          <p style={{ margin: '0 0 8px 0', fontSize: '11px', color: '#888', lineHeight: 1.4 }}>
-            {profile.bio.secondLine}
-          </p>
+          <h2 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 400, color: '#888', lineHeight: 1.4 }}>
+            {visibleH2}
+          </h2>
+          <h2 style={{ margin: '0 0 8px 0', fontSize: '15px', fontWeight: 400, color: '#fff', lineHeight: 1.4, visibility: 'hidden', height: 0, overflow: 'hidden' }}>
+            {invisibleH2}
+          </h2>
         </div>
 
         {/* Contact Section */}
@@ -310,6 +329,13 @@ export default function CVPage() {
       <div className="max-w-4xl mx-auto mt-8 text-center text-neutral-500 text-sm">
         <p>A4 Portrait Format - Optimized for Printing</p>
       </div>
+
+      <PDFGenerationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onGenerate={handleGeneratePDF}
+        defaultVisibleH2={DEFAULT_VISIBLE_H2}
+      />
     </div>
   )
 }
