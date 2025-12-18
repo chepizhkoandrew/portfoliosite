@@ -263,8 +263,22 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
             history=chat_history if chat_history else None
         )
         
-        logger.info(f"📤 Sending message to Gemini...")
-        response = chat_session.send_message(chat_request.message)
+        # Inject knowledge context directly into the message to force Gemini to use it
+        message_with_context = f"""Use ONLY the knowledge base below to answer this question. Do NOT make up information.
+
+KNOWLEDGE BASE:
+{knowledge_context}
+
+USER QUESTION: {chat_request.message}
+
+INSTRUCTIONS:
+- Answer ONLY using the knowledge base above
+- Cite the section you're using: [From: SECTION_ID]
+- If information isn't in the knowledge base, say "I don't have information about that"
+- Do NOT invent, guess, or hallucinate"""
+        
+        logger.info(f"📤 Sending message to Gemini with knowledge context injected...")
+        response = chat_session.send_message(message_with_context)
         assistant_message = response.text
         logger.info(f"✅ Gemini response received: {len(assistant_message)} chars, {assistant_message[:80]}...")
         
@@ -350,8 +364,22 @@ async def chat(request: Request, chat_request: ChatRequest):
             history=chat_history if chat_history else None
         )
         
-        logger.info(f"Sending message to Gemini with knowledge context...")
-        response = chat_session.send_message(chat_request.message)
+        # Inject knowledge context directly into the message to force Gemini to use it
+        message_with_context = f"""Use ONLY the knowledge base below to answer this question. Do NOT make up information.
+
+KNOWLEDGE BASE:
+{knowledge_context}
+
+USER QUESTION: {chat_request.message}
+
+INSTRUCTIONS:
+- Answer ONLY using the knowledge base above
+- Cite the section you're using: [From: SECTION_ID]
+- If information isn't in the knowledge base, say "I don't have information about that"
+- Do NOT invent, guess, or hallucinate"""
+        
+        logger.info(f"Sending message to Gemini with knowledge context injected...")
+        response = chat_session.send_message(message_with_context)
         assistant_message = response.text
         logger.info(f"✅ Gemini response received: {assistant_message[:100]}...")
         
