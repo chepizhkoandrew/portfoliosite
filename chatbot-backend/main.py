@@ -384,9 +384,10 @@ VACANCY DESCRIPTION:
 
 MATCHING SUMMARY:"""
         
-        logger.info(f"🤖 Analyzing vacancy match with Gemini...")
+        logger.info(f"🤖 Analyzing vacancy match with Gemini 2.5 Pro...")
         logger.info(f"📤 Sending to LLM...")
-        response = model.generate_content(vacancy_analysis_prompt)
+        pro_model = genai.GenerativeModel('gemini-2.5-pro')
+        response = pro_model.generate_content(vacancy_analysis_prompt)
         summary = response.text.strip()
         logger.info(f"✅ Analysis complete: {len(summary)} characters")
         logger.info(f"   Summary: {summary[:200]}...")
