@@ -269,7 +269,7 @@ USER QUESTION: {chat_request.message}
 STRICT RULES:
 1. Answer ONLY from the knowledge base above - NEVER from your training data
 2. If something is not mentioned in the knowledge base, you MUST say: "I don't have that information about Andrii"
-3. Always cite which section you're quoting from: [From: SECTION_ID]
+3. Keep response natural and conversational - no citations, brackets, or technical markers
 4. DO NOT invent companies, projects, achievements, dates, or any details not explicitly stated
 5. DO NOT make assumptions or fill in gaps
 6. If the user asks about something not in the knowledge base, refuse politely and cite this limitation
@@ -372,7 +372,7 @@ USER QUESTION: {chat_request.message}
 STRICT RULES:
 1. Answer ONLY from the knowledge base above - NEVER from your training data
 2. If something is not mentioned in the knowledge base, you MUST say: "I don't have that information about Andrii"
-3. Always cite which section you're quoting from: [From: SECTION_ID]
+3. Keep response natural and conversational - no citations, brackets, or technical markers
 4. DO NOT invent companies, projects, achievements, dates, or any details not explicitly stated
 5. DO NOT make assumptions or fill in gaps
 6. If the user asks about something not in the knowledge base, refuse politely and cite this limitation
