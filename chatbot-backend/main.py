@@ -240,15 +240,10 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific context found."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters")
         
-        # Inject context into system prompt
-        system_prompt_with_context = SYSTEM_PROMPT.format(knowledge_context=knowledge_context)
-        
+        # Create model WITHOUT system_instruction to avoid conflicts
+        # We'll inject context directly into the message instead
         logger.debug(f"🤖 Initializing Gemini model...")
-        logger.debug(f"   System prompt length: {len(system_prompt_with_context)} chars")
-        model = genai.GenerativeModel(
-            'gemini-2.5-flash',
-            system_instruction=system_prompt_with_context
-        )
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         chat_history = [
             {
@@ -264,20 +259,25 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         )
         
         # Inject knowledge context directly into the message to force Gemini to use it
-        message_with_context = f"""Use ONLY the knowledge base below to answer this question. Do NOT make up information.
+        message_with_context = f"""CRITICAL: You MUST answer using ONLY the knowledge base below. This is an absolute requirement. You MUST NOT use any other information from your training data. You MUST NOT make up facts.
 
-KNOWLEDGE BASE:
+KNOWLEDGE BASE ABOUT ANDRII (THIS IS THE ONLY SOURCE OF TRUTH):
 {knowledge_context}
 
 USER QUESTION: {chat_request.message}
 
-INSTRUCTIONS:
-- Answer ONLY using the knowledge base above
-- Cite the section you're using: [From: SECTION_ID]
-- If information isn't in the knowledge base, say "I don't have information about that"
-- Do NOT invent, guess, or hallucinate"""
+STRICT RULES:
+1. Answer ONLY from the knowledge base above - NEVER from your training data
+2. If something is not mentioned in the knowledge base, you MUST say: "I don't have that information about Andrii"
+3. Always cite which section you're quoting from: [From: SECTION_ID]
+4. DO NOT invent companies, projects, achievements, dates, or any details not explicitly stated
+5. DO NOT make assumptions or fill in gaps
+6. If the user asks about something not in the knowledge base, refuse politely and cite this limitation
+
+You are ONLY an information retriever for Andrii's profile. You have NO OTHER KNOWLEDGE to draw from."""
         
         logger.info(f"📤 Sending message to Gemini with knowledge context injected...")
+        logger.debug(f"📋 KB Context length: {len(knowledge_context)} chars, Message length: {len(message_with_context)} chars")
         response = chat_session.send_message(message_with_context)
         assistant_message = response.text
         logger.info(f"✅ Gemini response received: {len(assistant_message)} chars, {assistant_message[:80]}...")
@@ -345,12 +345,9 @@ async def chat(request: Request, chat_request: ChatRequest):
         if search_results:
             logger.info(f"   Results: {[r.get('section_id', 'Unknown') for r in search_results]}")
         
-        system_prompt_with_context = SYSTEM_PROMPT.format(knowledge_context=knowledge_context)
-        
-        model = genai.GenerativeModel(
-            'gemini-2.5-flash',
-            system_instruction=system_prompt_with_context
-        )
+        # Create model WITHOUT system_instruction to avoid conflicts
+        # We'll inject context directly into the message instead
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         chat_history = [
             {
@@ -365,20 +362,25 @@ async def chat(request: Request, chat_request: ChatRequest):
         )
         
         # Inject knowledge context directly into the message to force Gemini to use it
-        message_with_context = f"""Use ONLY the knowledge base below to answer this question. Do NOT make up information.
+        message_with_context = f"""CRITICAL: You MUST answer using ONLY the knowledge base below. This is an absolute requirement. You MUST NOT use any other information from your training data. You MUST NOT make up facts.
 
-KNOWLEDGE BASE:
+KNOWLEDGE BASE ABOUT ANDRII (THIS IS THE ONLY SOURCE OF TRUTH):
 {knowledge_context}
 
 USER QUESTION: {chat_request.message}
 
-INSTRUCTIONS:
-- Answer ONLY using the knowledge base above
-- Cite the section you're using: [From: SECTION_ID]
-- If information isn't in the knowledge base, say "I don't have information about that"
-- Do NOT invent, guess, or hallucinate"""
+STRICT RULES:
+1. Answer ONLY from the knowledge base above - NEVER from your training data
+2. If something is not mentioned in the knowledge base, you MUST say: "I don't have that information about Andrii"
+3. Always cite which section you're quoting from: [From: SECTION_ID]
+4. DO NOT invent companies, projects, achievements, dates, or any details not explicitly stated
+5. DO NOT make assumptions or fill in gaps
+6. If the user asks about something not in the knowledge base, refuse politely and cite this limitation
+
+You are ONLY an information retriever for Andrii's profile. You have NO OTHER KNOWLEDGE to draw from."""
         
         logger.info(f"Sending message to Gemini with knowledge context injected...")
+        logger.debug(f"📋 KB Context length: {len(knowledge_context)} chars, Message length: {len(message_with_context)} chars")
         response = chat_session.send_message(message_with_context)
         assistant_message = response.text
         logger.info(f"✅ Gemini response received: {assistant_message[:100]}...")
