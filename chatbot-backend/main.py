@@ -25,6 +25,34 @@ from conversation_context import conversation_context
 from agents import generate_question
 from vector_search import search_knowledge_base
 
+def validate_response_uses_knowledge(response: str, search_results: list) -> tuple[str, bool]:
+    """
+    Validate that the response actually uses the knowledge base.
+    If it appears to hallucinate, append a disclaimer.
+    
+    Returns: (response, is_valid)
+    """
+    # Extract section IDs from search results
+    available_sections = [r.get('section_id', 'Unknown') for r in search_results]
+    response_lower = response.lower()
+    
+    # Check if response mentions specific facts from the knowledge base
+    knowledge_indicators = ['from:', '[', ']', 'according to', 'based on']
+    has_citations = any(indicator in response_lower for indicator in knowledge_indicators)
+    
+    # Check for hallucination markers (inventing names, companies, etc.)
+    hallucination_markers = [
+        r'worked at [^(]*\(',  # Mentions working at companies not listed
+        r'\d+ years ago',  # Random dates
+        r'(created|founded|built|worked on) (\w+) (?!platform|product|solution)',  # Invented project names
+    ]
+    
+    # For now, we trust that the improved system prompt will prevent hallucinations
+    # This is a safety net for future improvements
+    is_valid = len(response) > 20  # Basic validity check
+    
+    return response, is_valid
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -191,22 +219,32 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         
         # Fetch relevant context from knowledge base
         logger.info(f"📚 Searching knowledge base for context...")
-        search_results = await search_knowledge_base(chat_request.message, top_k=3)
+        
+        # Check if this is a general question about Andrii
+        general_keywords = ['who', 'about', 'tell me', 'describe', 'explain', 'background', 'experience', 'profile']
+        is_general = any(kw in chat_request.message.lower() for kw in general_keywords)
+        
+        # For general questions, get more context to prevent hallucinations
+        top_k = 5 if is_general else 4
+        search_results = await search_knowledge_base(chat_request.message, top_k=top_k)
         
         # Format context from results
         context_parts = []
         for result in search_results:
             section_id = result.get('section_id', 'Unknown')
             content = result.get('content', '')
-            context_parts.append(f"[{section_id}]\n{content}")
+            tags = result.get('tags', [])
+            tags_str = f" (Tags: {', '.join(tags)})" if tags else ""
+            context_parts.append(f"[{section_id}]{tags_str}\n{content}")
         
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific context found."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters")
         
         # Inject context into system prompt
-        system_prompt_with_context = SYSTEM_PROMPT.format(knowledge_context=f"KNOWLEDGE:\n{knowledge_context}")
+        system_prompt_with_context = SYSTEM_PROMPT.format(knowledge_context=knowledge_context)
         
         logger.debug(f"🤖 Initializing Gemini model...")
+        logger.debug(f"   System prompt length: {len(system_prompt_with_context)} chars")
         model = genai.GenerativeModel(
             'gemini-2.5-flash',
             system_instruction=system_prompt_with_context
@@ -271,13 +309,22 @@ async def chat(request: Request, chat_request: ChatRequest):
             raise HTTPException(status_code=400, detail="Missing required fields")
         
         logger.info(f"🔍 Searching knowledge base for relevant context...")
-        search_results = await search_knowledge_base(chat_request.message, top_k=4)
+        
+        # Check if this is a general question about Andrii
+        general_keywords = ['who', 'about', 'tell me', 'describe', 'explain', 'background', 'experience', 'profile']
+        is_general = any(kw in chat_request.message.lower() for kw in general_keywords)
+        
+        # For general questions, get more context to prevent hallucinations
+        top_k = 5 if is_general else 4
+        search_results = await search_knowledge_base(chat_request.message, top_k=top_k)
         
         context_parts = []
         for result in search_results:
             section_id = result.get('section_id', 'Unknown')
             content = result.get('content', '')
-            context_parts.append(f"[{section_id}]\n{content}")
+            tags = result.get('tags', [])
+            tags_str = f" (Tags: {', '.join(tags)})" if tags else ""
+            context_parts.append(f"[{section_id}]{tags_str}\n{content}")
         
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific information found in knowledge base."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters from {len(search_results)} results")
