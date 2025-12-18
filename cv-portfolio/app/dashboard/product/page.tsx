@@ -3,6 +3,8 @@
 import PMActivityCard from '@/components/PMActivityCard'
 import PMActivityModal from '@/components/PMActivityModal'
 import { pmActivities, PMActivity } from '@/data/pmActivities'
+import { MobileMenu } from '@/components/MobileMenu'
+import { downloadCV } from '@/lib/downloadCV'
 import { useState, useEffect } from 'react'
 
 export default function ProductDashboard() {
@@ -15,6 +17,7 @@ export default function ProductDashboard() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
+      <MobileMenu onDownloadCV={downloadCV} />
       {/* Navigation Back */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-neutral-950/80 backdrop-blur-sm border-b border-neutral-800/50">
         <div className="px-4 sm:px-6 lg:px-8 py-4">

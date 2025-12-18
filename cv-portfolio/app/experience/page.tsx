@@ -9,6 +9,7 @@ import PMActivityModal from '@/components/PMActivityModal'
 import GlitchText from '@/components/GlitchText'
 import { pmActivities, PMActivity } from '@/data/pmActivities'
 import { MobileMenu } from '@/components/MobileMenu'
+import { downloadCV } from '@/lib/downloadCV'
 
 import { useState, useEffect, useCallback } from 'react'
 
@@ -415,7 +416,7 @@ export default function ExperiencePage() {
         }
       `}</style>
 
-      <MobileMenu />
+      <MobileMenu onDownloadCV={downloadCV} />
 
       {/* Career Path Hero Section with Title Overlay */}
       <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>

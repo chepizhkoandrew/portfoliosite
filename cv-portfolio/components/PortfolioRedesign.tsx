@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { profile } from '@/data/content'
 import { MobileMenu } from './MobileMenu'
+import { downloadCV } from '@/lib/downloadCV'
 
 interface TypingBioProps {
   showAnimations?: boolean
@@ -369,6 +370,10 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
     setMatrixActive(true)
   }, [])
 
+  const handleDownloadCV = useCallback(() => {
+    downloadCV()
+  }, [])
+
   useEffect(() => {
     if (!matrixActive) return
 
@@ -458,7 +463,7 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
 
   return (
     <div className="min-h-screen text-neutral-100 flex flex-col relative">
-      <MobileMenu />
+      <MobileMenu onDownloadCV={handleDownloadCV} />
       <style>{`
         div.min-h-screen {
           background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);

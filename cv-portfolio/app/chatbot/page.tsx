@@ -6,6 +6,8 @@ import { FiSend, FiRefreshCw } from 'react-icons/fi';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { formatMessage } from '@/lib/formatMessage';
+import { MobileMenu } from '@/components/MobileMenu';
+import { downloadCV } from '@/lib/downloadCV';
 
 const styles = `
   @keyframes neonAppear {
@@ -210,6 +212,7 @@ function ChatbotContent() {
   return (
     <div className="min-h-screen bg-neutral-950 text-slate-100 flex flex-col">
       <style>{styles}</style>
+      <MobileMenu onDownloadCV={downloadCV} />
       
       <Link href="/experience" className="neon-back-link absolute top-20 left-1/2 transform -translate-x-1/2 inline-flex items-center gap-2 text-2xl hover:text-neutral-50 transition-colors text-center justify-center z-20">
         <span>←</span>

@@ -236,6 +236,7 @@ export default function CVPage() {
 
       <div
         ref={cvRef}
+        data-cv-content
         className="bg-white text-black"
         style={{
           width: 'min(210mm, calc(100% - 32px))',

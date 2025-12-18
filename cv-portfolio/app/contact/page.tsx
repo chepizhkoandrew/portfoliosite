@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FaLinkedin, FaWhatsapp, FaTelegram, FaGithub, FaInstagram } from 'react-icons/fa'
 import { profile, contactInfo } from '@/data/content'
 import { MobileMenu } from '@/components/MobileMenu'
+import { downloadCV } from '@/lib/downloadCV'
 
 export default function ContactPage() {
   const [matrixActive, setMatrixActive] = useState(false)
@@ -273,7 +274,7 @@ export default function ContactPage() {
         }
       `}</style>
 
-      <MobileMenu />
+      <MobileMenu onDownloadCV={downloadCV} />
 
       {/* Contact Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-3 md:px-6 lg:px-12" style={{ zIndex: 10 }}>
