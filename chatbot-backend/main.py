@@ -270,9 +270,25 @@ async def chat(request: Request, chat_request: ChatRequest):
         if not chat_request.message or not chat_request.conversation_id:
             raise HTTPException(status_code=400, detail="Missing required fields")
         
+        logger.info(f"🔍 Searching knowledge base for relevant context...")
+        search_results = await search_knowledge_base(chat_request.message, top_k=4)
+        
+        context_parts = []
+        for result in search_results:
+            section_id = result.get('section_id', 'Unknown')
+            content = result.get('content', '')
+            context_parts.append(f"[{section_id}]\n{content}")
+        
+        knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific information found in knowledge base."
+        logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters from {len(search_results)} results")
+        if search_results:
+            logger.info(f"   Results: {[r.get('section_id', 'Unknown') for r in search_results]}")
+        
+        system_prompt_with_context = SYSTEM_PROMPT.format(knowledge_context=knowledge_context)
+        
         model = genai.GenerativeModel(
             'gemini-2.5-flash',
-            system_instruction=SYSTEM_PROMPT
+            system_instruction=system_prompt_with_context
         )
         
         chat_history = [
@@ -287,7 +303,7 @@ async def chat(request: Request, chat_request: ChatRequest):
             history=chat_history if chat_history else None
         )
         
-        logger.info(f"Sending message to Gemini...")
+        logger.info(f"Sending message to Gemini with knowledge context...")
         response = chat_session.send_message(chat_request.message)
         assistant_message = response.text
         logger.info(f"✅ Gemini response received: {assistant_message[:100]}...")
