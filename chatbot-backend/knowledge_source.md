@@ -541,4 +541,66 @@ Measurable wins:
 
 ---
 
+## SECTION: MARTECH_EXPERTISE
+**Type**: Domain Knowledge
+**Tags**: martech, marketing-technology, user-segmentation, retention, acquisition, affiliate
+
+MarTech is a broad field. I structure my experience in this space across three main directions:
+
+**1. User Identification, Segmentation & Decision Logic (Funnel Progression)**
+
+At Boosta, I worked with a portfolio of "similar" products where I dealt with first-party cookies and behavioral data from internal systems (no enrichment from external data sources). We classically formed user cohorts and managed redirects to different products, landing pages, content versions, and price segments based on these cohorts. The logic was straightforward: show users the offer and context they recognize themselves in, maximizing likelihood of purchase.
+
+Implementation was hard-coded through rule sets on the backend and hundreds of GTM rules.
+
+Current approach: Instead of predetermined A/B test variants, we now generate tailored content based on less structured user requests. I strongly believe in this approach and would be happy to work with it if you have traffic for such experiments.
+
+**2. Acquisition Channels: Referrals & Affiliate Programs**
+
+I have experience with referral programs and partnerships with review sites (proprietary reviewer networks), though traffic volumes were limited and I cannot claim high effectiveness. However, content maintenance costs have changed significantly. It now makes sense to generate niche content for very specific use cases, since you no longer need to pay copywriters, designers, or DevOps to deploy landing pages—AI scripts handle it.
+
+I also tested CPA-model affiliate networks. I calculated unit economics from this channel and decided not to scale it because our LTV was over 2.5 orders (~1.5-2 years customer lifetime), while affiliate users typically churned after their first purchase with no signs of returning.
+
+**3. Retention & Existing User Management**
+
+Primary retention tools were email campaigns: seasonal offers, holiday sends, and reactive scenarios based on user actions, inaction, or inactivity periods. We had a dedicated (small) department; I didn't configure campaigns hands-on, but we discussed the logic together. Currently, for my own product, I use Instantly for email sequencing and n8n pipelines for follow-ups and responses.
+
+---
+
+## SECTION: CONVERSION_OPTIMIZATION
+**Type**: Domain Knowledge
+**Tags**: conversion, quiz-funnels, funnel-optimization, pricing-strategy
+
+**Quiz Funnels & Conversion Optimization**
+
+Yes, we used quiz funnels—not for user data collection, but for cost calculation. We needed to determine what work/deliverable the user needed so we could price accurately and avoid losing customers or leaving money on the table.
+
+This approach combined funnel optimization with pricing strategy, ensuring the right offer reached the right segment at the right price point.
+
+---
+
+## SECTION: LANGUAGE_PROFICIENCY
+**Type**: Personal Info
+**Tags**: english, language, communication
+
+**English Language Proficiency**
+
+I can sing Eminem on guitar. I read Stephen King in the original English. I've been speaking English with people at work for the last 10 years. Fluent in business communication, technical discussions, and casual conversation.
+
+---
+
+## SECTION: COMPENSATION_EXPECTATIONS
+**Type**: Personal Info
+**Tags**: compensation, salary, requirements, expectations
+
+**Compensation Expectations**
+
+I expect fair market compensation. I understand the current market favors employers. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food.
+
+I don't have dependents (no kids or spouse). I'm flexible—can work for less if needed, as long as it's sustainable.
+
+The key for me is team stability, meaningful work, and not constantly hunting for the next project.
+
+---
+
 ## END OF KNOWLEDGE BASE
