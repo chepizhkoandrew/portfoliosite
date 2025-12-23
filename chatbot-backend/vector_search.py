@@ -148,19 +148,10 @@ async def get_context_for_agents(query: str, context_type: str = None) -> str:
     # Format results into a context string
     context_parts = []
     for result in results:
-        section = result.get('section_id', 'Unknown')
         content = result.get('content', '')
-        tags = result.get('tags', [])
-        tags_str = ", ".join(tags) if tags else ""
-        
-        formatted_section = f"[{section}]"
-        if tags_str:
-            formatted_section += f" (Tags: {tags_str})"
-        formatted_section += f"\n{content}"
-        
-        context_parts.append(formatted_section)
+        context_parts.append(content)
     
-    return "\n\n---\n\n".join(context_parts)
+    return "\n\n".join(context_parts)
 
 async def get_full_context() -> str:
     """Get all knowledge base content for comprehensive context.
@@ -175,19 +166,10 @@ async def get_full_context() -> str:
     # Format all results into a comprehensive context string
     context_parts = []
     for result in results:
-        section = result.get('section_id', 'Unknown')
         content = result.get('content', '')
-        tags = result.get('tags', [])
-        tags_str = ", ".join(tags) if tags else ""
-        
-        formatted_section = f"[{section}]"
-        if tags_str:
-            formatted_section += f" (Tags: {tags_str})"
-        formatted_section += f"\n{content}"
-        
-        context_parts.append(formatted_section)
+        context_parts.append(content)
     
-    return "\n\n---\n\n".join(context_parts)
+    return "\n\n".join(context_parts)
 
 async def get_communication_style() -> str:
     """Get Andrii's communication style from knowledge base."""

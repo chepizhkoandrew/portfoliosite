@@ -231,11 +231,8 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         # Format context from results
         context_parts = []
         for result in search_results:
-            section_id = result.get('section_id', 'Unknown')
             content = result.get('content', '')
-            tags = result.get('tags', [])
-            tags_str = f" (Tags: {', '.join(tags)})" if tags else ""
-            context_parts.append(f"[{section_id}]{tags_str}\n{content}")
+            context_parts.append(content)
         
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific context found."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters")
@@ -344,11 +341,8 @@ async def chat(request: Request, chat_request: ChatRequest):
         
         context_parts = []
         for result in search_results:
-            section_id = result.get('section_id', 'Unknown')
             content = result.get('content', '')
-            tags = result.get('tags', [])
-            tags_str = f" (Tags: {', '.join(tags)})" if tags else ""
-            context_parts.append(f"[{section_id}]{tags_str}\n{content}")
+            context_parts.append(content)
         
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific information found in knowledge base."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters from {len(search_results)} results")
@@ -455,9 +449,8 @@ Search query (5-7 key terms):"""
         
         context_parts = []
         for result in search_results:
-            section_id = result.get('section_id', 'Unknown')
             content = result.get('content', '')
-            context_parts.append(f"[{section_id}]\n{content}")
+            context_parts.append(content)
         
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No matching profile information found."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters from {len(search_results)} results")
