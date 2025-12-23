@@ -60,8 +60,9 @@ export const experiences: Experience[] = [
     links: [
       { text: 'ScrumLaunch', url: 'https://www.scrumlaunch.com/' },
       { text: 'Blackthorn Vision', url: 'https://blackthorn-vision.com/' },
-      { text: 'Tribute Technologies', url: 'https://www.tributetech.com/' },
       { text: 'Kingmaker', url: 'http://kingmaker.com' },
+      { text: 'SignalSpot.io', url: 'https://www.signalfocus.io' },
+      { text: 'Tribute Technologies', url: 'https://www.tributetech.com/' },
     ],
   },
   {

@@ -66,6 +66,23 @@ export const freelanceExperience = {
       details: '',
     },
     {
+      id: 'signalfocus',
+      name: 'SignalSpot.io: Sales Intelligence Platform',
+      duration: '4 months',
+      overview: 'Startup-style product built from scratch, taking it from initial concept to MVP and early customer validation. Sales intelligence platform helping sales teams generate warmer outbound communication by leveraging public activity signals.',
+      url: 'https://www.signalfocus.io',
+      tags: ['Customer Discovery', 'Product Scope Definition', 'API Integration', 'Go-to-Market Strategy', 'Pricing Strategy', 'Unit Economics', 'Business Model Validation'],
+      bulletPoints: [
+        'Led customer discovery and early user interviews to define core value proposition and product requirements.',
+        'Defined product scope and MVP feature set for a sales intelligence platform leveraging omnichannel data sources (SemanticForce, LinkedIn, X, media outlets).',
+        'Worked with partner APIs to explore available data sources and validate business use cases and pricing assumptions.',
+        'Prepared early go-to-market materials and supported pricing strategy and unit economics validation.',
+        'Calculated the unit economy model to validate business sustainability.',
+        'MVP tested with early customers to validate demand, pricing, and unit economics assumptions.'
+      ],
+      details: '',
+    },
+    {
       id: 'tribute',
       name: 'Tribute Technologies: E-commerce Commissions Module',
       duration: '4 months',

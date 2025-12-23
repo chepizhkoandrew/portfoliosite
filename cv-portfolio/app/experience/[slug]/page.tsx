@@ -39,8 +39,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-1': 'Sports League Management App',
     'project-2': 'Casino Metrics',
     'project-3': 'Deposit Flow Redesign',
-    'project-4': 'Commissions Module',
-    'project-5': 'Character-Consistent Content Pipeline',
+    'project-4': 'SignalSpot.io: Sales Intelligence Platform',
+    'project-5': 'Commissions Module',
+    'project-6': 'Character-Consistent Content Pipeline',
   })
 
   const [roboticspmGlitchTexts, setRoboticspmGlitchTexts] = useState<{ [key: string]: string }>({
@@ -56,8 +57,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-1': 'ScrumLaunch: ',
     'project-2': '',
     'project-3': 'Kingmaker: ',
-    'project-4': 'Tribute Technologies: E-commerce ',
-    'project-5': '',
+    'project-4': '',
+    'project-5': 'Tribute Technologies: E-commerce ',
+    'project-6': '',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
@@ -198,8 +200,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
       'project-1': 'Sports League Management App',
       'project-2': 'Casino Metrics',
       'project-3': 'Deposit Flow Redesign',
-      'project-4': 'Commissions Module',
-      'project-5': 'Character-Consistent Content Pipeline',
+      'project-4': 'SignalSpot.io - Sales Intelligence Platform',
+      'project-5': 'Commissions Module',
+      'project-6': 'Character-Consistent Content Pipeline',
     }
 
     const freelanceWord = 'Freelance'
@@ -505,6 +508,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                 <div style={{ paddingTop: '24px' }}>
                   {experience.projects.map((project: any, idx: number) => {
                     const isExpanded = expandedProjects.has(`project-${idx}`)
+                    const hasExpandableContent = !!(project.bulletPoints?.length || project.details?.trim() || project.videoUrl || project.images?.length)
                     return (
                       <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
@@ -512,7 +516,11 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             <div className="flex-1">
                               <h3 className={`text-xl font-light text-neutral-100 mb-2 ${slug === 'freelance' ? 'hover-laser' : ''}`} style={{ minHeight: '56px' }}>
                                 {slug === 'freelance' 
-                                  ? (projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]
+                                  ? project.url
+                                    ? <a href={project.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
+                                        {(projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]}
+                                      </a>
+                                    : (projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]
                                   : project.name}
                               </h3>
                               <p className="text-sm text-neutral-400 mb-3">{project.duration}</p>
@@ -534,23 +542,25 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             </div>
                           )}
                           
-                          <button
-                            onClick={() => {
-                              setExpandedProjects(prev => {
-                                const next = new Set(prev)
-                                if (next.has(`project-${idx}`)) {
-                                  next.delete(`project-${idx}`)
-                                } else {
-                                  next.add(`project-${idx}`)
-                                }
-                                return next
-                              })
-                            }}
-                            className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light flex items-center gap-2"
-                            style={{ marginTop: '12px' }}
-                          >
-                            {isExpanded ? '▼' : '▶'} More Info
-                          </button>
+                          {hasExpandableContent && (
+                            <button
+                              onClick={() => {
+                                setExpandedProjects(prev => {
+                                  const next = new Set(prev)
+                                  if (next.has(`project-${idx}`)) {
+                                    next.delete(`project-${idx}`)
+                                  } else {
+                                    next.add(`project-${idx}`)
+                                  }
+                                  return next
+                                })
+                              }}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-light flex items-center gap-2"
+                              style={{ marginTop: '12px' }}
+                            >
+                              {isExpanded ? '▼' : '▶'} More Info
+                            </button>
+                          )}
                         </div>
                         
                         {isExpanded && (
