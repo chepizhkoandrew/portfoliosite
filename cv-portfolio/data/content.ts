@@ -28,8 +28,8 @@ export const profile: Profile = {
   locationUrl: 'https://maps.app.goo.gl/iupA7y6RZMTozL8m9',
   email: 'andrii.chepizhko@gmail.com',
   phone: '+34611371682',
-  website: 'https://andrii-portfolio.com',
-  personalAssistant: 'https://andrii-portfolio.com/chatbot',
+  website: 'https://andriichepizhko.online',
+  personalAssistant: 'https://andriichepizhko.online/chatbot',
   intro: 'From business consulting to building AI-powered IT systems. 14+ years of experience transforming ideas into working products.',
   bio: {
     firstLine: '13 years of Business Analyst and PM experience, dealing with both complex enterprise and B2C markets.',
