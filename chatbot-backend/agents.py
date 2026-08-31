@@ -66,7 +66,7 @@ async def generate_question(
         knowledge_context = "\n\n".join(context_parts) if context_parts else "General information about Andrii's experience and skills."
         logger.debug(f"   Context: {len(knowledge_context)} chars")
         
-        model = genai.GenerativeModel('gemini-pro-latest')
+        model = genai.GenerativeModel('gemini-flash-latest')
         
         prompt = QUESTION_GENERATOR_PROMPT.format(
             knowledge_context=knowledge_context,
@@ -98,7 +98,7 @@ async def validate_question(question: str) -> bool:
     """Validate a question using the validator agent."""
     try:
         settings = get_settings()
-        model = genai.GenerativeModel('gemini-pro-latest')
+        model = genai.GenerativeModel('gemini-flash-latest')
         
         prompt = VALIDATOR_PROMPT.format(question=question)
         

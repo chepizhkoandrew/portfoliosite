@@ -44,7 +44,7 @@ def generate_assistant_reply(knowledge_context: str, user_message: str, history:
             return vertex_text
         logger.warning("⚠️  Vertex AI unavailable/failed - falling back to Gemini API key")
 
-    model = genai.GenerativeModel('gemini-pro-latest')
+    model = genai.GenerativeModel('gemini-flash-latest')
     chat_history = [
         {'role': 'user' if m.role == 'user' else 'model', 'parts': [{'text': m.content}]}
         for m in history
@@ -374,7 +374,7 @@ Vacancy:
 
 Search query (5-7 key terms):"""
         
-        model = genai.GenerativeModel('gemini-pro-latest')
+        model = genai.GenerativeModel('gemini-flash-latest')
         extraction_response = model.generate_content(extract_prompt)
         search_query = extraction_response.text.strip()
         logger.info(f"✅ Extracted search query: {search_query}")
@@ -425,9 +425,9 @@ VACANCY DESCRIPTION:
 
 MATCHING SUMMARY:"""
         
-        logger.info(f"🤖 Analyzing vacancy match with Gemini Pro (latest)...")
+        logger.info(f"🤖 Analyzing vacancy match with Gemini Flash (latest)...")
         logger.info(f"📤 Sending to LLM...")
-        pro_model = genai.GenerativeModel('gemini-pro-latest')
+        pro_model = genai.GenerativeModel('gemini-flash-latest')
         response = pro_model.generate_content(vacancy_analysis_prompt)
         summary = response.text.strip()
         logger.info(f"✅ Analysis complete: {len(summary)} characters")

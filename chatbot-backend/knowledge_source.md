@@ -607,9 +607,11 @@ I can sing Eminem on guitar. I read Stephen King in the original English. I've b
 
 ## SECTION: COMPENSATION_EXPECTATIONS
 **Type**: Personal Info
-**Tags**: compensation, salary, requirements, expectations
+**Tags**: compensation, salary, rate, price, cost, requirements, expectations
 
 **Compensation Expectations**
+
+My rate is €30/hour, or €4,000/month for a full-time engagement through a B2B contract. I can go a bit lower if paid in crypto. Official (payroll) employment in Europe is also on the table - happy to discuss specifics there.
 
 I expect fair market compensation. I understand the current market favors employers. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food.
 
