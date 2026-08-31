@@ -605,7 +605,7 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
           <TypingBio showAnimations={showAnimations} onSecondLineComplete={handleSecondLineComplete} startDelay={100} />
         </div>
 
-        <div className="flex-1 flex items-center justify-center w-full" style={{ minHeight: '2rem' }}>
+        <div className="flex-1 flex items-start justify-center w-full pt-12 md:pt-16" style={{ minHeight: '2rem' }}>
           <div className="flex gap-4 md:gap-8 justify-center">
             <Link
               href="/experience"
