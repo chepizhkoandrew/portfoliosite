@@ -296,6 +296,30 @@ People say I'm:
 
 ---
 
+## SECTION: MOTIVATION_AND_VALUES
+**Type**: Personal Info
+**Tags**: motivation, what drives him, what motivates, values, what he likes, what he dislikes, weakness, selling, sales, self-promotion, honesty, value, meaning, pretend, fake work, energy
+
+**What drives me:**
+- **Solving problems.** Give me something broken, tangled, or inefficient and I'm at my best. It's not a job preference, it's how I'm wired - I see a problem and immediately start thinking how to solve it.
+- **Seeing the value I bring.** I work at my best when I can trace a straight line from my work to a real outcome - a faster release, a working product, a client whose business runs better because of what I built. Visible value is my fuel.
+- **Shipping real things** and watching people actually use them.
+
+**What drains me / what I don't like:**
+- **Pretending.** I can't simulate activity when I don't see the value. If the work is theater - reports for the sake of reports, meetings for appearances, features for a checkbox - I visibly lose energy, and I won't fake enthusiasm I don't have. If I can't see the value in what I'm doing, I physically can't pretend I'm doing something useful.
+- **Politics over building.**
+- **Overpromising** - to clients, to teams, to anyone.
+
+**My honest weak side: selling.**
+Selling things to people is genuinely my weakness, and the reason is structural: I never lie. Classic selling runs on embellishment and overpromising, and I can't do that - if a product has a limitation, I'll name it; if I think something won't help you, I'll tell you so. So don't expect slick pitches from me.
+The flip side: what I "sell" instead is proof. A working prototype in three weeks, a paid trial week, measurable results - that IS my sales pitch. And people who bought once tend to stay, because nothing was ever oversold to them. Weaker at the top of the funnel, much stronger at trust and retention.
+
+**What this means for fit:**
+- Great fit: teams that measure outcomes, roles where solving hard problems matters more than presenting them beautifully.
+- Poor fit: roles that are primarily salesmanship, hype, or looking busy. He'd rather tell you the truth and lose the deal than win it with a promise he can't keep.
+
+---
+
 ## SECTION: WHAT_I_DONT_DO
 **Type**: Boundaries
 **Tags**: not-for-me, limitations, boundaries, what-i-wont
@@ -435,9 +459,11 @@ Real examples, not humble-brags:
 - priroda.tech is honestly early: two paying clients, and deployments are still manual per client - real traction, but he'd be the first to say it's not a scaled business yet.
 
 **"Give me a reason NOT to hire him / what would colleagues criticize?"**
+- **Selling is his weak side - because he never lies.** If the role needs a natural salesman who can hype, embellish, and close on promises, he's the wrong person: he'll name a product's limitations to a prospect's face. He wins people with working results (a prototype, a paid trial week, measurable outcomes), not with pitches - strong on trust and retention, weak on hype.
 - He's direct to the point of blunt - he'll tell you your feature idea is bad, with reasons. Some people love this; some don't.
 - He asks a lot of questions before building. If you want silent execution of a fixed spec, that friction is real.
 - He won't work on products he doesn't believe in and won't rush shipping without foundation - which reads as principled or as stubborn, depending on the deadline.
+- **He can't fake it.** If he stops seeing the value in what he's doing, he won't pretend to be busy - he'll say so and push to fix the work itself. In a team that runs on appearances, that's friction; in a team that measures outcomes, it's a feature.
 - He's not a developer-for-hire: if the role is purely coding features from tickets, he's the wrong person and will say so.
 
 **"These metrics sound invented - 3x faster, 3 months to 3-4 weeks. Prove it."**
