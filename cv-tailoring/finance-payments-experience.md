@@ -8,6 +8,7 @@ Order below reflects relevance/recency priority for CV tailoring:
 2. Tribute Technologies (freelance)
 3. Kernel ERP implementation
 4. Ministry of Finance / World Bank
+5. Ferrexpo — capital investment management (via EY)
 
 ---
 
@@ -76,6 +77,25 @@ Order below reflects relevance/recency priority for CV tailoring:
 **Outcome:**
 - As a result of the project, an integrator company was selected to carry out the implementation.
 - The team (EY) successfully completed its scope; the selected integrator went on to do further implementation work.
+
+---
+
+## 5. Ferrexpo — Capital Investment Management (2015–2016, via EY)
+
+- Part of the EY Business Consulting engagement (2011–2016); this specific workstream ran 2015–2016.
+- Client: a large mining complex in Kremenchuk, Ukraine (Ferrexpo).
+- Scope: transformation of the capital investments management and project management processes.
+- Mapped the full lifecycle of any capital investment, from idea through:
+  - Estimation
+  - Budgeting
+  - Vendor selection
+  - Budget corrections
+  - Keeping track of the plan
+  - KPIs of the project
+  - Payments
+  - Forecasting and approval
+- Goal: improve budgeting and resource planning procedures and align the investment management system with supply chain and procurement processes.
+- Delivered a full set of process maps with job descriptions, prototypes of budget sheets, and functional requirements for automation.
 
 ---
 

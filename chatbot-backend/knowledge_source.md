@@ -85,15 +85,23 @@ I've diagnosed and resolved dozens of real client integration cases spanning Hub
 
 ## SECTION: FINANCIAL_EXPERIENCE
 **Type**: Domain Expertise
-**Tags**: finance, financial, erp, financial erp, financial crm, accounting, tax, tax compliance, billing, invoicing, commission, banking, payments, revenue, transactions, financial systems, financial logic
+**Tags**: finance, financial, erp, financial erp, financial crm, accounting, tax, tax compliance, billing, invoicing, commission, banking, payments, revenue, transactions, financial systems, financial logic, budgeting, procurement, treasury, capital investment, cost control
 
-This is the authoritative, consolidated answer for ANY question about Andrii's finance-domain experience - "financial ERP", "financial CRM", "finance experience", "accounting systems", etc. should all pull from here first. I have hands-on experience across five distinct financial problems: tax-compliance software, multi-party commission logic, banking-operations consulting, revenue-data integrity, and payment/deposit-flow design.
+This is the authoritative, consolidated answer for ANY question about Andrii's finance-domain experience - "financial ERP", "financial CRM", "finance experience", "accounting systems", "budgeting", "procurement", etc. should all pull from here first. I have hands-on experience across the full span of financial problems: tax-compliance software, multi-party commission logic, banking-operations consulting, national-budget ERP design, capital-investment management, procurement and budget control, independent cost verification, revenue-data integrity, and payment/deposit-flow design.
 
 **Tax compliance software** - Founder, priroda.tech (2025-present): Built and got certified with the Spanish tax authority (Agencia Tributaria) software that complies with *Verifactu*, the new Spanish law requiring every business to use certified software and digitally report each receipt to the tax authority. Covers automated invoice/receipt reporting and audit-trail requirements, built end-to-end (Python/React/Supabase).
 
 **Multi-party commission engine** - Freelance Product Builder, for Tribute Technologies (2024-2025): Redesigned a complex commission-calculation system for a network of funeral homes and their partnered florists. Replaced a manual, periodic balance-adjustment model with a transparent, order-level commission engine so every counterparty could see and trace their earned commission back to the exact order - reverse-engineered legacy financial logic and designed a scalable commission schema prepared for financial reporting.
 
-**Banking and financial-institution consulting** - Operational Business Consultant, Ernst & Young (2011-2016): Delivered operational consulting to banks and financial institutions, helping top management reduce operational costs, redesign scalable business processes, and prepare for IT automation.
+**Banking and financial-institution consulting** - Operational Business Consultant, Ernst & Young (2011-2016): Delivered operational consulting to banks and financial institutions, helping top management reduce operational costs, redesign scalable business processes, and prepare for IT automation. Named engagements: Prominvestbank (Ukraine) and VTB Bank and Casanova (Kazakhstan) - redesigned processes for risk assessment, cash and operations, and administrative/treasury management, and built the managerial reporting pipeline end-to-end, from data collection through report preparation. Result: standardized, auditable processes across risk, treasury, and reporting functions.
+
+**National budgetary ERP design** - Ministry of Finance of Ukraine / World Bank (via EY, early career): Prepared the full system design and supported vendor selection for a custom ERP to manage the entire budgetary system of Ukraine - from an individual village school up to the main budget document approved by Parliament. I owned the Treasury processes: designing procedures and automated flows based on then-current Ukrainian legislation. Outcome: an integrator was selected and went on to implement the system.
+
+**Capital investment management** - Ferrexpo, a large mining complex in Kremenchuk, Ukraine (2015-2016, via EY): Transformed capital-investment and project-management processes. Mapped the full lifecycle of a capital investment - estimation, budgeting, vendor selection, budget corrections, plan tracking, project KPIs, payments, forecasting, and approval - aligning investment management with supply chain and procurement. Delivered process maps with job descriptions, budget-sheet prototypes, and functional requirements for automation.
+
+**Bank procurement & budget control** - a major state-owned Ukrainian bank (2025, via EY): Audited procurement and budget-control processes where licenses and software fees made up over 70% of total operational expenditure. Designed a digital asset management system covering the full lifecycle (request → justification → tender → allocation), tracking real named end users, divisions, and the business products each license serves, consolidating vendor communication in one place, and introducing category management. Sponsored by the bank's advisory board; the engagement did not continue into implementation.
+
+**Independent cost verification** - Kernel ERP (2017-2019, via Eleks): Designed cross-system calculation logic connecting several operational/production systems and applying coefficients to compute the true cost of field operations - giving Kernel an independent control to verify subcontractor and machinery invoices across a complex rented-fleet interpayment structure.
 
 **Revenue-data integrity** - Integrations Specialist, Planhat (2026-present): Diagnoses and fixes revenue-data validation and sync issues between CRM/CSP platforms and financial data pipelines (e.g. Snowflake), keeping billing/revenue line-item data accurate across systems.
 
@@ -101,7 +109,7 @@ This is the authoritative, consolidated answer for ANY question about Andrii's f
 
 **Not part of this experience:** the Blackthorn Vision CRM prototype (tax advisory firm client) was a general client/case-management CRM with no financial calculations or accounting logic - never cite it as financial-systems experience.
 
-**Direct answer if asked "can Andrii build a financial ERP / financial CRM":** Yes, with real evidence: he's built certified tax-compliance software from scratch, designed complex financial calculation engines (multi-party commissions), consulted financial institutions on operational process design, and worked on revenue-data integrity across CRM/ERP-adjacent systems. He has not built a full general-ledger/accounting-core ERP module specifically, but has the directly adjacent skill set - financial logic design, regulatory compliance software, and systems integration - to do it.
+**Direct answer if asked "can Andrii build a financial ERP / financial CRM":** Yes, with real evidence: he designed a national budgetary ERP for the Ministry of Finance of Ukraine (with the World Bank), owning the treasury process and automated-flow design; built certified tax-compliance software from scratch; designed complex financial calculation engines (multi-party commissions, independent cost verification for Kernel); transformed capital-investment and procurement processes for major enterprises and banks; and works on revenue-data integrity across CRM/ERP systems today. He has not personally implemented a general-ledger/accounting core (the national ERP was implemented by a selected integrator), but he has designed financial systems at every scale from a flower shop to a national budget.
 
 ---
 
@@ -189,6 +197,8 @@ From 2017 to 2019 I was Lead Business Analyst at Eleks LLC (IT outsourcing), wor
 
 Kernel managed 7,500 fields and 12,000 machines and needed a unified system for planning work, coordinating machinery, and supporting agronomists and engineers. I led the scope, system logic, and client alignment for a team of 50+ IT engineers.
 
+A key financial dimension of the system: Kernel contracted subcontractors who supplied their own machinery (tractors, conveyors, trucks), and a large part of the fleet was rented - creating a complex web of interpayments between Kernel, subcontractors, and fleet owners. I designed the cross-system calculation logic that connected several operational systems and applied coefficients to compute the true cost of each field operation - giving Kernel an independent control to verify and confirm supplier and subcontractor invoices from actual work performed, not financial records alone.
+
 The solution was successfully created and launched - and within two years the client turned it into a white-label SaaS product of their own. Solution walkthrough: https://youtu.be/dzAuINeog4w?t=225
 
 ---
@@ -200,6 +210,12 @@ The solution was successfully created and launched - and within two years the cl
 From 2011 to 2016 I was an Operational Business Consultant at Ernst & Young (Business Consulting, Ukraine & Kazakhstan).
 
 I delivered operational consulting for banks, government institutions, and industrial companies - helping top management reduce operational costs, design scalable business processes, and prepare organizations for future IT automation. Most of my work was process redesign: proposing automations and new organizational structures. In short, my job was to understand how a business can work more efficiently with fewer resources.
+
+Notable engagements:
+- **Banking operations** - Prominvestbank (Ukraine), VTB Bank and Casanova (Kazakhstan): redesigned processes for risk assessment, cash and operations, and administrative/treasury management; built the managerial reporting pipeline end-to-end, from data collection through report preparation.
+- **Ministry of Finance of Ukraine / World Bank**: full system design and vendor selection for a national budgetary ERP covering Ukraine's entire budget system, from a village school up to the Parliament-approved budget. I owned the Treasury process design and automated flows per then-current legislation; an integrator was selected to implement.
+- **Ferrexpo** (mining complex, Kremenchuk, 2015-2016): transformed capital-investment and project-management processes - mapped the full investment lifecycle (estimation, budgeting, vendor selection, budget corrections, plan tracking, KPIs, payments, forecasting, approval) and delivered process maps, job descriptions, budget-sheet prototypes, and automation requirements.
+- **A major state-owned Ukrainian bank** (2025, a later engagement via EY): audited procurement and budget-control processes (licenses/software fees were 70%+ of opex) and designed a digital asset management system with tender-based justification, end-user tracking, consolidated vendor communication, and category management. Sponsored by the advisory board.
 
 ---
 
