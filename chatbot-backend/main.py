@@ -19,11 +19,40 @@ from playwright.async_api import async_playwright
 
 from config import get_settings
 from knowledge_base import SYSTEM_PROMPT, build_chat_prompt
+import vertex_gemini
 from supabase_client import save_message
 from message_chunker import chunk_message, should_add_question
 from conversation_context import conversation_context
 from agents import generate_question
 from vector_search import search_knowledge_base
+
+def generate_assistant_reply(knowledge_context: str, user_message: str, history: list) -> str:
+    """Generate a reply: Vertex AI first if configured, falling back to the
+    Gemini Developer API (GOOGLE_API_KEY) on any failure."""
+    message_with_context = build_chat_prompt(knowledge_context, user_message)
+
+    if vertex_gemini.is_configured():
+        settings = get_settings()
+        simple_history = [{'role': m.role, 'content': m.content} for m in history]
+        vertex_text = vertex_gemini.generate(
+            model=settings.VERTEX_CHAT_MODEL,
+            history=simple_history,
+            user_message=message_with_context,
+        )
+        if vertex_text:
+            logger.info("✅ Response generated via Vertex AI")
+            return vertex_text
+        logger.warning("⚠️  Vertex AI unavailable/failed - falling back to Gemini API key")
+
+    model = genai.GenerativeModel('gemini-pro-latest')
+    chat_history = [
+        {'role': 'user' if m.role == 'user' else 'model', 'parts': [{'text': m.content}]}
+        for m in history
+    ]
+    chat_session = model.start_chat(history=chat_history if chat_history else None)
+    response = chat_session.send_message(message_with_context)
+    return response.text
+
 
 def validate_response_uses_knowledge(response: str, search_results: list) -> tuple[str, bool]:
     """
@@ -237,32 +266,9 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         knowledge_context = "\n\n".join(context_parts) if context_parts else "No specific context found."
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters")
         
-        # Create model WITHOUT system_instruction to avoid conflicts
-        # We'll inject context directly into the message instead
-        logger.debug(f"🤖 Initializing Gemini model...")
-        model = genai.GenerativeModel('gemini-2.5-flash')
-        
-        chat_history = [
-            {
-                'role': 'user' if msg.role == 'user' else 'model',
-                'parts': [{'text': msg.content}]
-            }
-            for msg in chat_request.history
-        ]
-        
-        logger.debug(f"📚 Chat history: {len(chat_history)} messages")
-        chat_session = model.start_chat(
-            history=chat_history if chat_history else None
-        )
-        
-        # Inject knowledge context directly into the message to force Gemini to use it
-        message_with_context = build_chat_prompt(knowledge_context, chat_request.message)
-        
-        logger.info(f"📤 Sending message to Gemini with knowledge context injected...")
-        logger.debug(f"📋 KB Context length: {len(knowledge_context)} chars, Message length: {len(message_with_context)} chars")
-        response = chat_session.send_message(message_with_context)
-        assistant_message = response.text
-        logger.info(f"✅ Gemini response received: {len(assistant_message)} chars, {assistant_message[:80]}...")
+        logger.info(f"📤 Generating response with knowledge context injected...")
+        assistant_message = generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history)
+        logger.info(f"✅ Response received: {len(assistant_message)} chars, {assistant_message[:80]}...")
         
         logger.info(f"💾 Saving messages to Supabase...")
         user_saved = await save_message(chat_request.conversation_id, 'user', chat_request.message)
@@ -324,30 +330,9 @@ async def chat(request: Request, chat_request: ChatRequest):
         if search_results:
             logger.info(f"   Results: {[r.get('section_id', 'Unknown') for r in search_results]}")
         
-        # Create model WITHOUT system_instruction to avoid conflicts
-        # We'll inject context directly into the message instead
-        model = genai.GenerativeModel('gemini-2.5-flash')
-        
-        chat_history = [
-            {
-                'role': 'user' if msg.role == 'user' else 'model',
-                'parts': [{'text': msg.content}]
-            }
-            for msg in chat_request.history
-        ]
-        
-        chat_session = model.start_chat(
-            history=chat_history if chat_history else None
-        )
-        
-        # Inject knowledge context directly into the message to force Gemini to use it
-        message_with_context = build_chat_prompt(knowledge_context, chat_request.message)
-        
-        logger.info(f"Sending message to Gemini with knowledge context injected...")
-        logger.debug(f"📋 KB Context length: {len(knowledge_context)} chars, Message length: {len(message_with_context)} chars")
-        response = chat_session.send_message(message_with_context)
-        assistant_message = response.text
-        logger.info(f"✅ Gemini response received: {assistant_message[:100]}...")
+        logger.info(f"Generating response with knowledge context injected...")
+        assistant_message = generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history)
+        logger.info(f"✅ Response received: {assistant_message[:100]}...")
         
         await save_message(chat_request.conversation_id, 'user', chat_request.message)
         await save_message(chat_request.conversation_id, 'assistant', assistant_message)
@@ -389,7 +374,7 @@ Vacancy:
 
 Search query (5-7 key terms):"""
         
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        model = genai.GenerativeModel('gemini-pro-latest')
         extraction_response = model.generate_content(extract_prompt)
         search_query = extraction_response.text.strip()
         logger.info(f"✅ Extracted search query: {search_query}")
@@ -440,9 +425,9 @@ VACANCY DESCRIPTION:
 
 MATCHING SUMMARY:"""
         
-        logger.info(f"🤖 Analyzing vacancy match with Gemini 2.5 Pro...")
+        logger.info(f"🤖 Analyzing vacancy match with Gemini Pro (latest)...")
         logger.info(f"📤 Sending to LLM...")
-        pro_model = genai.GenerativeModel('gemini-2.5-pro')
+        pro_model = genai.GenerativeModel('gemini-pro-latest')
         response = pro_model.generate_content(vacancy_analysis_prompt)
         summary = response.text.strip()
         logger.info(f"✅ Analysis complete: {len(summary)} characters")

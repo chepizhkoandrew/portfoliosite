@@ -11,6 +11,14 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = "http://localhost:3000"
     ENVIRONMENT: str = "development"
     LOG_LEVEL: str = "INFO"
+
+    # Optional: Vertex AI (service-account auth) is tried first for chat if
+    # configured, falling back to GOOGLE_API_KEY on any failure. Same
+    # credential shape as the veranoprado project's Vertex integration.
+    GOOGLE_VERTEX_CREDENTIALS_B64: str = ""
+    VERTEX_PROJECT_ID: str = ""
+    VERTEX_LOCATION: str = "global"
+    VERTEX_CHAT_MODEL: str = "gemini-2.5-pro"
     
     class Config:
         env_file = ".env"
