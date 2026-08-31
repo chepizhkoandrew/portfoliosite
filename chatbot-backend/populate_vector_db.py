@@ -48,7 +48,7 @@ def parse_knowledge_source(filepath: str) -> list:
 def generate_embedding(text: str) -> list:
     """Generate embedding for text using Gemini."""
     try:
-        result = genai.embed_content(model='models/text-embedding-004', content=text)
+        result = genai.embed_content(model='models/gemini-embedding-001', content=text, output_dimensionality=768)
         return result['embedding']
     except Exception as e:
         logger.error(f"❌ Failed to generate embedding: {e}")

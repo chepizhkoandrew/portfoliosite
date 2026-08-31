@@ -28,8 +28,9 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
         # Generate embedding for the query
         logger.debug("   Generating query embedding...")
         query_embedding = genai.embed_content(
-            model='models/text-embedding-004', 
-            content=query
+            model='models/gemini-embedding-001',
+            content=query,
+            output_dimensionality=768
         )['embedding']
         
         # First try: Use Supabase pgvector search (RPC function)
