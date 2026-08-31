@@ -37,13 +37,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   const [freelanceDisplayTexts, setFreelanceDisplayTexts] = useState<{ [key: string]: string }>({
     title: 'Freelance Product Builder',
     'title-part': 'Product Builder',
-    'project-0': 'Tax Advisory CRM',
-    'project-1': 'Sports League Management App',
-    'project-2': 'Casino Metrics',
-    'project-3': 'Deposit Flow Redesign',
-    'project-4': 'SignalSpot.io: Sales Intelligence Platform',
-    'project-5': 'Commissions Module',
-    'project-6': 'Character-Consistent Content Pipeline',
+    'project-0': 'Procurement Audit & Optimization',
+    'project-1': 'Tax Advisory CRM',
+    'project-2': 'Sports League Management App',
+    'project-3': 'Casino Metrics',
+    'project-4': 'Deposit Flow Redesign',
+    'project-5': 'SignalSpot.io: Sales Intelligence Platform',
+    'project-6': 'Commissions Module',
+    'project-7': 'Character-Consistent Content Pipeline',
   })
 
   const [roboticspmGlitchTexts, setRoboticspmGlitchTexts] = useState<{ [key: string]: string }>({
@@ -55,13 +56,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
   const [freelanceWordGlitch, setFreelanceWordGlitch] = useState<string>('Freelance')
 
   const projectPrefixes: { [key: string]: string } = {
-    'project-0': 'Blackthorn Vision: ',
-    'project-1': 'ScrumLaunch: ',
-    'project-2': '',
-    'project-3': 'Kingmaker: ',
-    'project-4': '',
-    'project-5': 'Tribute Technologies: E-commerce ',
-    'project-6': '',
+    'project-0': 'Ukraine\'s Biggest State-Owned Bank: ',
+    'project-1': 'Blackthorn Vision: ',
+    'project-2': 'ScrumLaunch: ',
+    'project-3': '',
+    'project-4': 'Kingmaker: ',
+    'project-5': '',
+    'project-6': 'Tribute Technologies: E-commerce ',
+    'project-7': '',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
@@ -198,13 +200,14 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     if (slug !== 'freelance') return
 
     const originalTexts: { [key: string]: string } = {
-      'project-0': 'Tax Advisory CRM',
-      'project-1': 'Sports League Management App',
-      'project-2': 'Casino Metrics',
-      'project-3': 'Deposit Flow Redesign',
-      'project-4': 'SignalSpot.io - Sales Intelligence Platform',
-      'project-5': 'Commissions Module',
-      'project-6': 'Character-Consistent Content Pipeline',
+      'project-0': 'Procurement Audit & Optimization',
+      'project-1': 'Tax Advisory CRM',
+      'project-2': 'Sports League Management App',
+      'project-3': 'Casino Metrics',
+      'project-4': 'Deposit Flow Redesign',
+      'project-5': 'SignalSpot.io - Sales Intelligence Platform',
+      'project-6': 'Commissions Module',
+      'project-7': 'Character-Consistent Content Pipeline',
     }
 
     const freelanceWord = 'Freelance'
@@ -536,8 +539,16 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex-1">
+                              <div className="flex items-start gap-3">
+                                {project.logo && (
+                                  <img
+                                    src={project.logo}
+                                    alt=""
+                                    style={{ width: '40px', height: '40px', flexShrink: 0, opacity: 0.85, borderRadius: '8px', marginTop: '2px' }}
+                                  />
+                                )}
                               <h3 className={`text-xl font-light text-neutral-100 mb-2 ${slug === 'freelance' ? 'hover-laser' : ''}`} style={{ minHeight: '56px' }}>
-                                {slug === 'freelance' 
+                                {slug === 'freelance'
                                   ? project.url
                                     ? <a href={project.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
                                         {(projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]}
@@ -545,6 +556,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                                     : (projectPrefixes[`project-${idx}`] || '') + freelanceDisplayTexts[`project-${idx}`]
                                   : project.name}
                               </h3>
+                              </div>
                               <p className="text-sm text-neutral-400 mb-3">{project.duration}</p>
                             </div>
                           </div>

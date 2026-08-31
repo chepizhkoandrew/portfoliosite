@@ -14,6 +14,22 @@ export const freelanceExperience = {
   
   projects: [
     {
+      id: 'state-bank-procurement',
+      name: 'Ukraine\'s Biggest State-Owned Bank: Procurement Audit & Optimization',
+      logo: '/experienceicons/nda-bank.png',
+      duration: '2025',
+      overview: 'Performed via EY for the Advisory Board of Ukraine\'s biggest state-owned bank (client under NDA) — audit and optimization of the procurement processes, including IT infrastructure, budgeting, vendor selection, procurement fulfilment, payments, and reporting. Delivered a detailed category management framework with rules and templates that became the baseline for further automation by the bank\'s specialized vendors.',
+      url: '',
+      tags: ['Procurement', 'Category Management', 'Budgeting', 'Vendor Selection', 'Process Audit', 'Banking'],
+      bulletPoints: [
+        'Audited procurement and budget-control processes for Ukraine\'s biggest state-owned bank, where licenses and software fees represented over 70% of total operational budget expenditures.',
+        'Covered the full procurement cycle: IT infrastructure, budgeting, vendor selection, procurement fulfilment, payments, and reporting.',
+        'Designed a Digital Asset Management concept covering the full license lifecycle — request → justification → tender → allocation — with named end-user tracking and consolidated vendor communication in one place.',
+        'Developed a detailed category management framework with rules and templates, adopted as the baseline for further automation by the bank\'s specialized vendors.',
+      ],
+      details: '',
+    },
+    {
       id: 'blackthorn',
       name: 'Blackthorn Vision: Tax Advisory CRM',
       duration: '2 months',
