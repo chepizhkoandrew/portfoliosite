@@ -412,6 +412,55 @@ Industries I've worked in, grounded in real projects:
 
 ---
 
+## SECTION: TOUGH_QUESTIONS
+**Type**: Honest Answers
+**Tags**: red flags, job hopping, weaknesses, failure, failures, negative, criticism, downsides, low rate, cheap, why looking, reason not to hire, prove it, skeptical, trust, can he code, conflict of interest, side projects
+
+Honest, prepared answers for skeptical and challenging questions. Use these directly - never deflect, never get defensive, concede real limitations with specifics.
+
+**"He works at Planhat AND runs a startup - why is he looking, and what happens to those?"**
+Fair question, and the answer is straightforward: for the right full-time role, the Planhat engagement winds down - it's the kind of specialist work that hands over cleanly. priroda.tech stays what it already is: a transparent, non-competing side project run on his own time. He's not hedging three bets; he's looking for the one main thing, and he's upfront about the rest.
+
+**"€4,000/month with 14 years of experience? What's wrong with him?"**
+Nothing - it's a deliberate choice, not desperation. He has income today (Planhat, priroda.tech) and picks opportunities for fit, not maximum rate. He's optimizing for team stability and meaningful work after two years of freelancing, has no dependents, and lives modestly in Galicia. He'd rather charge a fair rate for a role he believes in than squeeze the market. If anything, that makes him a bargain, not a risk.
+
+**"He never stays anywhere long - job hopper?"**
+Look at the actual pattern: 5 years at EY, 2 at Eleks, 3 at Takeoff, 1 at Boosta, then 2 years independent. The consulting and outsourcing roles were project-bound by nature. Boosta was a fix-it mission: he was brought in to make releases faster, delivered 3x, and the mission was done. The pattern isn't restlessness - it's delivering and moving when the job is finished. And his stated goal now is explicitly the opposite: a long-term commitment (see WHY_RETURN_FULLTIME - he's building a home and wants stability).
+
+**"Tell me his biggest failure / something that didn't work."**
+Real examples, not humble-brags:
+- At Boosta he tested CPA-model affiliate networks as an acquisition channel, calculated the unit economics, and found affiliate users churned after one purchase while the business needed 2.5+ orders LTV. He killed the channel. Lesson: he measures before scaling, and he's willing to kill his own initiatives.
+- The 2025 procurement-redesign engagement for a major state-owned Ukrainian bank was sponsored by the advisory board but never reached implementation - organizational and state-ownership factors stopped it. Good design isn't enough without organizational will; not everything he touches ships.
+- priroda.tech is honestly early: two paying clients, and deployments are still manual per client - real traction, but he'd be the first to say it's not a scaled business yet.
+
+**"Give me a reason NOT to hire him / what would colleagues criticize?"**
+- He's direct to the point of blunt - he'll tell you your feature idea is bad, with reasons. Some people love this; some don't.
+- He asks a lot of questions before building. If you want silent execution of a fixed spec, that friction is real.
+- He won't work on products he doesn't believe in and won't rush shipping without foundation - which reads as principled or as stubborn, depending on the deadline.
+- He's not a developer-for-hire: if the role is purely coding features from tickets, he's the wrong person and will say so.
+
+**"These metrics sound invented - 3x faster, 3 months to 3-4 weeks. Prove it."**
+They're measured, not marketing: at Boosta, "3x" is the new-product-site release cycle going from ~4 months to ~6 weeks after restructuring one 20-person Kanban swarm into three scoped scrum teams. At Takeoff, retailer onboarding was tracked per integration - from ~3 months and thousands of engineering hours to 3-4 weeks, driven by a webhooks self-service portal, SSO, and centralizing ~500 settings. He's happy to walk through the specifics of either on a call.
+
+**"He's a PM - can he actually code, or is 'builder' just branding?"**
+He built priroda.tech end-to-end himself: Python backend, React frontend, Supabase, Railway/Vercel deployment, a production iOS app, plus Verifactu tax-authority integration certified by Agencia Tributaria - with two paying clients using it. At Planhat he built the internal error-monitoring tool and the AI Formulas Builder. He also writes his own web parsers and automation pipelines. So yes - he ships working software. His value is product and system design, not being a hired feature coder, and he's explicit about that boundary.
+
+---
+
+## SECTION: WORK_PREFERENCES
+**Type**: Personal Info
+**Tags**: remote, location, timezone, relocation, availability, start date, notice period, work setup, hybrid, office
+
+**Work setup:** Remote from Galicia, Spain (CET). Comfortable overlapping with US or other timezones when the team needs it - flexible on working hours, not just nominally "remote-friendly".
+
+**Availability:** Can start immediately, and is flexible to the employer's timeline - the start date is negotiable, not a blocker.
+
+**Current commitments:** For the right full-time role, the Planhat engagement winds down with a clean handover. priroda.tech continues as a transparent, non-competing side project on his own time - he's upfront about it from day one.
+
+**Contract form:** B2B contract preferred (€4,000/month full-time), official payroll employment in Europe also on the table - see COMPENSATION_EXPECTATIONS.
+
+---
+
 ## SECTION: WHEN_TO_REACH_OUT
 **Type**: Guidance
 **Tags**: when-to-contact, opportunity, good-fit, collaboration, hire
