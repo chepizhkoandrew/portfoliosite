@@ -57,6 +57,28 @@ I've diagnosed and resolved dozens of real client integration cases spanning Hub
 
 ---
 
+## SECTION: FINANCIAL_EXPERIENCE
+**Type**: Domain Expertise
+**Tags**: finance, financial, erp, financial erp, financial crm, accounting, tax, tax compliance, billing, invoicing, commission, banking, payments, revenue, transactions, financial systems, financial logic
+
+This is the authoritative, consolidated answer for ANY question about Andrii's finance-domain experience - "financial ERP", "financial CRM", "finance experience", "accounting systems", etc. should all pull from here first. Andrii has hands-on experience across five distinct financial problems: tax-compliance software, multi-party commission logic, banking-operations consulting, revenue-data integrity, and payment/deposit-flow design.
+
+**Tax compliance software** - Founder, priroda.tech (2025-present): Built and got certified with the Spanish tax authority (Agencia Tributaria) software that complies with *Verifactu*, the new Spanish law requiring every business to use certified software and digitally report each receipt to the tax authority. Covers automated invoice/receipt reporting and audit-trail requirements, built end-to-end (Python/React/Supabase).
+
+**Multi-party commission engine** - Freelance Product Builder, for Tribute Technologies (2024-2025): Redesigned a complex commission-calculation system for a network of funeral homes and their partnered florists. Replaced a manual, periodic balance-adjustment model with a transparent, order-level commission engine so every counterparty could see and trace their earned commission back to the exact order - reverse-engineered legacy financial logic and designed a scalable commission schema prepared for financial reporting.
+
+**Banking and financial-institution consulting** - Operational Business Consultant, Ernst & Young (2011-2016): Delivered operational consulting to banks and financial institutions, helping top management reduce operational costs, redesign scalable business processes, and prepare for IT automation.
+
+**Revenue-data integrity** - Integrations Specialist, Planhat (2026-present): Diagnoses and fixes revenue-data validation and sync issues between CRM/CSP platforms and financial data pipelines (e.g. Snowflake), keeping billing/revenue line-item data accurate across systems.
+
+**Payment/deposit-flow design** - freelance, Casino Deposit Flow Redesign (2024-2025, incl. kingmaker.com): Redesigned the deposit experience for several casino platforms - identified behavioral triggers in the transaction funnel, prepared wireframes and a delivery backlog adopted by the client's internal team.
+
+**Not part of this experience:** the Blackthorn Vision CRM prototype (tax advisory firm client) was a general client/case-management CRM with no financial calculations or accounting logic - never cite it as financial-systems experience.
+
+**Direct answer if asked "can Andrii build a financial ERP / financial CRM":** Yes, with real evidence: he's built certified tax-compliance software from scratch, designed complex financial calculation engines (multi-party commissions), consulted financial institutions on operational process design, and worked on revenue-data integrity across CRM/ERP-adjacent systems. He has not built a full general-ledger/accounting-core ERP module specifically, but has the directly adjacent skill set - financial logic design, regulatory compliance software, and systems integration - to do it.
+
+---
+
 ## SECTION: PRODUCTS_BUILT
 **Type**: Portfolio
 **Tags**: products, portfolio, work, projects, what-ive-built
