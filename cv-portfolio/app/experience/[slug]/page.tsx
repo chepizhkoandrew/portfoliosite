@@ -66,6 +66,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     'project-7': '',
   }
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
+  const [copiedProjectId, setCopiedProjectId] = useState<string | null>(null)
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
   const [touchStart, setTouchStart] = useState<{ [key: string]: number }>({})
   const [zoomedImage, setZoomedImage] = useState<{ projectIdx: number; imageIdx: number } | null>(null)
@@ -194,6 +195,29 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
     }
 
     scheduleGlitch()
+  }, [slug])
+
+  useEffect(() => {
+    if (slug !== 'freelance') return
+
+    const applyHash = () => {
+      const hashId = window.location.hash.replace('#', '')
+      if (!hashId) return
+      const projIdx = freelanceExperience.projects.findIndex((p: any) => p.id === hashId)
+      if (projIdx === -1) return
+      setExpandedProjects(prev => {
+        const next = new Set(prev)
+        next.add(`project-${projIdx}`)
+        return next
+      })
+      setTimeout(() => {
+        document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 350)
+    }
+
+    applyHash()
+    window.addEventListener('hashchange', applyHash)
+    return () => window.removeEventListener('hashchange', applyHash)
   }, [slug])
 
   useEffect(() => {
@@ -535,9 +559,23 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                     const isExpanded = expandedProjects.has(`project-${idx}`)
                     const hasExpandableContent = !!(project.bulletPoints?.length || project.details?.trim() || project.videoUrl || project.images?.length)
                     return (
-                      <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
+                      <div key={idx} id={project.id} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px', scrollMarginTop: '96px' }}>
                         <div className="px-6" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
                           <div className="flex justify-between items-start gap-4 mb-3">
+                            <button
+                              onClick={() => {
+                                const link = `${window.location.origin}/experience/freelance#${project.id}`
+                                navigator.clipboard?.writeText(link)
+                                window.history.replaceState(null, '', `#${project.id}`)
+                                setCopiedProjectId(project.id)
+                                setTimeout(() => setCopiedProjectId(null), 2000)
+                              }}
+                              title="Copy link to this case"
+                              className="order-2 text-neutral-500 hover:text-cyan-400 transition-colors text-sm font-light flex-shrink-0"
+                              style={{ marginTop: '6px' }}
+                            >
+                              {copiedProjectId === project.id ? '✓ link copied' : '🔗'}
+                            </button>
                             <div className="flex-1">
                               <div className="flex items-start gap-3">
                                 {project.logo && (
