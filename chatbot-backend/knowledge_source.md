@@ -81,7 +81,7 @@ This is the authoritative, consolidated answer for ANY question about Andrii's f
 
 ## SECTION: PRODUCTS_BUILT
 **Type**: Portfolio
-**Tags**: products, portfolio, work, projects, what-ive-built
+**Tags**: products built, e-grocery platform, takeoff technologies, sports league app, scrumlaunch, casino analytics, deposit flow redesign, kingmaker, priroda tech, verifactu, what-ive-built
 
 **Product 1: E-Grocery Platform**
 - What: Full-stack e-grocery solution connecting consumers and retailers

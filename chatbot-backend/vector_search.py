@@ -3,9 +3,21 @@
 import google.generativeai as genai
 import requests
 import logging
+import math
+import re
 from config import get_settings
 from typing import List, Dict
 import json
+
+
+def _contains_word(haystack: str, needle: str) -> bool:
+    """Substring match on word boundaries - prevents a short/generic tag
+    or keyword like 'ai' or 'work' from matching inside an unrelated word
+    ('explain', 'workaround') or getting credit just because it's a common
+    English word that happens to appear in almost any query."""
+    if not needle:
+        return False
+    return re.search(r'\b' + re.escape(needle) + r'\b', haystack) is not None
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +44,12 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
             content=query,
             output_dimensionality=768
         )['embedding']
-        
+        # gemini-embedding-001 output truncated to 768 dims via MRL is NOT
+        # unit-length, so a raw dot product isn't a cosine similarity - it
+        # must be divided by both vector norms, or every score collapses
+        # into a narrow, barely-discriminating band regardless of relevance.
+        query_norm = math.sqrt(sum(x * x for x in query_embedding))
+
         # First try: Use Supabase pgvector search (RPC function)
         headers = {
             "apikey": settings.SUPABASE_SERVICE_ROLE_KEY,
@@ -73,11 +90,24 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
                 if record.get('embedding'):
                     # Simple cosine similarity calculation
                     embedding = record.get('embedding', [])
+                    # Supabase's REST API returns pgvector columns as a JSON-array
+                    # string (e.g. "[-0.01,0.02,...]"), not a parsed list - without
+                    # this, isinstance(embedding, list) was always False and vector
+                    # similarity silently contributed 0 to every score, on every
+                    # query, despite being the single largest-weighted signal.
+                    if isinstance(embedding, str):
+                        try:
+                            embedding = json.loads(embedding)
+                        except (json.JSONDecodeError, TypeError):
+                            embedding = None
                     if isinstance(embedding, list) and len(embedding) > 0:
                         dot_product = sum(a*b for a, b in zip(query_embedding, embedding))
-                        vector_score = max(0, min(1, (dot_product + 1) / 2))  # Normalize to 0-1
-                        score += vector_score * 40.0
-                        logger.debug(f"   {section_id}: vector_similarity={vector_score:.2f}")
+                        doc_norm = math.sqrt(sum(x * x for x in embedding))
+                        if query_norm > 0 and doc_norm > 0:
+                            cosine_similarity = dot_product / (query_norm * doc_norm)
+                            vector_score = max(0, min(1, (cosine_similarity + 1) / 2))  # Normalize to 0-1
+                            score += vector_score * 40.0
+                            logger.debug(f"   {section_id}: vector_similarity={vector_score:.2f} (cosine={cosine_similarity:.3f})")
             except Exception as e:
                 logger.debug(f"   Could not calculate vector similarity for {section_id}: {e}")
             
@@ -87,13 +117,13 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
             
             tag_score = 0.0
             for tag, tag_norm in zip(tags_lower, tags_normalized):
-                if tag in query_lower or query_lower in tag:
+                if _contains_word(query_lower, tag) or _contains_word(tag, query_lower):
                     tag_score += 10.0
-                elif tag_norm in query_lower or query_lower in tag_norm:
+                elif _contains_word(query_lower, tag_norm) or _contains_word(tag_norm, query_lower):
                     tag_score += 8.0
                 else:
                     for word in tag_norm.split():
-                        if word in query_lower and len(word) > 2:
+                        if len(word) > 2 and _contains_word(query_lower, word):
                             tag_score += 3.0
             
             # Cap tag score at 35
@@ -107,7 +137,7 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
             # 4. KEYWORD MATCHING IN CONTENT (10% weight)
             keywords = [w.strip('.,?!:;()"\'') for w in query_lower.split()]
             keywords = [w for w in keywords if len(w) >= 3]
-            keyword_matches = sum(1 for kw in keywords if kw in content)
+            keyword_matches = sum(1 for kw in keywords if _contains_word(content, kw))
             keyword_score = min(10.0, keyword_matches * 2.0)
             score += keyword_score
             
@@ -119,7 +149,20 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
         
         # Sort by score and return top_k
         scores.sort(key=lambda x: x['score'], reverse=True)
-        
+
+        # Drop results far weaker than the top match instead of always
+        # padding out to top_k - without this, a query with one clearly
+        # dominant section (e.g. a topic with its own consolidated
+        # knowledge section) still force-included several barely-related
+        # sections just to fill the remaining slots, diluting the
+        # authoritative answer with noise and causing inconsistent or
+        # drifted responses. Always keep at least the top match.
+        RELEVANCE_RATIO = 0.6
+        if scores:
+            top_score = scores[0]['score']
+            filtered = [s for s in scores if s['score'] >= top_score * RELEVANCE_RATIO]
+            scores = filtered or scores[:1]
+
         logger.info(f"✅ Top {top_k} results:")
         results = []
         for i, item in enumerate(scores[:top_k]):
