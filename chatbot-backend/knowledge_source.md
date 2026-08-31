@@ -100,7 +100,7 @@ This is the authoritative, consolidated answer for ANY question about Andrii's f
 
 **Capital investment management** - Ferrexpo, a large mining complex in Kremenchuk, Ukraine (2015-2016, via EY): Transformed capital-investment and project-management processes. Mapped the full lifecycle of a capital investment - estimation, budgeting, vendor selection, budget corrections, plan tracking, project KPIs, payments, forecasting, and approval - aligning investment management with supply chain and procurement. Delivered process maps with job descriptions, budget-sheet prototypes, and functional requirements for automation.
 
-**Bank procurement & budget control** - a major state-owned Ukrainian bank (2025, via EY): Audited procurement and budget-control processes where licenses and software fees made up over 70% of total operational expenditure. Designed a digital asset management system covering the full lifecycle (request → justification → tender → allocation), tracking real named end users, divisions, and the business products each license serves, consolidating vendor communication in one place, and introducing category management. Sponsored by the bank's advisory board; the engagement did not continue into implementation.
+**Bank procurement & budget control** - Oschadbank, one of Ukraine's largest state-owned banks (2025, freelance engagement via EY): Audited procurement and budget-control processes where licenses and software fees made up over 70% of total operational expenditure. Designed a digital asset management system covering the full lifecycle (request → justification → tender → allocation), tracking real named end users, divisions, and the business products each license serves, consolidating vendor communication in one place, and introducing category management. Sponsored by the bank's advisory board; the engagement did not continue into implementation.
 
 **Independent cost verification** - Kernel ERP (2017-2019, via Eleks): Designed cross-system calculation logic connecting several operational/production systems and applying coefficients to compute the true cost of field operations - giving Kernel an independent control to verify subcontractor and machinery invoices across a complex rented-fleet interpayment structure.
 
@@ -139,7 +139,7 @@ Product website: https://priroda.tech
 
 ## SECTION: FREELANCE_EXPERIENCE
 **Type**: Past Role
-**Tags**: freelance, outsourcing, prototype, scrumlaunch, sports league, blackthorn vision, tax advisory crm, tribute technologies, commission module, casino analytics, deposit flow, kingmaker, no-code, airtable
+**Tags**: freelance, outsourcing, prototype, scrumlaunch, sports league, blackthorn vision, tax advisory crm, tribute technologies, commission module, casino analytics, deposit flow, kingmaker, no-code, airtable, oschadbank, ey, procurement, bank consulting
 
 From 2024 to 2025 I worked as a Freelance Product Builder and IT Development Outsourcer, delivering projects for several clients:
 
@@ -153,6 +153,8 @@ Important: despite the client being a tax advisory firm, this was a general clie
 **Online-Casino Analytics** (NDA client) - ~1 month. Developed a comprehensive tree of 300+ product and behavioral metrics; the client selected 72 key indicators for continuous tracking and performance analysis.
 
 **Casino Deposit Flow Redesign** (incl. kingmaker.com) - ~1 month. Redesigned the deposit experience for several casino platforms: identified behavioral triggers, prepared wireframes and a delivery backlog that the client's internal team adopted.
+
+**Procurement Function Improvement for Oschadbank** (2025, via EY). A consulting engagement for Oschadbank - one of Ukraine's largest state-owned banks - focused on improving the procurement function, where licenses, software, and license fees represented more than 70% of the bank's total operational budget expenditures. I audited the procurement and budget-control processes and designed a Digital Asset Management system covering the full lifecycle: request → justification → tender → application/allocation. Core control principle: every license request had to be justified and tied back to the specific project or business activity it serves, with tender procedures to avoid duplicate purchases and capture bulk discounts through license hubs and resellers. The system tracked real named end users, their divisions, and the business products each license was allocated to, stored issues and reclamations, and consolidated all vendor communication in one place - previously scattered across individual business owners, making negotiations impossible to track. I also proposed a redesigned procurement structure and a detailed category-management approach. The engagement was sponsored by the bank's advisory board; it did not continue into the implementation phase due to organizational and state-ownership factors.
 
 ---
 
@@ -216,7 +218,7 @@ Notable engagements:
 - **Banking operations** - Prominvestbank (Ukraine), VTB Bank and Casanova (Kazakhstan): redesigned processes for risk assessment, cash and operations, and administrative/treasury management; built the managerial reporting pipeline end-to-end, from data collection through report preparation.
 - **Ministry of Finance of Ukraine / World Bank**: full system design and vendor selection for a national budgetary ERP covering Ukraine's entire budget system, from a village school up to the Parliament-approved budget. I owned the Treasury process design and automated flows per then-current legislation; an integrator was selected to implement.
 - **Ferrexpo** (mining complex, Kremenchuk, 2015-2016): transformed capital-investment and project-management processes - mapped the full investment lifecycle (estimation, budgeting, vendor selection, budget corrections, plan tracking, KPIs, payments, forecasting, approval) and delivered process maps, job descriptions, budget-sheet prototypes, and automation requirements.
-- **A major state-owned Ukrainian bank** (2025, a later engagement via EY): audited procurement and budget-control processes (licenses/software fees were 70%+ of opex) and designed a digital asset management system with tender-based justification, end-user tracking, consolidated vendor communication, and category management. Sponsored by the advisory board.
+- **Oschadbank** (2025 - a separate, much later engagement via EY, during his freelance period): procurement function improvement and Digital Asset Management system design - full detail in FREELANCE_EXPERIENCE.
 
 ---
 
@@ -455,7 +457,7 @@ Look at the actual pattern: 5 years at EY, 2 at Eleks, 3 at Takeoff, 1 at Boosta
 **"Tell me his biggest failure / something that didn't work."**
 Real examples, not humble-brags:
 - At Boosta he tested CPA-model affiliate networks as an acquisition channel, calculated the unit economics, and found affiliate users churned after one purchase while the business needed 2.5+ orders LTV. He killed the channel. Lesson: he measures before scaling, and he's willing to kill his own initiatives.
-- The 2025 procurement-redesign engagement for a major state-owned Ukrainian bank was sponsored by the advisory board but never reached implementation - organizational and state-ownership factors stopped it. Good design isn't enough without organizational will; not everything he touches ships.
+- The 2025 procurement-redesign engagement for Oschadbank (a major state-owned Ukrainian bank, via EY) was sponsored by the advisory board but never reached implementation - organizational and state-ownership factors stopped it. Good design isn't enough without organizational will; not everything he touches ships.
 - priroda.tech is honestly early: two paying clients, and deployments are still manual per client - real traction, but he'd be the first to say it's not a scaled business yet.
 
 **"Give me a reason NOT to hire him / what would colleagues criticize?"**
