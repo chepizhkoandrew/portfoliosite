@@ -37,7 +37,7 @@ export const experiences: Experience[] = [
     duration: '2026 - now',
     type: 'integrations',
     color: '#0ea5e9',
-    logo: '/experienceicons/planhat.svg',
+    logo: '/experienceicons/planhat.png',
     description: [
       'Planhat is an Agentic Customer Platform (CRM/CSP) used by leading SaaS and enterprise companies to run customer success and revenue operations',
       'Clients run Planhat inside a wide SaaS ecosystem (HubSpot, Salesforce, Snowflake, BigQuery, Zendesk, Intercom, Pendo, and more), which adds complexity to their data flows',

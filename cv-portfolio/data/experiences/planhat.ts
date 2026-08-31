@@ -7,7 +7,7 @@ export const planhatExperience = {
   endYear: null,
   duration: '2026 - now',
   color: '#0ea5e9',
-  logo: '/experienceicons/planhat.svg',
+  logo: '/experienceicons/planhat.png',
   overview: 'Managing integration issues between Planhat CRM and 10+ SaaS tools (HubSpot, Salesforce, Snowflake, BigQuery, Zendesk, Intercom, Pendo, and more) for enterprise clients',
 
   description: [
