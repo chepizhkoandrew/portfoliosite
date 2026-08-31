@@ -27,6 +27,10 @@ export const freelanceExperience = {
         'Designed a Digital Asset Management concept covering the full license lifecycle — request → justification → tender → allocation — with named end-user tracking and consolidated vendor communication in one place.',
         'Developed a detailed category management framework with rules and templates, adopted as the baseline for further automation by the bank\'s specialized vendors.',
       ],
+      images: [
+        '/projectscreens/procurement-process-map.png',
+        '/projectscreens/digital-capability-map.png',
+      ],
       details: '',
     },
     {
