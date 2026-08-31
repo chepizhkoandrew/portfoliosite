@@ -21,6 +21,43 @@ def _contains_word(haystack: str, needle: str) -> bool:
 
 logger = logging.getLogger(__name__)
 
+# Common English function words - a cheap gate so obviously-English queries
+# skip the translation round trip.
+_ENGLISH_MARKERS = {
+    'the', 'a', 'an', 'is', 'are', 'was', 'he', 'his', 'him', 'you', 'i',
+    'what', 'who', 'how', 'why', 'when', 'where', 'which', 'can', 'could',
+    'does', 'do', 'did', 'will', 'would', 'about', 'and', 'or', 'of', 'to',
+    'in', 'on', 'for', 'with', 'have', 'has', 'tell', 'me', 'hi', 'hello',
+}
+
+
+def _ensure_english(query: str) -> str:
+    """The knowledge base is written and tagged in English, so tag/keyword
+    matching contributes nothing for a Russian or Spanish query and even
+    the embedding similarity degrades - a Spanish question about AI skills
+    was answered "no information" despite a whole AI section existing.
+    Translate non-English queries for RETRIEVAL ONLY; the chat model still
+    replies in the visitor's language from the conversation itself."""
+    lowered_words = set(re.findall(r'[a-z]+', query.lower()))
+    if query.isascii() and lowered_words & _ENGLISH_MARKERS:
+        return query
+    try:
+        model = genai.GenerativeModel('gemini-flash-latest')
+        resp = model.generate_content(
+            "Translate the following text to English. If it is already English, "
+            "return it unchanged. Return ONLY the translation, nothing else.\n\n" + query,
+            request_options={'timeout': 8},
+        )
+        translated = (resp.text or '').strip()
+        if translated:
+            if translated != query:
+                logger.info(f"🌐 Query translated for retrieval: {translated[:80]}")
+            return translated
+    except Exception as e:
+        logger.warning(f"Query translation skipped: {e}")
+    return query
+
+
 async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
     """Search knowledge base using vector similarity and hybrid ranking.
     
@@ -36,12 +73,14 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
         genai.configure(api_key=settings.GOOGLE_API_KEY)
         
         logger.info(f"🔍 Searching knowledge base for: {query[:60]}...")
-        
+
+        search_query = _ensure_english(query)
+
         # Generate embedding for the query
         logger.debug("   Generating query embedding...")
         query_embedding = genai.embed_content(
             model='models/gemini-embedding-001',
-            content=query,
+            content=search_query,
             output_dimensionality=768
         )['embedding']
         # gemini-embedding-001 output truncated to 768 dims via MRL is NOT
@@ -80,7 +119,7 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
             section_id = record.get('section_id', 'Unknown')
             content = record.get('content', '').lower()
             tags = record.get('tags', [])
-            query_lower = query.lower()
+            query_lower = search_query.lower()
             
             # Initialize score
             score = 0.0
