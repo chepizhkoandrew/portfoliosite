@@ -41,6 +41,22 @@ The past 2 years I've been independent, working on various consulting projects a
 
 ---
 
+## SECTION: PLANHAT_EXPERIENCE
+**Type**: Current Role
+**Tags**: planhat, integrations, current job, hubspot, salesforce, snowflake, bigquery, zendesk, freshdesk, intercom, pendo, ai tooling, case studies, oauth, mcp
+
+Since 2026 I've been working as an Integrations Specialist at Planhat, an Agentic Customer Platform (CRM/CSP) used by leading SaaS and enterprise companies to run customer success, revenue, and go-to-market operations.
+
+Planhat's clients run it inside a wide SaaS ecosystem - HubSpot, Salesforce, Snowflake, BigQuery, Zendesk, Freshdesk, Intercom, Pendo, and dozens of other tools - to keep customer, product, and support data in sync across systems. I own diagnosing and resolving integration issues across that ecosystem: tracing sync failures and data errors back to their root cause so client data stays accurate and up to date.
+
+Two internal tools I built while at Planhat:
+- A proactive error-monitoring tool that catches data errors in integration flows before clients report them, saving dozens of support tickets.
+- An AI-powered Formulas Builder on top of Planhat's existing formulas and workflow engine, letting non-technical support staff configure automations directly without escalating to engineering - saving hundreds of engineering hours per month.
+
+I've diagnosed and resolved dozens of real client integration cases spanning HubSpot batch-sync failures, Salesforce field-mapping and data-integrity defects, Snowflake pipeline and revenue-data validation issues, Pendo identity-reconciliation problems, Zendesk and Freshdesk automation/webhook bugs, and OAuth/MCP spec-compliance issues blocking AI tool integrations. Case details stay anonymized out of client confidentiality, but the pattern is the same across all of them: go past the surface symptom, find the true root cause in the data or the platform, and fix it so it doesn't come back - for that client or any other.
+
+---
+
 ## SECTION: PRODUCTS_BUILT
 **Type**: Portfolio
 **Tags**: products, portfolio, work, projects, what-ive-built
