@@ -46,7 +46,7 @@ SAVE_CONTACT_REQUEST_TOOL = {
                     },
                     "message": {
                         "type": "string",
-                        "description": "A concise summary of what they want - why they're reaching out, what they asked about, any preferred meeting time. Always required, even if brief.",
+                        "description": "A concise summary of what they want - why they're reaching out, what they asked about, any preferred meeting time. For recruiters/clients, include the essence of the vacancy or project: the role's main goal, key requirements, and anything else Andrii needs to reply well. Always required, even if brief.",
                     },
                 },
                 "required": ["request_type", "message"],
