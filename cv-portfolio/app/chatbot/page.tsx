@@ -45,7 +45,6 @@ interface Message {
 const suggestedQuestions = [
   'Why would I hire him?',
   'How exactly can he help with my product?',
-  'Seems like last time he was employed two years ago. Why so? What\'s his problem?',
   'This all looks expensive. What\'s his rate?',
 ];
 

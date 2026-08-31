@@ -146,7 +146,9 @@ Andrii designed and delivered a fully functional no-code prototype based on Airt
 
 He collaborated closely with the client to understand their market tools, assess compatibility, and identify potential integration points with existing document-management systems. The prototype included configured user access separation (via SSO login) to reflect real operational constraints.
 
-Within several weeks, the client received a demonstrable end-to-end CRM workflow that clarified requirements, validated scope, and supported the decision to move forward with a full production build by a larger engineering team. 
+Within several weeks, the client received a demonstrable end-to-end CRM workflow that clarified requirements, validated scope, and supported the decision to move forward with a full production build by a larger engineering team.
+
+Note: despite the client being a tax advisory firm, this was a general client/case-management CRM (contacts, documents, workflow, access control) - it did NOT involve financial calculations, accounting logic, or billing/invoicing systems. When a question is specifically about financial-systems, accounting-domain, or "financial CRM" experience, leave this project out of the answer entirely (don't list it even with a caveat) - it isn't relevant evidence for that specific claim. Use the Tribute Technologies commission engine and the Planhat revenue-data work as the financial-logic examples instead. This project is still fair to mention when asked generally about CRM or client-management systems (not specifically about finance).
 
 - **E-commerce Commission Management Module** for a funeral homes network (for Tribute Technologies) — backend and logic development (~4 months).  
 Andrii worked on a complex commission-calculation system used by a network of funeral homes and their partnered floristerías. Orders for funerals and obituaries generated multi-party commissions, often with different rules across segments and partner groups. The existing model relied on periodic balance adjustments based on invoices, which made it difficult for stakeholders to understand how individual commissions were formed.
@@ -607,7 +609,7 @@ I can sing Eminem on guitar. I read Stephen King in the original English. I've b
 
 ## SECTION: COMPENSATION_EXPECTATIONS
 **Type**: Personal Info
-**Tags**: compensation, salary, rate, price, cost, requirements, expectations
+**Tags**: compensation, salary, rate, price, cost, requirements, expectations, crypto, cryptocurrency, b2b, contract, employment, payroll, negotiable
 
 **Compensation Expectations**
 
