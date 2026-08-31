@@ -601,26 +601,28 @@ export default function PortfolioRedesign({ showAnimations = true }: PortfolioRe
 
         <div className="h-8 md:h-10 lg:h-12" />
 
-        <div className="w-full max-w-xl md:max-w-2xl lg:max-w-3xl px-4 h-72">
+        <div className="w-full max-w-xl md:max-w-2xl lg:max-w-3xl px-4">
           <TypingBio showAnimations={showAnimations} onSecondLineComplete={handleSecondLineComplete} startDelay={100} />
         </div>
 
-        <div style={{ height: '1px' }} />
-
-        <div className="flex gap-4 md:gap-8 justify-center">
-          <Link
-            href="/experience"
-            className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
-          >
-            About me
-          </Link>
-          <Link
-            href="/chatbot"
-            className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
-          >
-            Talk to Assistant
-          </Link>
+        <div className="flex-1 flex items-center justify-center w-full" style={{ minHeight: '2rem' }}>
+          <div className="flex gap-4 md:gap-8 justify-center">
+            <Link
+              href="/experience"
+              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              About me
+            </Link>
+            <Link
+              href="/chatbot"
+              className="glow-button w-40 md:w-48 h-16 flex items-center justify-center bg-neutral-900 border border-neutral-700 hover:border-cyan-400/50 rounded-sm text-neutral-100 font-light tracking-wider uppercase text-sm transition-all"
+            >
+              Talk to Assistant
+            </Link>
+          </div>
         </div>
+
+        <div className="pb-10 md:pb-12" />
       </section>
 
       <canvas id="matrixCanvas" />

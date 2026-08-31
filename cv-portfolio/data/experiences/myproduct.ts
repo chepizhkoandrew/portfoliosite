@@ -19,12 +19,15 @@ export const myproductExperience = {
 
 For the last several months of 2025 I've been solely building my own product.
 
-This is a commercial product for small business owners, specifically florist shops. Currently it is targeted at Spain market, because of the new law requiring all entrepreneurs to use digital tools and report every receipt to the tax authority (*Verifactu). Even the most traditional family businesses will have to use software certified at the local tax authorities. There are up to 6000 flower shops in Spain. My goal is to get 5% of the market until the end of 2026. Now, the product is certified and being tested by 2 local flower shops: they test the functionality and meanwhile I prepare marketing and calculate unit economics of the whole venture.
+This is a commercial product for small business owners, specifically florist shops. Currently it is targeted at Spain market, because of the new law requiring all entrepreneurs to use digital tools and report every receipt to the tax authority (*Verifactu). Even the most traditional family businesses will have to use software certified at the local tax authorities. There are up to 6000 flower shops in Spain. My goal is to get 5% of the market until the end of 2026.
+
+The product is now released as a fully functional iOS app, with 2 paying clients in Spain using it in production.
 
 ## What has been done so far:
 
+- Released a fully functional iOS app, now in production use.
+- 2 paying clients in Spain, live on the product.
 - A fully working solution is already developed and tested. Core tech stack: Python + React UI + Airtable database -> in transition to Supabase. Railway + Vercel deployment instances (manual for each client as of now).
-- Found the first 2 flower shops, who agreed to use the software in a testing mode to get feedback and better craft the value proposition.
 - Software registered at the Spanish tax authority (Agencia Tributaria)
 - Configured landing site: domain and primitive "request a demo" selling funnel. Added google indexing, SEO, landing translated to Spanish
 - Several emails are warming up with Instantly (ready to send out campaign)
@@ -41,7 +44,12 @@ This is a commercial product for small business owners, specifically florist sho
 
 [priroda.tech](https://priroda.tech)
   `,
-  
+
+  architectureImage: {
+    title: 'Priroda - Services Architecture',
+    imageUrl: '/projectscreens/priroda-services-architecture.png',
+  },
+
   resources: [
     {
       title: 'priroda.tech',

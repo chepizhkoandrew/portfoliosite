@@ -418,33 +418,30 @@ export default function ExperiencePage() {
 
       <MobileMenu onDownloadCV={downloadCV} />
 
-      {/* Career Path Hero Section with Title Overlay */}
+      {/* Career Path Hero Section */}
       <section className="relative flex items-center justify-center px-3 md:px-6 lg:px-12 py-16" style={{ zIndex: 10 }}>
-        <div className="relative w-full max-w-6xl flex justify-center items-center">
-          <img 
-            src="https://res.cloudinary.com/dzhwsjuxy/image/upload/v1765798506/career_keanu_tg9lnd.png"
-            alt="Career journey"
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-              maxHeight: '600px',
-              objectFit: 'contain',
-              borderRadius: '4px'
-            }}
-          />
-          <h1 
-            className="absolute text-5xl md:text-6xl font-light text-neutral-100 text-center hover-laser" 
-            style={{
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 20,
-              textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
-              width: '80%'
-            }}
-          >
-            Career <span style={{ color: '#fbbf24' }}><GlitchText text={pathGlitch} /></span>
-          </h1>
+        <div className="relative w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-4">
+          <div className="w-full md:w-1/2 flex justify-center md:justify-start">
+            <h1 className="text-5xl md:text-6xl font-light text-neutral-100 hover-laser">
+              Career <span style={{ color: '#fbbf24' }}><GlitchText text={pathGlitch} /></span>
+            </h1>
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+            <img
+              src="/andrii-hero.jpg"
+              alt="Andrii Chepizhko"
+              style={{
+                width: '100%',
+                maxWidth: '480px',
+                aspectRatio: '1 / 1',
+                objectFit: 'cover',
+                objectPosition: 'center 42%',
+                transform: 'scale(1.15)',
+                WebkitMaskImage: 'radial-gradient(ellipse farthest-corner at center, black 30%, transparent 92%)',
+                maskImage: 'radial-gradient(ellipse farthest-corner at center, black 30%, transparent 92%)',
+              }}
+            />
+          </div>
         </div>
       </section>
 

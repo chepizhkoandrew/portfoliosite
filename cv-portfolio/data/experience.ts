@@ -5,7 +5,8 @@ export interface ExperienceLink {
 
 export interface ExperienceVideo {
   title: string
-  youtubeId: string
+  youtubeId?: string
+  videoUrl?: string
   description?: string
 }
 
@@ -18,7 +19,7 @@ export interface Experience {
   duration: string
   description: string[]
   achievements?: string[]
-  type: 'founder' | 'freelance' | 'lead_po' | 'pm' | 'lead_ba' | 'consultant'
+  type: 'founder' | 'freelance' | 'lead_po' | 'pm' | 'lead_ba' | 'consultant' | 'integrations'
   color: string
   companyUrl?: string
   logo?: string
@@ -27,6 +28,25 @@ export interface Experience {
 }
 
 export const experiences: Experience[] = [
+  {
+    id: 'planhat',
+    title: 'Integrations Specialist',
+    company: 'Planhat',
+    startYear: 2026,
+    endYear: null,
+    duration: '2026 - now',
+    type: 'integrations',
+    color: '#0ea5e9',
+    logo: '/experienceicons/planhat.svg',
+    description: [
+      'Planhat is an Agentic Customer Platform (CRM/CSP) used by leading SaaS and enterprise companies to run customer success and revenue operations',
+      'Clients run Planhat inside a wide SaaS ecosystem (HubSpot, Salesforce, Snowflake, BigQuery, Zendesk, Intercom, Pendo, and more), which adds complexity to their data flows',
+      'Manage integration issues between Planhat and this ecosystem so client data keeps syncing correctly',
+      'Built a proactive error-monitoring tool that catches data errors before clients raise them, saving dozens of tickets',
+      'Built an AI Formulas Builder that lets support configure automations without engineering, saving hundreds of engineering hours per month',
+    ],
+    companyUrl: 'https://www.planhat.com/',
+  },
   {
     id: 'myproduct',
     title: 'Startup Founder',
@@ -40,8 +60,8 @@ export const experiences: Experience[] = [
     description: [
       'Digital operations system for the flower shops business',
       'Commercial product for florist shops in Spain addressing new tax compliance requirements (Verifactu)',
-      'Addressing urgent digitalization needs for retail business in Spain (*Verifactu)',
-      'Developing product, testing with clients, managing marketing and operational/regulatory steps for launch in Spain',
+      'Released a fully functional iOS app with 2 paying clients in Spain',
+      'Managing marketing and operational/regulatory steps for wider launch in Spain',
     ],
   },
   {

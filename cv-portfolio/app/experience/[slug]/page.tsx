@@ -9,6 +9,7 @@ import { erpsystemExperience } from '@/data/experiences/erpsystem'
 import { businessconsultingExperience } from '@/data/experiences/businessconsulting'
 import { roboticspmExperience } from '@/data/experiences/roboticspm'
 import { leadPoExperience } from '@/data/experiences/lead_po'
+import { planhatExperience } from '@/data/experiences/planhat'
 import { glitchText, partialGlitchText, rangeGlitchText } from '@/lib/glitchEffect'
 import { useState, useEffect } from 'react'
 import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
@@ -22,6 +23,7 @@ const experiences: { [key: string]: any } = {
   consultant: businessconsultingExperience,
   roboticspm: roboticspmExperience,
   lead_po: leadPoExperience,
+  planhat: planhatExperience,
 }
 
 export default function ExperiencePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -462,12 +464,32 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Project Demo</h2>
                 <div className="aspect-video rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}${experience.videoDemo.startTime ? `?start=${experience.videoDemo.startTime}` : ''}`}
-                    title={experience.videoDemo.title}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allowFullScreen
+                  {experience.videoDemo.videoUrl ? (
+                    <video controls className="w-full h-full" style={{ backgroundColor: '#000' }}>
+                      <source src={experience.videoDemo.videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${experience.videoDemo.youtubeId}${experience.videoDemo.startTime ? `?start=${experience.videoDemo.startTime}` : ''}`}
+                      title={experience.videoDemo.title}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allowFullScreen
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+
+            {experience.architectureImage && (
+              <div className="my-16">
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">{experience.architectureImage.title}</h2>
+                <div className="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                  <img
+                    src={experience.architectureImage.imageUrl}
+                    alt={experience.architectureImage.title}
+                    className="w-full h-auto"
                   />
                 </div>
               </div>
@@ -770,7 +792,7 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            {experience.projects && slug !== 'freelance' && slug !== 'consultant' && (
+            {experience.projects && slug !== 'freelance' && slug !== 'consultant' && slug !== 'planhat' && (
               <div className="my-16">
                 <h2 className="text-2xl font-light text-neutral-200 mb-6">Projects</h2>
                 <div className="space-y-6">
@@ -964,7 +986,11 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
                             <div key={lineIdx} className="flex gap-3">
                               <span className="text-neutral-400 flex-shrink-0 text-lg">○</span>
                               <p className="text-base leading-relaxed text-neutral-300">
-                                {line.replace('- ', '')}
+                                {line.replace('- ', '').split(/(\*\*[^*]+\*\*)/g).map((part: string, partIdx: number) =>
+                                  part.startsWith('**') && part.endsWith('**')
+                                    ? <strong key={partIdx} className="font-medium text-neutral-100">{part.slice(2, -2)}</strong>
+                                    : part
+                                )}
                               </p>
                             </div>
                           ))}
@@ -1156,9 +1182,9 @@ export default function ExperiencePage({ params }: { params: Promise<{ slug: str
             )}
           </div>
 
-            {experience.projects && slug === 'consultant' && (
+            {experience.projects && (slug === 'consultant' || slug === 'planhat') && (
               <div style={{ paddingTop: '32px', paddingBottom: '20px' }}>
-                <h2 className="text-2xl font-light text-neutral-200 mb-6">Examples of projects delivered</h2>
+                <h2 className="text-2xl font-light text-neutral-200 mb-6">{slug === 'planhat' ? 'Case Studies (Anonymized)' : 'Examples of projects delivered'}</h2>
                 <div style={{ paddingTop: '24px' }}>
                   {experience.projects.map((project: any, idx: number) => (
                     <div key={idx} className="border border-neutral-800/50 bg-neutral-900/20 rounded-sm overflow-hidden" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>

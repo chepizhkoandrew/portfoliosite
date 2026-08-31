@@ -4,55 +4,49 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { profile } from '@/data/content'
 import { experiences } from '@/data/experience'
-import { pmActivities } from '@/data/pmActivities'
 import { MobileMenu } from '@/components/MobileMenu'
 import { PDFGenerationModal } from '@/components/PDFGenerationModal'
 
-const devActivities = [
+const relevantExperience = [
   {
-    id: 'ai-chatbots',
-    title: 'AI Chatbots',
-    proficiency: 78,
+    tag: 'ERP & Finance Systems',
+    color: '#ec4899',
+    text: 'Owned the data model and system logic for an ERP platform running $100–$10K field-operation budgets across 6,000+ sites — later white-labeled for enterprise clients in Australia.',
   },
   {
-    id: 'web-parsing-data-collection',
-    title: 'Web Parsing & Data Collection',
-    proficiency: 79,
+    tag: 'AI & Automation',
+    color: '#06b6d4',
+    text: 'Built an AI Formulas Builder on top of an existing workflow engine so non-technical staff could self-serve automations, cutting hundreds of engineering hours a month.',
   },
   {
-    id: 'generative-ai-pipelines',
-    title: 'Gen-AI Pipelines',
-    proficiency: 81,
+    tag: 'AI & Automation',
+    color: '#06b6d4',
+    text: 'Shipped a proactive monitoring tool that catches and flags integration data mismatches before they reach a client-reported ticket.',
   },
   {
-    id: 'data-modeling',
-    title: 'Data Modeling',
-    proficiency: 85,
+    tag: 'Integrations',
+    color: '#0ea5e9',
+    text: 'Run day-to-day integration health across 10+ SaaS systems (HubSpot, Salesforce, Snowflake, BigQuery, Zendesk, Intercom, Pendo) feeding one core platform.',
   },
   {
-    id: 'reverse-engineering',
-    title: 'Reverse Engineering',
-    proficiency: 88,
+    tag: 'Audit & Compliance',
+    color: '#10b981',
+    text: 'Took a tax-compliance product live and registered it with the Spanish tax authority under the new Verifactu law — shipped software, not just a spec.',
   },
   {
-    id: 'low-code-prototyping',
-    title: 'Low-Code Prototyping',
-    proficiency: 86,
+    tag: 'Process & Ops Efficiency',
+    color: '#f59e0b',
+    text: 'Cut release cycle time from 4 months to 6 weeks and cleared 1,000+ stalled backlog tickets across a 50-person org.',
   },
   {
-    id: 'api-integrations',
-    title: 'API Integrations',
-    proficiency: 80,
+    tag: 'Process & Ops Efficiency',
+    color: '#f59e0b',
+    text: 'Reduced retailer onboarding from 3 months to 3–4 weeks by systematizing configuration and rollout for a B2B SaaS platform.',
   },
   {
-    id: 'digital-knowledge-bases',
-    title: 'Digital Knowledge Bases',
-    proficiency: 82,
-  },
-  {
-    id: 'internal-tools',
-    title: 'Internal Tools',
-    proficiency: 77,
+    tag: 'Corporate Finance Exposure',
+    color: '#8b5cf6',
+    text: 'Advised banks, government institutions, and factories on KPI design and operational cost reduction as an operational consultant.',
   },
 ]
 
@@ -266,7 +260,7 @@ export default function CVPage() {
 
         {/* Contact Section */}
         <div style={{ marginBottom: '6mm', paddingBottom: '4mm', borderBottom: '1px solid #ddd' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 2.2fr 1fr', gap: '6mm', fontSize: '11px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6mm', fontSize: '11px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
               <div>
                 <span style={{ color: '#666' }}>Email:</span> {profile.email}
@@ -298,17 +292,6 @@ export default function CVPage() {
                 </a>
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
-              <div>
-                <span style={{ color: '#666' }}>Full time rate:</span> €3,000
-              </div>
-              <div>
-                <span style={{ color: '#666' }}>Hourly rate:</span> €20/hour
-              </div>
-              <div>
-                <span style={{ color: '#666' }}>Availability:</span> now
-              </div>
-            </div>
           </div>
         </div>
 
@@ -329,92 +312,38 @@ export default function CVPage() {
           </div>
         </div>
 
-        {/* Skills Section Header */}
-        <div style={{ marginBottom: '6mm', paddingTop: '4mm', borderTop: '1px solid #ddd' }}>
+        {/* Relevant Experience Section Header */}
+        <div style={{ marginBottom: '4mm', paddingTop: '4mm', borderTop: '1px solid #ddd' }}>
           <h2 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            Skills and Activities Performed
+            Relevant Experience
           </h2>
         </div>
 
-        {/* Skills Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6mm', marginBottom: '4mm' }}>
-          {/* Product Management Skills */}
-          <div>
-            <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Product Management
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1mm' }}>
-              {pmActivities.map((activity) => (
-                <div key={activity.id}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <h2 style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
-                      {activity.title}
-                    </h2>
-                    <span style={{ fontSize: '10px', color: '#888' }}>
-                      {activity.proficiency}%
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '4px',
-                      backgroundColor: '#e5e7eb',
-                      borderRadius: '2px',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: `${activity.proficiency}%`,
-                        height: '100%',
-                        backgroundColor: '#fbbf24',
-                        borderRadius: '2px',
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
+        {/* Relevant Experience Section */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5mm 6mm', marginBottom: '4mm' }}>
+          {relevantExperience.map((item, idx) => (
+            <div key={idx}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: '8px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.3px',
+                  color: '#fff',
+                  backgroundColor: item.color,
+                  borderRadius: '3px',
+                  padding: '2px 6px',
+                  marginBottom: '2px',
+                }}
+              >
+                {item.tag}
+              </span>
+              <p style={{ margin: 0, fontSize: '10px', lineHeight: 1.4, color: '#333' }}>
+                {item.text}
+              </p>
             </div>
-          </div>
-
-          {/* Development & Automation Skills */}
-          <div>
-            <h2 style={{ margin: '0 0 6mm 0', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Development & Automation
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1mm' }}>
-              {devActivities.map((activity) => (
-                <div key={activity.id}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
-                    <h2 style={{ margin: 0, fontSize: '11px', fontWeight: 500 }}>
-                      {activity.title}
-                    </h2>
-                    <span style={{ fontSize: '10px', color: '#888' }}>
-                      {activity.proficiency}%
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '4px',
-                      backgroundColor: '#e5e7eb',
-                      borderRadius: '2px',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: `${activity.proficiency}%`,
-                        height: '100%',
-                        backgroundColor: '#fbbf24',
-                        borderRadius: '2px',
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

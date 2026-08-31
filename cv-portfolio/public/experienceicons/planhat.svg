@@ -1,0 +1,6 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#1B1E2B"/>
+  <path d="M105 118 Q150 55 195 118 Z" fill="white"/>
+  <ellipse cx="150" cy="120" rx="75" ry="15" fill="white"/>
+  <text x="150" y="205" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="46" fill="white">planhat</text>
+</svg>
