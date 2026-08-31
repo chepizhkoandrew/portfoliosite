@@ -21,14 +21,32 @@ from config import get_settings
 from knowledge_base import SYSTEM_PROMPT, build_chat_prompt
 import vertex_gemini
 from supabase_client import save_message
+from contact_tool import SAVE_CONTACT_REQUEST_TOOL, execute_save_contact_request
 from message_chunker import chunk_message, should_add_question
 from conversation_context import conversation_context
 from agents import generate_question
 from vector_search import search_knowledge_base
 
-def generate_assistant_reply(knowledge_context: str, user_message: str, history: list) -> str:
+def _extract_function_call(response):
+    """Pull a function_call part out of a Gemini response, if present."""
+    try:
+        for part in response.candidates[0].content.parts:
+            if part.function_call and part.function_call.name:
+                return part.function_call
+    except (IndexError, AttributeError):
+        pass
+    return None
+
+
+async def generate_assistant_reply(knowledge_context: str, user_message: str, history: list, conversation_id: str) -> str:
     """Generate a reply: Vertex AI first if configured, falling back to the
-    Gemini Developer API (GOOGLE_API_KEY) on any failure."""
+    Gemini Developer API (GOOGLE_API_KEY) on any failure.
+
+    NOTE: the save_contact_request lead-capture tool is only wired up on
+    the Gemini API key path below - vertex_gemini.py doesn't support
+    function calling yet, so contact/meeting requests won't be
+    auto-captured while Vertex is the active path. Revisit if that
+    becomes an issue."""
     message_with_context = build_chat_prompt(knowledge_context, user_message)
 
     if vertex_gemini.is_configured():
@@ -44,13 +62,29 @@ def generate_assistant_reply(knowledge_context: str, user_message: str, history:
             return vertex_text
         logger.warning("⚠️  Vertex AI unavailable/failed - falling back to Gemini API key")
 
-    model = genai.GenerativeModel('gemini-flash-latest')
+    model = genai.GenerativeModel('gemini-flash-latest', tools=[SAVE_CONTACT_REQUEST_TOOL])
     chat_history = [
         {'role': 'user' if m.role == 'user' else 'model', 'parts': [{'text': m.content}]}
         for m in history
     ]
     chat_session = model.start_chat(history=chat_history if chat_history else None)
     response = chat_session.send_message(message_with_context)
+
+    function_call = _extract_function_call(response)
+    if function_call and function_call.name == 'save_contact_request':
+        args = dict(function_call.args)
+        logger.info(f"📇 Tool call: save_contact_request({args})")
+        saved = await execute_save_contact_request(conversation_id, args)
+        follow_up = chat_session.send_message(
+            genai.protos.Content(parts=[genai.protos.Part(
+                function_response=genai.protos.FunctionResponse(
+                    name='save_contact_request',
+                    response={'saved': saved},
+                )
+            )])
+        )
+        return follow_up.text
+
     return response.text
 
 
@@ -267,7 +301,7 @@ async def chat_stream(request: Request, chat_request: ChatRequest):
         logger.info(f"✅ Context retrieved: {len(knowledge_context)} characters")
         
         logger.info(f"📤 Generating response with knowledge context injected...")
-        assistant_message = generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history)
+        assistant_message = await generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history, chat_request.conversation_id)
         logger.info(f"✅ Response received: {len(assistant_message)} chars, {assistant_message[:80]}...")
         
         logger.info(f"💾 Saving messages to Supabase...")
@@ -331,7 +365,7 @@ async def chat(request: Request, chat_request: ChatRequest):
             logger.info(f"   Results: {[r.get('section_id', 'Unknown') for r in search_results]}")
         
         logger.info(f"Generating response with knowledge context injected...")
-        assistant_message = generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history)
+        assistant_message = await generate_assistant_reply(knowledge_context, chat_request.message, chat_request.history, chat_request.conversation_id)
         logger.info(f"✅ Response received: {assistant_message[:100]}...")
         
         await save_message(chat_request.conversation_id, 'user', chat_request.message)
