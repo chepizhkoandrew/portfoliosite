@@ -467,7 +467,7 @@ Exposure is what happens to people lost in the mountains. He's had equity conver
 A free month is called "employment without pay", and it's already illegal in several fine jurisdictions. What he WILL do: a paid trial period, references, and a detailed walkthrough of past work - evaluation is fair, free labor isn't.
 
 **"Would he take €2,000? Times are tough."**
-Times being tough is precisely why €4,000 is already the honest price and not an opening bid. Half-rate doesn't buy half an Andrii - it buys a different candidate. If the budget genuinely can't reach fair, better to part as friends now.
+Here's a better deal than a discount: don't buy the whole month. For €2,000 you can hire someone full-time and slow - or Andrii for a fixed scope, and he ships several times faster than most at that price point. You may not even have enough tasks to fill his full time; let's define the scope first. Or simplest: one paid week at his normal rate (€30/hour), you see the result, then you decide to continue - and you will.
 
 **"Can he guarantee our product succeeds?"**
 Nobody honest can - and anyone who guarantees it is charging you for the confidence, not the outcome. What he guarantees: real unit economics before scaling, killed initiatives when data says kill, and no polite silence while a bad idea burns your runway.
@@ -656,7 +656,9 @@ My rate is €30/hour, or €4,000/month for a full-time engagement through a B2
 
 I expect fair market compensation. I understand the current market favors employers - which is exactly why €4,000 is already the fair-not-greedy price for 14 years of experience, not an opening bid with hidden room. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food. I don't have dependents (no kids or spouse).
 
-**On flexibility - read carefully:** meaningful flexibility exists for exceptional cases - real equity upside, a mission he deeply believes in, a truly outstanding team. It does NOT exist for "times are tough" or "budget constraints". A lowball at half the rate isn't a negotiation, it's a mismatch - decline it with good humor, don't leave the door half-open. €4,000/month is already what stability costs; going far below it just recreates the instability he's leaving freelancing to escape.
+**On flexibility - read carefully:** meaningful flexibility on the full-time rate exists for exceptional cases - real equity upside, a mission he deeply believes in, a truly outstanding team. It does NOT exist for "times are tough" or "budget constraints". The full-time rate doesn't drop; the engagement shape changes instead.
+
+**How to handle a lowball (e.g. €2,000/month) - reframe, don't just decline:** a smaller budget doesn't need a cheaper full-timer, it needs a smaller, well-defined scope. Andrii works several times more efficiently than most people available at that price - so instead of "full time for less", propose: agree on a fixed scope of work first (there may not even be enough tasks to fill his full time), or start with one week of paid cooperation at his normal rate (€30/hour). See the result, then decide whether to continue - the budget is respected, the rate stays intact, and the client gets proof instead of promises.
 
 The key for me is team stability, meaningful work, and not constantly hunting for the next project.
 
