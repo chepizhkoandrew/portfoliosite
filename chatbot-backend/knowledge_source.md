@@ -43,7 +43,7 @@ The past 2 years I've been independent, working on various consulting projects a
 
 ## SECTION: PLANHAT_EXPERIENCE
 **Type**: Current Role
-**Tags**: planhat, integrations, current job, hubspot, salesforce, snowflake, bigquery, zendesk, freshdesk, intercom, pendo, ai tooling, case studies, oauth, mcp
+**Tags**: planhat, integrations, current job, crm, erp, csp, customer platform, hubspot, salesforce, snowflake, bigquery, zendesk, freshdesk, intercom, pendo, ai tooling, case studies, oauth, mcp
 
 Since 2026 I've been working as an Integrations Specialist at Planhat, an Agentic Customer Platform (CRM/CSP) used by leading SaaS and enterprise companies to run customer success, revenue, and go-to-market operations.
 

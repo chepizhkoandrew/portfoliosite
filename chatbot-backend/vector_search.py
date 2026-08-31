@@ -105,7 +105,8 @@ async def search_knowledge_base(query: str, top_k: int = 3) -> List[Dict]:
                 score += 15.0
             
             # 4. KEYWORD MATCHING IN CONTENT (10% weight)
-            keywords = [w for w in query_lower.split() if len(w) > 3]
+            keywords = [w.strip('.,?!:;()"\'') for w in query_lower.split()]
+            keywords = [w for w in keywords if len(w) >= 3]
             keyword_matches = sum(1 for kw in keywords if kw in content)
             keyword_score = min(10.0, keyword_matches * 2.0)
             score += keyword_score
