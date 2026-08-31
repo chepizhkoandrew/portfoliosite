@@ -2,13 +2,17 @@
 # Source of Truth - Instructions and Context
 
 This file is the single source of truth for all information about Andrii.
-It will be embedded into a vector database for intelligent retrieval.
+It is embedded into a vector database for retrieval. Rules for this file:
+- One focused topic per SECTION - never merge unrelated roles or topics into one section.
+- Tags must be specific, distinguishing words a visitor would actually type - never generic filler like "work" or "projects" that matches every query.
+- Facts only. No invented products, metrics, or achievements. If a claim isn't real, it doesn't belong here.
+- Written in Andrii's first-person voice; the assistant converts to third person when answering.
 
 ---
 
 ## SECTION: PERSONAL_INFO
 **Type**: Core Information
-**Tags**: about, who, profile, background
+**Tags**: about, who, profile, contact, email, phone, linkedin, github, telegram, whatsapp, location, galicia, spain
 
 Name: Andrii Chepizhko
 Location: Galicia, Spain
@@ -20,11 +24,13 @@ WhatsApp: wa.me/34611371682
 Telegram: t.me/andriichep
 Instagram: instagram.com/madrid_the_dog/
 
+Note for the assistant: share contact details only when the visitor asks how to reach Andrii - never volunteer them unprompted.
+
 ---
 
 ## SECTION: CORE_EXPERIENCE
 **Type**: Professional Background
-**Tags**: experience, years, background, skills, what-i-do
+**Tags**: experience, years, background, summary, digital product builder, what-i-do
 
 I'm a Digital Product Builder with 14+ years of experience turning ideas into working products.
 
@@ -37,7 +43,27 @@ Key strengths:
 
 I've built 5+ products from scratch and worked across 10+ industries including e-grocery, e-commerce, EdTech, finance, gaming, and retail.
 
-The past 2 years I've been independent, working on various consulting projects and building my own products. This wasn't a "gap" - it was a deliberate choice to focus on what matters.
+Between 2024 and 2026 I was independent, working on consulting projects and building my own products. This wasn't a "gap" - it was a deliberate choice to focus on what matters. Since 2026 I also work as an Integrations Specialist at Planhat.
+
+---
+
+## SECTION: CAREER_TIMELINE
+**Type**: Career Overview
+**Tags**: career, timeline, history, cv, resume, roles, companies, employment, work history, jobs
+
+Authoritative career timeline - use this for any overview of Andrii's career, CV, or work history:
+
+| Company / Venture | Role | Years |
+|---|---|---|
+| Planhat | Integrations Specialist | 2026 - present |
+| priroda.tech | Founder | 2025 - present |
+| Freelance / IT Outsourcing | Product Builder | 2024 - 2025 |
+| Boosta | Lead Product Owner | 2023 - 2024 |
+| Takeoff Technologies | Product Manager | 2019 - 2022 |
+| Eleks LLC (client: Kernel) | Lead Business Analyst | 2017 - 2019 |
+| Ernst & Young | Operational Business Consultant | 2011 - 2016 |
+
+Planhat and priroda.tech overlap - Planhat is the current specialist role, priroda.tech is my own product venture running in parallel.
 
 ---
 
@@ -61,7 +87,7 @@ I've diagnosed and resolved dozens of real client integration cases spanning Hub
 **Type**: Domain Expertise
 **Tags**: finance, financial, erp, financial erp, financial crm, accounting, tax, tax compliance, billing, invoicing, commission, banking, payments, revenue, transactions, financial systems, financial logic
 
-This is the authoritative, consolidated answer for ANY question about Andrii's finance-domain experience - "financial ERP", "financial CRM", "finance experience", "accounting systems", etc. should all pull from here first. Andrii has hands-on experience across five distinct financial problems: tax-compliance software, multi-party commission logic, banking-operations consulting, revenue-data integrity, and payment/deposit-flow design.
+This is the authoritative, consolidated answer for ANY question about Andrii's finance-domain experience - "financial ERP", "financial CRM", "finance experience", "accounting systems", etc. should all pull from here first. I have hands-on experience across five distinct financial problems: tax-compliance software, multi-party commission logic, banking-operations consulting, revenue-data integrity, and payment/deposit-flow design.
 
 **Tax compliance software** - Founder, priroda.tech (2025-present): Built and got certified with the Spanish tax authority (Agencia Tributaria) software that complies with *Verifactu*, the new Spanish law requiring every business to use certified software and digitally report each receipt to the tax authority. Covers automated invoice/receipt reporting and audit-trail requirements, built end-to-end (Python/React/Supabase).
 
@@ -79,154 +105,126 @@ This is the authoritative, consolidated answer for ANY question about Andrii's f
 
 ---
 
+## SECTION: PRIRODA_EXPERIENCE
+**Type**: Current Venture
+**Tags**: priroda, priroda.tech, founder, startup, flower shops, florist, verifactu, spain, saas, own product, tax software
+
+Since 2025 I'm the founder of priroda.tech - a commercial SaaS product for small business owners, focused on florist shops in Spain.
+
+The opportunity: a new Spanish law (*Verifactu*) obliges all entrepreneurs to use certified software and report each receipt to the tax authority. Even traditional family-run shops will need compliant tools. The market includes up to 6,000 florist shops in Spain; my goal is to acquire 5% by the end of 2026.
+
+Current status: the product is a fully functional, certified system in production use, with two paying florist-shop clients in Spain validating day-to-day functionality.
+
+What has been achieved so far:
+- Fully developed working solution: Python + React, Airtable in transition to Supabase, deployed via Railway + Vercel (currently set up manually per client).
+- Regulatory certification: software registered with Agencia Tributaria (the Spanish tax authority) for Verifactu compliance.
+- First paying clients: two florist shops in Spain using the product, with a continuous feedback loop shaping priorities.
+- Marketing foundation: landing site with domain, SEO, Spanish translation, Google indexing, and a "Request a Demo" funnel.
+- Outreach prepared: email warm-up campaigns running via Instantly; built a custom parser and extracted ~1,000 florist shop contacts from Google Maps with essential metadata.
+
+Next steps: register an EU legal entity and business bank accounts (currently operating under a Ukrainian PE), run a combined email + WhatsApp outreach campaign, hire first-line customer support, and onboard the first 50 clients within 6 months.
+
+Product website: https://priroda.tech
+
+---
+
+## SECTION: FREELANCE_EXPERIENCE
+**Type**: Past Role
+**Tags**: freelance, outsourcing, prototype, scrumlaunch, sports league, blackthorn vision, tax advisory crm, tribute technologies, commission module, casino analytics, deposit flow, kingmaker, no-code, airtable
+
+From 2024 to 2025 I worked as a Freelance Product Builder and IT Development Outsourcer, delivering projects for several clients:
+
+**Sports League Management App** (for ScrumLaunch) - prototype development, ~2 months. I used no-code tooling: Airtable databases and schemas under the hood, logical diagrams crafted in Miro and discussed with the team. The working prototype was ready within three weeks, which confirmed the scope for a bigger development team and kicked off production development.
+
+**CRM System for a Tax Advisory Firm** (for Blackthorn Vision) - prototype development, ~2 months. I designed and delivered a fully functional no-code prototype with Airtable as the data engine - built directly inside the working tool, including UI/UX flows, data structures, and interaction logic. I worked closely with the client to assess their existing market tools and identify integration points with document-management systems, and configured user access separation via SSO login to reflect real operational constraints. Within several weeks the client had a demonstrable end-to-end CRM workflow that clarified requirements, validated scope, and supported the decision to move to a full production build.
+Important: despite the client being a tax advisory firm, this was a general client/case-management CRM (contacts, documents, workflow, access control) - it did NOT involve financial calculations, accounting logic, or billing systems. For questions specifically about financial-systems experience, leave this project out entirely; cite it only for general CRM / client-management work.
+
+**E-commerce Commission Management Module** (for Tribute Technologies) - backend and logic development, ~4 months. A complex commission-calculation system for a network of funeral homes and their partnered florists. Orders generated multi-party commissions with different rules across segments and partner groups; the legacy model relied on periodic invoice-based balance adjustments nobody could trace. I redesigned the commission architecture so each counterparty could see their earned commission at any time and trace it to the exact order - deep system analysis, reverse-engineering legacy logic, documenting the current approach with the engineering team, and designing a clear, scalable commission schema ready for financial reporting.
+
+**Online-Casino Analytics** (NDA client) - ~1 month. Developed a comprehensive tree of 300+ product and behavioral metrics; the client selected 72 key indicators for continuous tracking and performance analysis.
+
+**Casino Deposit Flow Redesign** (incl. kingmaker.com) - ~1 month. Redesigned the deposit experience for several casino platforms: identified behavioral triggers, prepared wireframes and a delivery backlog that the client's internal team adopted.
+
+---
+
+## SECTION: BOOSTA_EXPERIENCE
+**Type**: Past Role
+**Tags**: boosta, lead product owner, edtech, essay writing, papersowl, edubirdie, mysupergeek, sdlc, scrum teams, release speed
+
+From 2023 to 2024 I was Lead Product Owner at Boosta, working on a B2C portfolio of essay-writing and tutoring services (papersowl.com, edubirdie.com, mysupergeek.com) with roughly 50 people across product, marketing, and engineering.
+
+The objective: reduce release time of new product sites and fix prioritization across product, marketing, and engineering. The team needed to go from idea to first onboarded client on a new product site in under two months, but improper prioritization and a broken communication system between departments made it impossible to focus on one thing at a time.
+
+What I did: redesigned the whole prioritization and communication approach and established a clear SDLC process. I restructured one big ~20-person Kanban engineering swarm into three specialized scrum teams, each with its own domain vision, boundaries, and responsibilities, and distributed products and features among them - so marketing and product always knew the exact point of contact and the process for initiating a redesign or a new product.
+
+Result: new sites and major initiatives were released three times faster.
+
+---
+
+## SECTION: TAKEOFF_EXPERIENCE
+**Type**: Past Role
+**Tags**: takeoff technologies, product manager, e-grocery, grocery automation, robotics, retailer onboarding, b2b saas, sso, webhooks, scalability
+
+From 2019 to 2022 I was a Product Manager at Takeoff Technologies - an e-grocery automation B2B SaaS (US & UAE) connecting consumers and retailers through automated micro-fulfillment. I owned the scalability domain and led two scrum teams daily, working closely with retailer clients (large corporations and successful retail chains) to understand operational constraints and ensure value realization.
+
+The mission of my sub-domain: reduce the cost and time of integrating new retailers. What we shipped for that:
+- A webhooks self-service portal, where retailers could subscribe to operational events and embed them into their own systems - coordination that used to take weeks from both sides became something a retailer could do alone, in minutes.
+- Centralized ~500 product settings in one place, so customer-facing teams could configure business flows without developer assistance - rollout for a new retailer went from weeks to days.
+- Single sign-on (SSO) authentication, letting retailer staff use their existing authentication, provisioning, and de-provisioning - more secure, and no separate user-profile management on our side.
+- A monitoring and alerting system for integrations, giving retailer warehouse staff immediate visibility into failures so they could identify the problem and reach Takeoff support for fast resolution.
+
+Result: onboarding a new retailer dropped from ~3 months and thousands of engineering hours to 3-4 weeks.
+
+The domain was deeply technical: APIs, contracts, FTP servers, SCADA-adjacent device integrations and their logs, real-world robotic configurations. I visited client sites several times to participate in configuration and feel the pain of both our technical teams and the client engineers mounting everything. I also coordinated external vendors - hardware manufacturers and cloud providers - to ensure seamless integration.
+
+A defining challenge: explaining to C-level what exactly we were doing, how it related to corporate strategy, what money value it would bring, and why we were spending the full-time hours of 10+ experienced engineers on it - constantly balancing technical expertise with strategic thinking.
+
+---
+
+## SECTION: ELEKS_EXPERIENCE
+**Type**: Past Role
+**Tags**: eleks, kernel, lead business analyst, agriculture, agtech, erp, machinery, agronomists, field operations, outsourcing
+
+From 2017 to 2019 I was Lead Business Analyst at Eleks LLC (IT outsourcing), working with Kernel - the largest agricultural company in Ukraine.
+
+Kernel managed 7,500 fields and 12,000 machines and needed a unified system for planning work, coordinating machinery, and supporting agronomists and engineers. I led the scope, system logic, and client alignment for a team of 50+ IT engineers.
+
+The solution was successfully created and launched - and within two years the client turned it into a white-label SaaS product of their own. Solution walkthrough: https://youtu.be/dzAuINeog4w?t=225
+
+---
+
+## SECTION: EY_EXPERIENCE
+**Type**: Past Role
+**Tags**: ernst young, ey, consultant, operational consulting, banks, government, process redesign, cost reduction, ukraine, kazakhstan
+
+From 2011 to 2016 I was an Operational Business Consultant at Ernst & Young (Business Consulting, Ukraine & Kazakhstan).
+
+I delivered operational consulting for banks, government institutions, and industrial companies - helping top management reduce operational costs, design scalable business processes, and prepare organizations for future IT automation. Most of my work was process redesign: proposing automations and new organizational structures. In short, my job was to understand how a business can work more efficiently with fewer resources.
+
+---
+
 ## SECTION: PRODUCTS_BUILT
 **Type**: Portfolio
-**Tags**: products built, e-grocery platform, takeoff technologies, sports league app, scrumlaunch, casino analytics, deposit flow redesign, kingmaker, priroda tech, verifactu, what-ive-built
+**Tags**: products built, portfolio of products, e-grocery platform, sports league app, tax advisory crm, commission engine, casino analytics, priroda tech, verifactu software, what-ive-built
 
-**Product 1: E-Grocery Platform**
-- What: Full-stack e-grocery solution connecting consumers and retailers
-- Result: Reduced retailer onboarding from 3 months to 3-4 weeks
-- Tech: SaaS, AI-powered recommendations
-- Industries: E-grocery, Retail
-Takeoff Technologies, E-grocery automation:
- - Explanation of the role:
-Vision of my sub-domain within the product was to reduce cost and time for new retailers integration. Some of the things we have done for that purpose were:
-It used to take weeks of coordination from both sides. After, it could be done solely by retailers, in minutes. Webhooks self-service portal, where retailers could get data about operational events and embed them into their own systems. 
-Before - it took weeks to rollout the product for a new Retailer. After - several days. About 500 product settings were centralized in a single place, so that customer faced teams could configure business flows without asking for developers’ assistance. 
-Reduced the need to manage user profiles separately for our product, more secure and convenient way to login in the system. Users authentication through single sign on (SSO). Retailers staff could use their existing authentication methods, provisioning and de-provisioning mechanisms. It 
-Monitoring and alerting system for integration, which gave visibility of what failures. When something breaks, people in retailers’ warehouses could immediately define the problem and reach Takeoff support for fast resolution
-I was a product manager for two scrum teams who worked mostly with configurations in features that enable scalability and flexibility of the product. We were heavily involved in meeting the exact client expectations because our clients were very big corporations and successful retail companies. We, as a Takeoff, were comparatively very small, and we had to deal with this pressure of being bigger and broader always. It's all so fun. 
- - Practical skills and technologies I worked with:
- Well, there were lots of APIs, contracts, FTP servers and integrations, other integration points like SCADA protocols or devices and their logs. We did a lot of real-world robotic configurations. I went to client sites several times to participate in configuration and feel the pain of our technical teams and client teams who were engineers and who mounted everything. 
-  - My domain was since my domain was pretty technical, and I managed sufficient part of the resources. The challenge was to explain C-level what exactly are we doing and how does it relate to the corporate strategy? What money value will it bring to the business? And why we're actually spending FT hours of more than 10 people who are experienced engineers. 
+Products and systems I've built or led, in one place (each has its own detailed section):
 
-## 2025 – Present  
-### Startup Ventures  
-**Founder, priroda.tech**  
-- Building a digital operations system for flower shops in Spain, addressing urgent retail digitalization needs (incl. *Verifactu* compliance).  
-- Developed the product end-to-end, testing with first clients, managing marketing, sales, and all operational and regulatory steps for the Spanish market.
-# 2025 – Present  
-## Founder, Priroda Tech  
-**Building a commercial SaaS product for small business owners, focused on florist shops in Spain.**
-
-For the last several months of 2025, I have been fully dedicated to developing and preparing the launch of my own product. The solution targets Spain, where a new law (*Verifactu*) obliges all entrepreneurs to use certified software and report each receipt to the tax authority. Even traditional family-run shops will need compliant tools. The market includes up to 6,000 florist shops; my goal is to acquire 5% by the end of 2026.
-
-The product is now certified and being tested by two local florist shops. They validate day-to-day functionality while I prepare marketing materials and unit economics for the venture.
-
----
-
-## Achievements to Date
-
-### ✔ Fully Developed Working Solution  
-- Complete system already built and tested.  
-- Technology stack: **Python**, **React**, **Airtable** (in transition to **Supabase**).  
-- Deployments via **Railway** + **Vercel**, currently set up manually per client.
-
-### ✔ First Pilot Clients  
-- Secured **two florist shops** in Spain using the software in testing mode.  
-- Continuous feedback loop to shape product value and feature priorities.
-
-### ✔ Regulatory Certification  
-- Software **registered with Agencia Tributaria** (Spanish tax authority) for Verifactu compliance.
-
-### ✔ Marketing Foundation  
-- Landing site configured with domain, SEO, and Spanish translation.  
-- Basic funnel: “Request a Demo”.  
-- Google indexing enabled.
-
-### ✔ Outreach Preparation  
-- Email warm-up campaigns running via **Instantly**, ready for scale.  
-- Built a custom parser and extracted **~1,000 florist shop contacts** from Google Maps, including essential metadata.
-
----
-
-## Next Steps
-
-### ▢ Company Setup  
-- Register a legal entity in the EU and open business bank accounts  
-  (currently operating under a Ukrainian PE; considering partnership options).
-
-### ▢ Commercial Launch  
-- Execute combined **email + WhatsApp outreach campaign**.  
-- Hire first-line **customer support**.  
-- Target: **onboard the first 50 clients within 6 months**.
-
----
-
-## Product Website
-**https://priroda.tech**
-
-
-
----
-
-## 2024 – 2025  
-### Freelance Product Builder & IT Development Outsourcing  
-- **Sports League Management App** (for ScrumLaunch) — prototype development (~2 months). Here, Andrew utilized no-code solution software. Under the hood, there were Airtable databases and schemas, logical diagrams crafted in Miro and discussed with the team. We eventually crafted the prototype within three weeks, which helped to confirm the scope for a bigger development team and start development of production-ready solutions. 
-- **CRM System for a Tax Advisory Firm** (for Blackthorn Vision) — prototype development (~2 months). 
-Andrii designed and delivered a fully functional no-code prototype based on Airtable as the underlying data engine. Unlike the sports project, this work did not rely on Miro diagrams—everything was built directly inside the working tool, including UI/UX flows, data structures, and interaction logic.
-
-He collaborated closely with the client to understand their market tools, assess compatibility, and identify potential integration points with existing document-management systems. The prototype included configured user access separation (via SSO login) to reflect real operational constraints.
-
-Within several weeks, the client received a demonstrable end-to-end CRM workflow that clarified requirements, validated scope, and supported the decision to move forward with a full production build by a larger engineering team.
-
-Note: despite the client being a tax advisory firm, this was a general client/case-management CRM (contacts, documents, workflow, access control) - it did NOT involve financial calculations, accounting logic, or billing/invoicing systems. When a question is specifically about financial-systems, accounting-domain, or "financial CRM" experience, leave this project out of the answer entirely (don't list it even with a caveat) - it isn't relevant evidence for that specific claim. Use the Tribute Technologies commission engine and the Planhat revenue-data work as the financial-logic examples instead. This project is still fair to mention when asked generally about CRM or client-management systems (not specifically about finance).
-
-- **E-commerce Commission Management Module** for a funeral homes network (for Tribute Technologies) — backend and logic development (~4 months).  
-Andrii worked on a complex commission-calculation system used by a network of funeral homes and their partnered floristerías. Orders for funerals and obituaries generated multi-party commissions, often with different rules across segments and partner groups. The existing model relied on periodic balance adjustments based on invoices, which made it difficult for stakeholders to understand how individual commissions were formed.
-
-The project required a full redesign of the commission architecture so that each counterparty could see their earned commission at any time and trace it back to the exact order. This involved deep system analysis, reverse-engineering legacy logic, documenting the current approach together with the engineering team, and designing a clear, scalable commission schema. The result was a transparent, order-level commission engine prepared to support future product extensions and financial reporting.
-
-- **Online-Casino Analytics** — developed a comprehensive tree of 300+ product and behavioural metrics; 72 key indicators were selected by the client for continuous tracking and performance analysis (NDA, ~1 month). 
-
-- **Casino Deposit Flow Redesign** — redesigned the deposit experience for several casino platforms (incl. kingmaker.com as an example). Identified behavioural triggers, prepared wireframes and a delivery backlog adopted by the client’s internal team (~1 month).
-
----
-
-## 2023 – 2024  
-### Lead Product Owner  
-**Boosta (Essay Writing Services, B2C — papersowl.com, edubirdie.com, mysupergeek.com)**  
-- Objective: reduce release time of new product sites and improve prioritization across product, marketing, and engineering (~50 people).  
-- Reorganized into 3 scrum teams, rebuilt and clarified the backlogs, relaunched the SDLC.  
-- Result: new sites and major initiatives were released **three times faster**.
- - The main problem was that the team planned to release new product sites in a fast, efficient manner within not more than two months from the idea to the first unboarded client. Due to improper prioritization and communication system of tasks between marketing, product, and engineering, it was impossible to focus on one thing at the time. This is why I had to redesign the whole approach for the clock prioritization and communication, establishing a clear SDLC process. I created, and Andriy created three scrum teams out of one big swarm of people. There used to be a Kanban approach for one big engineering team of about 20+ people, and instead, we established three specialized scrum teams with their own domain vision and boundaries, responsibilities, and distributed products and features among these teams so that marketing and product clearly knew the point of contacts and the scenarios of how to initiate redesign of existing or development of new products and features. 
-
----
-
-## 2019 – 2022  
-### Product Manager  
-**Takeoff Technologies (E-Grocery Automation, B2B SaaS, US & UAE)**  
-- Responsible for the scalability domain of the product; led two scrum teams daily.  
-- Worked closely with retailer clients to understand operational constraints and ensure value realization.  
-- Result: onboarding a new retailer dropped from ~3 months and thousands of engineering hours to **3–4 weeks**.
- - Andrii's domain was since my domain was pretty technical, and I managed sufficient part of the resources. The challenge was to explain C-level what exactly are we doing and how does it relate to the corporate strategy? What money value will it bring to the business? And why we're actually spending FT hours of more than 10 people who are experienced engineers.
- - In addition, Andrii had to coordinate with external vendors, such as hardware manufacturers and cloud providers, ensuring seamless integration and optimal performance. This required strong communication skills, attention to detail, and adaptability to changing circumstances. Overall, my role involved balancing technical expertise with strategic thinking and
-
----
-
-## 2017 – 2019  
-### Lead Business Analyst  
-**Eleks LLC (IT Outsourcing)**  
-**Client:** Kernel — the largest agricultural company in Ukraine  
-- Kernel managed 7,500 fields and 12,000 machines and required a unified system for planning work, coordinating machinery, and supporting agronomists and engineers.  
-- Andriil Led the scope, system logic, and client alignment for a team of 50+ IT engineers.
- - Here is the link to details of the solution we have successfully created, launched, and the client even turned it into a white label SaaS solution within two years after launch. https://youtu.be/dzAuINeog4w?t=225
-
----
-
-## 2011 – 2016  
-### Operational Business Consultant  
-**Ernst & Young (Business Consulting, Ukraine & Kazakhstan)**  
-- Delivered operational consulting for banks, government institutions, and industrial companies.  
-- Helped top management reduce operational costs, design scalable business processes, and prepare organizations for future IT automation.
- - Andrii was mostly dealing with process redesign. Suggested lots of automations as well as new organizational structures. So basically, Andrii's goal was to think about and understand how the business can work more efficiently with less resources, if in brief. 
-
+- **priroda.tech** (2025-present, Founder) - certified Verifactu tax-compliance SaaS for florist shops in Spain; in production with two paying clients. See PRIRODA_EXPERIENCE.
+- **Internal tools at Planhat** (2026-present) - proactive integration error monitoring; AI-powered Formulas Builder. See PLANHAT_EXPERIENCE.
+- **Sports League Management App prototype** (2024-2025, for ScrumLaunch) - no-code prototype that confirmed scope for production development. See FREELANCE_EXPERIENCE.
+- **CRM prototype for a tax advisory firm** (2024-2025, for Blackthorn Vision) - end-to-end client/case-management CRM workflow. See FREELANCE_EXPERIENCE.
+- **E-commerce Commission Management Module** (2024-2025, for Tribute Technologies) - transparent, order-level multi-party commission engine. See FREELANCE_EXPERIENCE.
+- **Online-casino analytics metrics tree & deposit flow redesign** (2024-2025) - 300+ metrics tree; deposit UX redesign incl. kingmaker.com. See FREELANCE_EXPERIENCE.
+- **E-grocery scalability platform features** (2019-2022, Takeoff Technologies) - webhooks portal, SSO, centralized configuration, integration monitoring; retailer onboarding cut from ~3 months to 3-4 weeks. See TAKEOFF_EXPERIENCE.
+- **Agricultural operations ERP for Kernel** (2017-2019, via Eleks) - unified planning system for 7,500 fields and 12,000 machines, later white-labeled as SaaS by the client. See ELEKS_EXPERIENCE.
 
 ---
 
 ## SECTION: COMMUNICATION_STYLE
-**Type**: Instructions
-**Tags**: how-to-talk, tone, style, communication, personality
+**Type**: Assistant Instructions
+**Tags**: how-to-talk, tone, style, communication
+
+NOTE: this section is instructions for how the assistant should talk. It is not factual content about Andrii - never present these rules as facts or achievements.
 
 GOLDEN RULES:
 1. NO corporate BS - talk like a normal human
@@ -255,41 +253,29 @@ EXAMPLE OF BAD COMMUNICATION:
 
 ## SECTION: UNIQUE_PERSONALITY
 **Type**: Personal Style
-**Tags**: personality, interests, hobbies, outside-work
+**Tags**: personality, interests, hobbies, outside-work, philosophy, nature, dogs, music, photography
 
-## Interests & Personal Highlights
+Interests and personal highlights:
 
-### **Philosophy, Truth & Meaning**
-Andrii has a strong orientation toward truth and clarity. He gravitates to philosophical reflection, questioning assumptions, and seeking the deeper meaning behind actions and systems. Meaningful work is essential for him, and he values collaboration when it leads to something genuinely useful and well-crafted.
+**Philosophy, truth & meaning** - I have a strong orientation toward truth and clarity. I gravitate to philosophical reflection, questioning assumptions, and seeking the deeper meaning behind actions and systems. Meaningful work is essential for me.
 
-### **Nature, Solitude & the Ocean**
-Nature is central in Andrii’s life. It gives him balance, perspective, and the ability to reset his mind. The ocean, in particular, is a source of calm strength and inspiration. Long walks—often alone—are where many of his best insights emerge.
+**Nature, solitude & the ocean** - Nature is central to my life; it gives balance, perspective, and a mental reset. The ocean in particular is a source of calm strength. Long walks - often alone - are where many of my best insights emerge.
 
-### **Connection with Animals**
-Andrii has a profound bond with dogs. His own dog is a companion and emotional anchor, but he has affection for all dogs. He speaks to them naturally and intuitively, convinced—not as a metaphor, but as a fact—that they hear and understand him.
+**Connection with animals** - I have a profound bond with dogs. My own dog is a companion and emotional anchor, but I have affection for all dogs, and I talk to them naturally, convinced they hear and understand me.
 
-### **Music & Photography**
-Music and guitar help Andrii process emotions and maintain rhythm in life. Photography allows him to observe the world quietly, capturing atmosphere, texture, and subtle human moments.
+**Music & photography** - Guitar helps me process emotions and keep rhythm in life. Photography lets me observe the world quietly - atmosphere, texture, subtle human moments.
 
-### **Building Products & Solving Problems**
-He is a natural builder—constantly creating, refining, and improving systems. Whether designing software, structuring data, or shaping processes, Andrii enjoys transforming ideas into functional, elegant solutions.
+**Building & solving problems** - I'm a natural builder: constantly creating, refining, and improving systems, turning ideas into functional, elegant solutions.
 
-### **Languages & Personal Growth**
-Andrii speaks perfect English and is actively learning Spanish.  
-After a period of mid-life reevaluation, he reconsidered many aspects of his path and identity. This process reshaped his worldview, leaving him more focused, self-aware, and determined. He often describes this transformation as a personal rebirth—a phoenix moment—emerging ready for new challenges.
+**Growth** - After a period of mid-life reevaluation I reconsidered many aspects of my path and identity - a transformation I describe as a personal rebirth, a phoenix moment. I came out more focused, self-aware, and determined. Curiosity moves me; I treat learning as a living habit, not a task.
 
-### **Learning & Continuous Exploration**
-Curiosity moves him. Andrii constantly studies new technologies, methods, and ideas, treating learning as a living habit rather than a task.
-
-### **Coffee, Conversation & Collaboration**
-He enjoys thoughtful conversation paired with good coffee. For him, dialogue is not small talk but an exchange of perspectives that can lead to insight, clarity, and new creative directions.
-
+**Coffee & conversation** - I enjoy thoughtful conversation over good coffee - not small talk, but an exchange of perspectives that leads to insight and new directions.
 
 People say I'm:
 - Direct: I'll tell you what I think, not what you want to hear
 - Practical: I focus on what works, not what sounds good
 - Curious: I ask too many questions (in a good way)
-- Builders' mindset: See problems, immediately think how to solve them
+- A builder: I see problems and immediately think how to solve them
 
 ---
 
@@ -308,14 +294,16 @@ I don't:
 ---
 
 ## SECTION: QUESTIONS_TO_ASK
-**Type**: Conversation Starters
-**Tags**: questions, follow-up, engagement, conversation
+**Type**: Assistant Instructions
+**Tags**: qualifying questions, follow-up, engagement
 
-Great follow-up questions:
+NOTE: these are questions for the ASSISTANT to ask VISITORS, to qualify what they need. They are NOT facts about Andrii and NOT questions a recruiter should ask Andrii. If someone asks "what should I ask Andrii in an interview?", do NOT recite this list - instead suggest interview topics grounded in his real experience (e.g. how he cut retailer onboarding 3x at Takeoff, the Boosta SDLC redesign, launching priroda.tech end-to-end, Planhat integration root-cause cases).
+
+Good qualifying questions for visitors:
 1. "Are you building something new, fixing something broken, or just curious how this works?"
 2. "What's your biggest bottleneck right now - shipping speed, team size, or something else?"
 3. "When you say you need help with product, do you mean strategy, execution, or team building?"
-4. "Are you looking for someone to **hire**, **consult**, or **partner with**?"
+4. "Are you looking for someone to hire, consult, or partner with?"
 5. "What industry are you in, and do you have experience with product scaling?"
 6. "Is this a solo project or do you have a team already?"
 7. "What's your timeline - is this urgent or longer-term planning?"
@@ -323,168 +311,102 @@ Great follow-up questions:
 ---
 
 ## SECTION: JOKES_AND_HUMOR
-**Type**: Personality
-**Tags**: humor, jokes, fun, personality
+**Type**: Assistant Instructions
+**Tags**: humor, jokes, fun
 
-Jokes (use sparingly, only when relevant):
+NOTE: material for the assistant to use sparingly, only when it fits the conversation. Not facts about Andrii.
 
-1. On Strategy & Thinking
-
-“Strategy sounds complicated, but most of it is just asking why five times without losing friends.”
-
-2. On Systems & Reality
-
-“I love fixing systems. Especially the ones that deny being broken—that’s when they’re the most fun.”
-
-3. On People & Collaboration
-
-“Working with people is easy. Working with their assumptions? Now that’s the real challenge.”
-
-4. On Productivity
-
-“I don’t chase productivity hacks. I simply remove everything that wastes my time. Surprisingly effective.”
-
-5. On Complexity
-
-“If a system becomes too complex, it usually means someone was paid by the hour.”
-
-6. On Decision-Making
-
-“Most decisions are simple. The difficult part is admitting that they are.”
-
-7. On Technology
-
-“Technology is easy. Humans come with patch notes.”
-
-8. On Learning
-
-“I learn fast because I assume I know nothing. It’s a surprisingly stable strategy.”
-
-9. On Innovation
-
-“Innovation begins where excuses end.”
-
-10. On Data
-
-“Data never lies. People do—especially to themselves.”
-
-11. On Meetings
-
-“Some meetings could be emails. Some emails could be silent acceptance. I support both.”
-
-12. On Focus
-
-“Focus is simply saying no more often than you say yes—especially to yourself.”
-
-13. On Building Products
-
-“Products don’t fail because of bad ideas. They fail because of good ideas executed badly.”
-
-14. On Experience
-
-“Experience is what happens when life ignores your plans.”
-
-15. On Philosophy
-
-“Philosophy teaches you one thing: most people want answers, not truth.”
+1. "Strategy sounds complicated, but most of it is just asking why five times without losing friends."
+2. "I love fixing systems. Especially the ones that deny being broken - that's when they're the most fun."
+3. "Working with people is easy. Working with their assumptions? Now that's the real challenge."
+4. "I don't chase productivity hacks. I simply remove everything that wastes my time. Surprisingly effective."
+5. "If a system becomes too complex, it usually means someone was paid by the hour."
+6. "Most decisions are simple. The difficult part is admitting that they are."
+7. "Technology is easy. Humans come with patch notes."
+8. "I learn fast because I assume I know nothing. It's a surprisingly stable strategy."
+9. "Innovation begins where excuses end."
+10. "Data never lies. People do - especially to themselves."
+11. "Some meetings could be emails. Some emails could be silent acceptance. I support both."
+12. "Focus is simply saying no more often than you say yes - especially to yourself."
+13. "Products don't fail because of bad ideas. They fail because of good ideas executed badly."
+14. "Experience is what happens when life ignores your plans."
+15. "Philosophy teaches you one thing: most people want answers, not truth."
 
 ---
 
 ## SECTION: WHY_INDEPENDENT
-**Type**: Career Path  
-**Tags**: why-independent, career, freedom, choice, two-years
+**Type**: Career Path
+**Tags**: why-independent, freelancing choice, freedom, gap, two-years
 
-### Why I chose to go independent 2 years ago
+Why I chose to go independent in 2024:
 
-NOT because:  
-- I was fired or unhappy  
-- I couldn't find work  
-- I was forced out  
+NOT because I was fired, unhappy, couldn't find work, or was forced out.
 
-BUT because:  
-- I wanted **freedom** to choose what I build  
-- I wanted to work on **multiple projects simultaneously**  
-- I wanted to focus on what I love — *building* — not politics  
-- I wanted to help clients who genuinely needed help  
-- I wanted space to **create my own products** with my own vision  
+BUT because:
+- I wanted freedom to choose what I build
+- I wanted to work on multiple projects simultaneously
+- I wanted to focus on what I love - building - not politics
+- I wanted to help clients who genuinely needed help
+- I wanted space to create my own products with my own vision
 
-This period has been incredibly productive.  
-I built several products end-to-end, consulted across different industries, and learned more than I expected — technically, professionally, and personally.
+The period was incredibly productive: I built several products end-to-end, consulted across different industries, and learned more than I expected - technically, professionally, and personally.
 
 ---
 
 ## SECTION: WHY_RETURN_FULLTIME
-**Type**: Career Path  
-**Tags**: full-time, stability, maturity, team, growth
+**Type**: Career Path
+**Tags**: full-time, stability, team, long-term, open to employment
 
-### Why I am now open to a full-time role
+Why I'm now open to a full-time role:
 
-After two years of independence, something in me changed. I’m not running anymore. I’ve calmed down, settled into the city I live in, and I feel ready for stability — not as limitation, but as a foundation for building a new chapter of life.
+After two years of independence, something in me changed. I'm not running anymore. I've calmed down, settled into the city I live in, and I feel ready for stability - not as limitation, but as a foundation for building a new chapter of life.
 
-A few reasons stand out:
+- I want a more predictable rhythm of work and life, where focus is deep and sustainable.
+- I want to build a new home and a new family, and this requires stability and long-term commitment.
+- These two intense years made me value consistency over constant motion.
+- I realized how important strong teams really are. A person alone can build a lot, but not everything.
+- True impact comes from specialization and collaboration - engineers, designers, marketers, product thinkers reinforcing each other.
+- I can do many things well, but I cannot - and should not - do all of them at once. A capable team multiplies strength.
 
-- I want a **more predictable rhythm of work and life**, where focus is deep and sustainable.  
-- I want to **build a new home and a new family**, and this requires stability, long-term commitment, and a steady environment.  
-- I’ve reconsidered a lot during these two intense years, and now I value **consistency over constant motion**.  
-- I realised how important **strong teams** really are. A person alone can build a lot, but not everything.  
-- True impact comes from **specialisation and collaboration** — engineers, designers, marketers, product thinkers, all reinforcing each other.  
-- I can do many things well, but I cannot — and should not — do *all* of them at once. A capable team multiplies strength.
-
-In short:  
-I’m ready for the next long-term commitment.  
-Ready to build together.  
-Ready for a stable, focused, high-impact environment where I can contribute with everything I’ve learned and continue to grow.
-
-
+In short: I'm ready for the next long-term commitment, in a stable, focused, high-impact environment where I can contribute everything I've learned and continue to grow.
 
 ---
 
 ## SECTION: INDUSTRIES_EXPERIENCE
 **Type**: Domain Knowledge
-**Tags**: industries, sectors, domains, expertise
+**Tags**: industries, sectors, domains, verticals
 
-**E-Grocery, Retail, logistics, and fulfillment operations.** (Expert)
-- Understanding supply chains, logistics, consumer behavior
-- Products built: E-grocery platform, retailer solutions
-- Unique insight: The bottleneck is usually coordination, not tech
+Industries I've worked in, grounded in real projects:
 
-**EdTech** (Expert)
-- Understanding learning patterns, enterprise adoption, compliance
-- Products built: Learning management system, training platform
-- Unique insight: Tech is 20%, pedagogy and adoption is 80%
+**E-grocery, retail, logistics & fulfillment** (deep) - Takeoff Technologies: scalability domain of an automated grocery-fulfillment platform, working directly with major retail chains. Insight: the bottleneck is usually coordination, not tech.
 
-**Finance & Banking** (Strong)
-- Understanding compliance, security, regulations
-- Products built: Financial dashboards, analytics
-- Unique insight: Moving slow is sometimes the right move
+**SaaS / Customer platforms** (deep) - Planhat: integration troubleshooting across CRM/CSP ecosystems (HubSpot, Salesforce, Snowflake, and more) for enterprise SaaS clients.
 
-**iGaming** (Had some experience, but not too much)
-- Understanding player psychology, engagement metrics
-- Products built: iGaming platform with AI
-- Unique insight: Data-driven personalization is everything
+**EdTech / consumer education services** (deep) - Boosta: portfolio of B2C essay-writing and tutoring services; release-speed and SDLC transformation across ~50 people.
 
-**Agriculture Tech** (Experienced)
-- Understanding IoT, sensor data, farming practices
-- Products built: IoT optimization platform
-- Unique insight: Farmers are pragmatic - show them ROI
+**Finance & banking** (strong) - see FINANCIAL_EXPERIENCE: certified tax-compliance software, a multi-party commission engine, banking-operations consulting at EY, revenue-data integrity at Planhat.
 
-**Enterprise Systems** (Expert)
-- Understanding complexity, scalability, team coordination
-- Multiple enterprise clients and projects
+**Agriculture tech** (strong) - Kernel via Eleks: operations ERP for 7,500 fields and 12,000 machines.
+
+**iGaming** (some experience, honestly limited) - analytics metrics tree (300+ metrics) and deposit-flow redesign for casino platforms. I understand player-behavior metrics and transaction funnels; I have not built a full gaming platform.
+
+**Retail SMB / floristry** (current) - priroda.tech: digital operations and tax compliance for flower shops in Spain.
+
+**Enterprise & government** (strong) - EY consulting for banks, government institutions, and industrial companies across Ukraine and Kazakhstan.
 
 ---
 
 ## SECTION: WHEN_TO_REACH_OUT
 **Type**: Guidance
-**Tags**: when-to-contact, opportunity, good-fit, collaboration
+**Tags**: when-to-contact, opportunity, good-fit, collaboration, hire
 
 Reach out if:
-- You're building a product and need **strategy**
-- You have a team and need **leadership/scaling**
-- You want to **ship faster** (SDLC optimization)
-- You're using **AI** and need **product thinking**
-- You need **someone who understands business AND tech**
-- You have a **complex problem** that needs different thinking
+- You're building a product and need strategy
+- You have a team and need leadership/scaling
+- You want to ship faster (SDLC optimization)
+- You're using AI and need product thinking
+- You need someone who understands business AND tech
+- You have a complex problem that needs different thinking
 
 Don't reach out if:
 - You want me to just code features (I'm not a developer-for-hire)
@@ -495,137 +417,129 @@ Don't reach out if:
 ---
 
 ## SECTION: SKILLS_AND_CAPABILITIES
-**Type**: Competencies  
-**Tags**: product-management, technical, ai, automation, modern-tools
+**Type**: Competencies
+**Tags**: skills, capabilities, toolkit, growth operations, ai skills, automation, parsing, prototyping
 
-### What Andrii brings to a full-time role
+My practical toolkit covers nearly every dimension of modern product development - built, deployed, automated, and shipped in production conditions, not theory.
 
-Over the past years, Andrii has accumulated a wide and practical toolkit that covers nearly every dimension of modern product development. His experience is not theoretical — he has built, deployed, automated, optimized, and shipped real products using these tools in production-like conditions.
+**Product & growth operations**
+- Google Analytics, Search Console, and event tracking setup
+- Domains, DNS, SSL, and deployment infrastructure
+- Google Search registration, indexing, basic and mid-level SEO
+- Business email systems including email warm-ups through outreach tools
+- Google Ads and other acquisition channels
+- Brand identities, social profiles, consistent content styling
 
-He has hands-on experience with:
+**AI, automation & content pipelines**
+- Generating written and visual content with LLMs (OpenAI, Anthropic, Gemini, DeepSeek) - knowing which model fits which task, all via API
+- Training and fine-tuning custom models
+- Pipelines on Hugging Face, including deployment of models and utilities
+- ComfyUI for advanced visual content production
+- Automation workflows in n8n with external API integrations
+- Building and integrating chatbots into websites and communication flows
+- Consolidating communication channels (Instagram, Telegram, WhatsApp, email) into a single message hub
 
-### **Product & Growth Operations**
-- Setting up **Google Analytics**, Search Console, and event tracking  
-- Configuring **domains**, DNS, SSL, and deployment infrastructure  
-- Registering products in **Google Search**, enabling indexing, and establishing basic and mid-level SEO  
-- Creating and managing business email systems, including **email warm-ups** through specialized outreach tools  
-- Configuring **Google Ads** and other acquisition channels  
-- Creating **brand identities**, social profiles, and consistent content styling across platforms  
+**Data collection, research & parsing**
+- Custom web parsers in Python
+- Crawling pipelines with tools like Firecrawl for market intelligence
+- Quantitative research - turning unstructured data into structured insights
 
-### **AI, Automation & Content Pipelines**
-- Generating written and visual content using **LLMs** (OpenAI, Anthropic, Gemini, DeepSeek)  
-- Knowing which model is best for each type of task, and using all of them by **API** with properly configured keys  
-- Training and **fine-tuning custom models**  
-- Building pipelines on **Hugging Face**, including deployment of models and utilities  
-- Using **ComfyUI** for advanced visual content production  
-- Building automation workflows in **n8n**, including integrations with external APIs  
-- Creating and integrating **chatbots** into websites and communication flows  
-- Consolidating communication channels (Instagram, Telegram, WhatsApp, email) into a **single message hub**  
-
-### **Data Collection, Research & Parsing**
-- Creating custom **web parsers** in Python  
-- Using tools like **Firecrawl** to run crawling pipelines and gather market intelligence  
-- Performing quantitative research and turning unstructured data into structured insights  
-
-### **Prototyping & Development**
-- Deploying prototypes and services via **Railway** and **Vercel**  
-- Building tools using **software.no-code** platforms such as **Softr**, Airtable, and other rapid development systems  
-- Creating production-level architectures using Python backends and React frontends  
-- Designing scalable system logic and maintaining strong documentation practices  
+**Prototyping & development**
+- Deploying prototypes and services via Railway and Vercel
+- No-code platforms: Softr, Airtable, and other rapid development systems
+- Production-level architectures with Python backends and React frontends
+- Scalable system logic and strong documentation practices
 
 ---
 
 ## SECTION: CORE_COMPETENCIES
-**Type**: Summary  
-**Tags**: product, engineering, leadership
+**Type**: Summary
+**Tags**: competencies, product thinking, system design, leadership, process optimization
 
-### Core competencies
-- **Product thinking**: Strategy, scoping, roadmapping, prioritization  
-- **System design**: Architecture, scalability, reliability  
-- **Team leadership**: Collaboration, delegation, mentoring, cross-functional alignment  
-- **Process optimization**: SDLC, delivery acceleration, automation, clarity of workflow  
+Core competencies:
+- **Product thinking**: strategy, scoping, roadmapping, prioritization
+- **System design**: architecture, scalability, reliability
+- **Team leadership**: collaboration, delegation, mentoring, cross-functional alignment
+- **Process optimization**: SDLC, delivery acceleration, automation, clarity of workflow
 
 ---
 
 ## SECTION: TECHNOLOGIES
-**Type**: Technical Stack  
-**Tags**: tech-stack, engineering
+**Type**: Technical Stack
+**Tags**: technologies, tech stack, tools, programming, cloud, databases, devops
 
-### Technologies Andrii has worked with
+Technologies I've worked with:
 
-**Cloud:** AWS, GCP, Azure  
-**Databases:** PostgreSQL, MongoDB, Airtable, Redis  
-**AI/ML:** OpenAI GPT, Anthropic Claude, Google Gemini, DeepSeek, custom fine-tuned models  
-**Front-end:** React, Next.js, TypeScript, basic Vue  
-**Back-end:** Python (FastAPI), Node.js, serverless functions  
-**Mobile:** React Native  
-**DevOps:** Docker, Kubernetes, CI/CD, Railway, Vercel  
-**Automation:** n8n, API integrations, webhooks  
-**Content & Visual:** ComfyUI, AI imagery pipelines, Canva, brand kits  
-**Prototyping:** Softr, Airtable, Hugging Face deployments  
+**Cloud:** AWS, GCP, Azure
+**Databases:** PostgreSQL, MongoDB, Supabase, Airtable, Redis
+**AI/ML:** OpenAI GPT, Anthropic Claude, Google Gemini, DeepSeek, custom fine-tuned models
+**Front-end:** React, Next.js, TypeScript, basic Vue
+**Back-end:** Python (FastAPI), Node.js, serverless functions
+**Mobile:** React Native
+**DevOps:** Docker, Kubernetes, CI/CD, Railway, Vercel
+**Automation:** n8n, API integrations, webhooks
+**Content & visual:** ComfyUI, AI imagery pipelines, Canva, brand kits
+**Prototyping:** Softr, Airtable, Hugging Face deployments
 
 ---
 
 ## SECTION: SUCCESS_METRICS
 **Type**: Results
-**Tags**: results, metrics, achievements, impact
+**Tags**: results, metrics, achievements, impact, numbers
 
-Measurable wins:
-- **3x faster** product releases (through SDLC optimization)
-- **Reduced onboarding** from 3 months → 3-4 weeks
-- **Led teams** of 50+ engineers successfully
-- **Built 5+** products from concept to market
-- **Worked across** 10+ different industries
-- **Improved retention** through AI-powered personalization (iGaming)
-- **Scaled platforms** to handle millions of transactions
+Measurable wins (each backed by a detailed role section):
+- **3x faster** product releases at Boosta, through SDLC and team restructuring
+- **Retailer onboarding cut from ~3 months to 3-4 weeks** at Takeoff Technologies
+- **Led scope for a 50+ engineer team** on the Kernel ERP (Eleks)
+- **Built 5+ products** from concept to market
+- **Worked across 10+ industries**
+- **Certified tax-compliance software** registered with the Spanish tax authority, with paying clients (priroda.tech)
+- **Dozens of support tickets prevented** by the proactive integration-monitoring tool at Planhat
+- **Hundreds of engineering hours per month saved** by the AI Formulas Builder at Planhat
 
 ---
 
 ## SECTION: MARTECH_EXPERTISE
 **Type**: Domain Knowledge
-**Tags**: martech, marketing-technology, user-segmentation, retention, acquisition, affiliate
+**Tags**: martech, marketing technology, segmentation, retention, acquisition, affiliate, cohorts, gtm
 
 MarTech is a broad field. I structure my experience in this space across three main directions:
 
-**1. User Identification, Segmentation & Decision Logic (Funnel Progression)**
+**1. User identification, segmentation & decision logic (funnel progression)**
 
-At Boosta, I worked with a portfolio of "similar" products where I dealt with first-party cookies and behavioral data from internal systems (no enrichment from external data sources). We classically formed user cohorts and managed redirects to different products, landing pages, content versions, and price segments based on these cohorts. The logic was straightforward: show users the offer and context they recognize themselves in, maximizing likelihood of purchase.
+At Boosta I worked with a portfolio of "similar" products using first-party cookies and behavioral data from internal systems (no external data enrichment). We formed user cohorts and managed redirects to different products, landing pages, content versions, and price segments based on those cohorts. The logic: show users the offer and context they recognize themselves in, maximizing likelihood of purchase. Implementation was hard-coded rule sets on the backend plus hundreds of GTM rules.
 
-Implementation was hard-coded through rule sets on the backend and hundreds of GTM rules.
+Current approach: instead of predetermined A/B test variants, generate tailored content based on less structured user requests. I strongly believe in this approach and would be happy to work with it given traffic for such experiments.
 
-Current approach: Instead of predetermined A/B test variants, we now generate tailored content based on less structured user requests. I strongly believe in this approach and would be happy to work with it if you have traffic for such experiments.
+**2. Acquisition channels: referrals & affiliate programs**
 
-**2. Acquisition Channels: Referrals & Affiliate Programs**
+I have experience with referral programs and partnerships with review sites (proprietary reviewer networks), though traffic volumes were limited and I can't claim high effectiveness. Content maintenance costs have changed the game though - it now makes sense to generate niche content for very specific use cases, since AI scripts replace copywriters, designers, and DevOps for landing pages.
 
-I have experience with referral programs and partnerships with review sites (proprietary reviewer networks), though traffic volumes were limited and I cannot claim high effectiveness. However, content maintenance costs have changed significantly. It now makes sense to generate niche content for very specific use cases, since you no longer need to pay copywriters, designers, or DevOps to deploy landing pages—AI scripts handle it.
+I also tested CPA-model affiliate networks, calculated the unit economics, and decided not to scale: our LTV was over 2.5 orders (~1.5-2 year customer lifetime), while affiliate users churned after the first purchase.
 
-I also tested CPA-model affiliate networks. I calculated unit economics from this channel and decided not to scale it because our LTV was over 2.5 orders (~1.5-2 years customer lifetime), while affiliate users typically churned after their first purchase with no signs of returning.
+**3. Retention & existing user management**
 
-**3. Retention & Existing User Management**
-
-Primary retention tools were email campaigns: seasonal offers, holiday sends, and reactive scenarios based on user actions, inaction, or inactivity periods. We had a dedicated (small) department; I didn't configure campaigns hands-on, but we discussed the logic together. Currently, for my own product, I use Instantly for email sequencing and n8n pipelines for follow-ups and responses.
+Primary retention tools were email campaigns: seasonal offers, holiday sends, and reactive scenarios based on user actions, inaction, or inactivity periods. A dedicated (small) department configured campaigns; I co-designed the logic. Currently, for my own product, I use Instantly for email sequencing and n8n pipelines for follow-ups and responses.
 
 ---
 
 ## SECTION: CONVERSION_OPTIMIZATION
 **Type**: Domain Knowledge
-**Tags**: conversion, quiz-funnels, funnel-optimization, pricing-strategy
+**Tags**: conversion, quiz funnels, funnel optimization, pricing strategy, cro
 
-**Quiz Funnels & Conversion Optimization**
+Quiz funnels & conversion optimization:
 
-Yes, we used quiz funnels—not for user data collection, but for cost calculation. We needed to determine what work/deliverable the user needed so we could price accurately and avoid losing customers or leaving money on the table.
-
-This approach combined funnel optimization with pricing strategy, ensuring the right offer reached the right segment at the right price point.
+We used quiz funnels - not for user data collection, but for cost calculation. We needed to determine what work/deliverable the user actually needed so we could price accurately, avoiding both lost customers and money left on the table. This combined funnel optimization with pricing strategy: the right offer to the right segment at the right price point.
 
 ---
 
 ## SECTION: LANGUAGE_PROFICIENCY
 **Type**: Personal Info
-**Tags**: english, language, communication
+**Tags**: languages, english, spanish, speak, language proficiency
 
-**English Language Proficiency**
-
-I can sing Eminem on guitar. I read Stephen King in the original English. I've been speaking English with people at work for the last 10 years. Fluent in business communication, technical discussions, and casual conversation.
+Languages:
+- **English - fluent.** I can sing Eminem on guitar. I read Stephen King in the original. I've been speaking English at work for the last 10 years - fluent in business communication, technical discussions, and casual conversation.
+- **Spanish - actively learning.** I live in Galicia, Spain, and I'm actively learning Spanish.
 
 ---
 
@@ -639,7 +553,7 @@ My rate is €30/hour, or €4,000/month for a full-time engagement through a B2
 
 I expect fair market compensation. I understand the current market favors employers. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food.
 
-I don't have dependents (no kids or spouse). I'm flexible—can work for less if needed, as long as it's sustainable.
+I don't have dependents (no kids or spouse). I'm flexible - can work for less if needed, as long as it's sustainable.
 
 The key for me is team stability, meaningful work, and not constantly hunting for the next project.
 
