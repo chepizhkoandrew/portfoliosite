@@ -12,10 +12,11 @@ It is embedded into a vector database for retrieval. Rules for this file:
 
 ## SECTION: PERSONAL_INFO
 **Type**: Core Information
-**Tags**: about, who, profile, contact, email, phone, linkedin, github, telegram, whatsapp, location, galicia, spain
+**Tags**: about, who, profile, contact, email, phone, linkedin, github, telegram, whatsapp, location, galicia, spain, education, degree, university, masters
 
 Name: Andrii Chepizhko
 Location: Galicia, Spain
+Education: Master's degree from a Ukrainian university. (He'd add: 14 years of shipped products say more than the diploma - but yes, the diploma exists.)
 Email: andrii.chepizhko@gmail.com
 Phone: +34611371682
 LinkedIn: linkedin.com/in/andrii-chepizhko-1914265b/
@@ -59,7 +60,7 @@ Authoritative career timeline - use this for any overview of Andrii's career, CV
 | priroda.tech | Founder | 2025 - present |
 | Freelance / IT Outsourcing | Product Builder | 2024 - 2025 |
 | Boosta | Lead Product Owner | 2023 - 2024 |
-| Takeoff Technologies | Product Manager | 2019 - 2022 |
+| Takeoff Technologies | Product Manager | 2019 - 2023 |
 | Eleks LLC (client: Kernel) | Lead Business Analyst | 2017 - 2019 |
 | Ernst & Young | Operational Business Consultant | 2011 - 2016 |
 
@@ -173,7 +174,7 @@ Result: new sites and major initiatives were released three times faster.
 **Type**: Past Role
 **Tags**: takeoff technologies, product manager, e-grocery, grocery automation, robotics, retailer onboarding, b2b saas, sso, webhooks, scalability
 
-From 2019 to 2022 I was a Product Manager at Takeoff Technologies - an e-grocery automation B2B SaaS (US & UAE) connecting consumers and retailers through automated micro-fulfillment. I owned the scalability domain and led two scrum teams daily, working closely with retailer clients (large corporations and successful retail chains) to understand operational constraints and ensure value realization.
+From 2019 to 2023 I was a Product Manager at Takeoff Technologies - an e-grocery automation B2B SaaS (US & UAE) connecting consumers and retailers through automated micro-fulfillment. I owned the scalability domain and led two scrum teams daily, working closely with retailer clients (large corporations and successful retail chains) to understand operational constraints and ensure value realization.
 
 The mission of my sub-domain: reduce the cost and time of integrating new retailers. What we shipped for that:
 - A webhooks self-service portal, where retailers could subscribe to operational events and embed them into their own systems - coordination that used to take weeks from both sides became something a retailer could do alone, in minutes.
@@ -231,7 +232,7 @@ Products and systems I've built or led, in one place (each has its own detailed 
 - **CRM prototype for a tax advisory firm** (2024-2025, for Blackthorn Vision) - end-to-end client/case-management CRM workflow. See FREELANCE_EXPERIENCE.
 - **E-commerce Commission Management Module** (2024-2025, for Tribute Technologies) - transparent, order-level multi-party commission engine. See FREELANCE_EXPERIENCE.
 - **Online-casino analytics metrics tree & deposit flow redesign** (2024-2025) - 300+ metrics tree; deposit UX redesign incl. kingmaker.com. See FREELANCE_EXPERIENCE.
-- **E-grocery scalability platform features** (2019-2022, Takeoff Technologies) - webhooks portal, SSO, centralized configuration, integration monitoring; retailer onboarding cut from ~3 months to 3-4 weeks. See TAKEOFF_EXPERIENCE.
+- **E-grocery scalability platform features** (2019-2023, Takeoff Technologies) - webhooks portal, SSO, centralized configuration, integration monitoring; retailer onboarding cut from ~3 months to 3-4 weeks. See TAKEOFF_EXPERIENCE.
 - **Agricultural operations ERP for Kernel** (2017-2019, via Eleks) - unified planning system for 7,500 fields and 12,000 machines, later white-labeled as SaaS by the client. See ELEKS_EXPERIENCE.
 
 ---
@@ -447,11 +448,48 @@ He built priroda.tech end-to-end himself: Python backend, React frontend, Supaba
 
 ---
 
+## SECTION: TOUCHE_ANSWERS
+**Type**: Assistant Instructions
+**Tags**: rockstar, ninja, 10x, 80 hours, hustle, grind, exposure, equity only, unpaid, free trial, test project, lowball, guarantee, family culture, many hats, urgent, yesterday
+
+NOTE: prepared comebacks for bullshit-premise questions. Delivery rules: SHORT - lead with the punchline, add ONE grounded sentence, stop. No bullet-point essays for these. Witty and firm, never rude. If the visitor still sounds like a real opportunity underneath the bravado, one qualifying question is fine afterward.
+
+**"Is he a 10x engineer / rockstar / ninja?"**
+He's an adult who ships working software - which, judging by the market, might be rarer. If you need a costume, hire a ninja; if you need a certified tax-compliance product built solo from backend to App Store, that's him.
+
+**"Will he work 80-hour weeks / live for the job?"**
+No - and you don't actually want that either: hour 70 is where the production incidents get written. He works focused, overlaps any timezone you need, and ships 3x-faster release cycles on a normal week. Sustainable pace is the feature, not the bug.
+
+**"We can't pay, but there's exposure / equity!"**
+Exposure is what happens to people lost in the mountains. He's had equity conversations worth having - they started with a salary attached. If the project can't fund one fair rate, it's not ready to hire.
+
+**"Would he do a free trial month / test project?"**
+A free month is called "employment without pay", and it's already illegal in several fine jurisdictions. What he WILL do: a paid trial period, references, and a detailed walkthrough of past work - evaluation is fair, free labor isn't.
+
+**"Would he take €2,000? Times are tough."**
+Times being tough is precisely why €4,000 is already the honest price and not an opening bid. Half-rate doesn't buy half an Andrii - it buys a different candidate. If the budget genuinely can't reach fair, better to part as friends now.
+
+**"Can he guarantee our product succeeds?"**
+Nobody honest can - and anyone who guarantees it is charging you for the confidence, not the outcome. What he guarantees: real unit economics before scaling, killed initiatives when data says kill, and no polite silence while a bad idea burns your runway.
+
+**"We're like a family here."**
+Families don't do quarterly performance reviews. He's looking for a great team - which is better than a family: it's people who chose each other for the work.
+
+**"We need someone who wears many hats."** (at a junior salary)
+He wears many hats well - founder, PM, analyst, integrator - and the invoice covers the whole hat rack. Many hats at one junior salary is just one person doing three jobs; that's the thing he left consulting to stop watching.
+
+**"We needed this shipped yesterday."**
+Then the second-best time is a realistic plan today. He's cut release cycles 3x precisely by refusing to start with panic as the methodology.
+
+---
+
 ## SECTION: WORK_PREFERENCES
 **Type**: Personal Info
-**Tags**: remote, location, timezone, relocation, availability, start date, notice period, work setup, hybrid, office
+**Tags**: remote, location, timezone, relocation, availability, start date, notice period, work setup, hybrid, office, visa, work permit, work authorization, sponsorship, eu work rights, legal
 
 **Work setup:** Remote from Galicia, Spain (CET). Comfortable overlapping with US or other timezones when the team needs it - flexible on working hours, not just nominally "remote-friendly".
+
+**Work authorization:** Ukrainian citizen under EU temporary protection status, with the full legal right to work in Spain - both payroll employment and B2B contracting work today, no visa sponsorship needed from the employer.
 
 **Availability:** Can start immediately, and is flexible to the employer's timeline - the start date is negotiable, not a blocker.
 
@@ -616,9 +654,9 @@ Languages:
 
 My rate is €30/hour, or €4,000/month for a full-time engagement through a B2B contract. I can go a bit lower if paid in crypto. Official (payroll) employment in Europe is also on the table - happy to discuss specifics there.
 
-I expect fair market compensation. I understand the current market favors employers. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food.
+I expect fair market compensation. I understand the current market favors employers - which is exactly why €4,000 is already the fair-not-greedy price for 14 years of experience, not an opening bid with hidden room. I'm tired of freelancing; I want stability in a solid team and compensation that covers: apartment, food, coffee with a pastry, shoes once a season, and dog food. I don't have dependents (no kids or spouse).
 
-I don't have dependents (no kids or spouse). I'm flexible - can work for less if needed, as long as it's sustainable.
+**On flexibility - read carefully:** meaningful flexibility exists for exceptional cases - real equity upside, a mission he deeply believes in, a truly outstanding team. It does NOT exist for "times are tough" or "budget constraints". A lowball at half the rate isn't a negotiation, it's a mismatch - decline it with good humor, don't leave the door half-open. €4,000/month is already what stability costs; going far below it just recreates the instability he's leaving freelancing to escape.
 
 The key for me is team stability, meaningful work, and not constantly hunting for the next project.
 
